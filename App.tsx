@@ -9,9 +9,9 @@ import Chatbot from './components/Chatbot';
 import Loader from './components/Loader';
 import { SearchProvider } from './context/SearchContext';
 import { MobileMenuProvider } from './context/MobileMenuContext';
+import Home from './pages/Home';
 
-// Lazy load all page components for better performance
-const Home = lazy(() => import('./pages/Home'));
+// Lazy load other page components for better performance
 const About = lazy(() => import('./pages/About'));
 const GenericPage = lazy(() => import('./pages/GenericPage'));
 const VCMessage = lazy(() => import('./pages/VCMessage'));

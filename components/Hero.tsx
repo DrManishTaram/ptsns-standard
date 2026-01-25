@@ -87,6 +87,8 @@ const Hero: React.FC = () => {
                             <img
                               src={leftSlide.image}
                               alt={leftSlide.title}
+                              loading={index === 0 ? "eager" : "lazy"}
+                              {...(index === 0 ? { fetchPriority: "high" } : {})}
                               className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                             />
                             {/* Overlay Description */}
@@ -111,6 +113,8 @@ const Hero: React.FC = () => {
                             <img
                               src={rightSlide.image}
                               alt={rightSlide.title}
+                              loading={index === 0 ? "eager" : "lazy"}
+                              {...(index === 0 ? { fetchPriority: "high" } : {})}
                               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                             />
                             {/* Overlay Description */}
