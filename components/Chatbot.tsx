@@ -90,11 +90,11 @@ const Chatbot: React.FC = () => {
   return (
     <>
       {/* Mobile stacked floating buttons (mobile only) */}
-      <div className={`fixed right-6 bottom-6 md:hidden z-50 flex flex-col-reverse items-end gap-[5px] transition-all duration-500 ${isHiddenAreaVisible ? 'opacity-0 translate-y-10 pointer-events-none' : 'opacity-100 translate-y-0'}`}>
+      <div className={`fixed right-6 bottom-6 md:hidden z-[110] flex flex-col-reverse items-end gap-[5px] transition-all duration-500 ${isHiddenAreaVisible ? 'opacity-0 translate-y-10 pointer-events-none' : 'opacity-100 translate-y-0'}`}>
         {/* Mobile Chat Toggle (small) */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className={`relative z-50 shadow-2xl transition-all duration-300 flex items-center justify-center gap-2.5 h-7 px-3 rounded-full bg-blue-600 hover:bg-blue-700 active:scale-95 text-white border-2 border-white ${isOpen ? 'w-7 h-7 rounded-full bg-gray-800 rotate-90' : ''}`}
+          className={`relative z-[110] shadow-2xl transition-all duration-300 flex items-center justify-center gap-2.5 h-7 px-3 rounded-full bg-blue-600 hover:bg-blue-700 active:scale-95 text-white border-2 border-white ${isOpen ? 'w-7 h-7 rounded-full bg-gray-800 rotate-90' : ''}`}
         >
           {isOpen ? <X className="w-5 h-5" /> : <MessagesSquare className="text-white w-5 h-5" />}
           {!isOpen && (
@@ -145,7 +145,7 @@ const Chatbot: React.FC = () => {
       {/* Floating Toggle Button for md+ - Hidden on mobile */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`hidden md:flex fixed bottom-6 right-6 z-50 shadow-2xl transition-all duration-500 flex items-center justify-center gap-2
+        className={`hidden md:flex fixed bottom-6 right-6 z-[110] shadow-2xl transition-all duration-500 flex items-center justify-center gap-2
           ${isOpen
             ? 'w-11 h-11 rounded-full bg-gray-800 rotate-90'
             : 'h-11 px-5 rounded-full bg-blue-600 hover:bg-blue-700 hover:scale-105 active:scale-95'} 
@@ -164,7 +164,7 @@ const Chatbot: React.FC = () => {
 
       {/* Chat Window - Also hidden when Contact Section is visible */}
       <div
-        className={`fixed bottom-24 right-4 md:bottom-28 md:right-8 z-50 w-[90vw] md:w-[400px] bg-white rounded-2xl shadow-2xl border border-gray-100 flex flex-col transition-all duration-300 origin-bottom-right transform
+        className={`fixed bottom-24 right-4 md:bottom-28 md:right-8 z-[110] w-[90vw] md:w-[400px] bg-white rounded-2xl shadow-2xl border border-gray-100 flex flex-col transition-all duration-300 origin-bottom-right transform
           ${isOpen && !isHiddenAreaVisible ? 'scale-100 opacity-100' : 'scale-0 opacity-0 pointer-events-none'}
         `}
         style={{ height: 'min(600px, 70vh)' }}
