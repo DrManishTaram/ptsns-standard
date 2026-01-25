@@ -5,25 +5,31 @@ import { Users, BookOpen, Award, GraduationCap } from 'lucide-react';
 const Counter: React.FC<{ end: number; duration?: number; suffix?: string }> = ({ end, duration = 2000, suffix = '' }) => {
   const [count, setCount] = useState(0);
   const countRef = useRef<HTMLHeadingElement>(null);
-  const [hasAnimated, setHasAnimated] = useState(false);
+  const timerRef = useRef<any>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        if (entries[0].isIntersecting && !hasAnimated) {
-          setHasAnimated(true);
+        if (entries[0].isIntersecting) {
+          // Reset and start animation
+          if (timerRef.current) clearInterval(timerRef.current);
+
           let start = 0;
           const increment = end / (duration / 16); // 60fps
 
-          const timer = setInterval(() => {
+          timerRef.current = setInterval(() => {
             start += increment;
             if (start >= end) {
               setCount(end);
-              clearInterval(timer);
+              if (timerRef.current) clearInterval(timerRef.current);
             } else {
               setCount(Math.floor(start));
             }
           }, 16);
+        } else {
+          // Reset when out of view
+          if (timerRef.current) clearInterval(timerRef.current);
+          setCount(0);
         }
       },
       { threshold: 0.5 }
@@ -33,8 +39,11 @@ const Counter: React.FC<{ end: number; duration?: number; suffix?: string }> = (
       observer.observe(countRef.current);
     }
 
-    return () => observer.disconnect();
-  }, [end, duration, hasAnimated]);
+    return () => {
+      observer.disconnect();
+      if (timerRef.current) clearInterval(timerRef.current);
+    };
+  }, [end, duration]);
 
   return <span ref={countRef}>{count}{suffix}</span>;
 };
@@ -57,10 +66,9 @@ const StatItem: React.FC<{ icon: React.ReactNode; count: number; suffix: string;
 
 const Stats: React.FC = () => {
   return (
-    <section className="py-10 md:py-12 sm:py-16 md:py-24 bg-earth-900 relative overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5" style={{ backgroundImage: `url('https://www.transparenttextures.com/patterns/cubes.png')` }}></div>
-      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-black/20 to-transparent"></div>
+    <section className="py-10 md:py-12 sm:py-16 md:py-24 relative overflow-hidden bg-fixed bg-center bg-cover" style={{ backgroundImage: "url('/10.jpg')" }}>
+      {/* Dark Overlay */}
+      <div className="absolute inset-0 bg-black/60"></div>
 
       <div className="container mx-auto px-2 sm:px-4 relative z-10">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-8 divide-x divide-white/10">

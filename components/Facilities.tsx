@@ -138,7 +138,7 @@ const Facilities: React.FC = () => {
             </div>
 
             {/* Bottom Contact/More Info - Desktop Only */}
-            <div className="mt-auto md:mt-8 p-3 sm:p-4 md:p-0 md:pt-8 md:px-8 border-t border-white/10 text-center lg:text-left relative z-10 hidden lg:block">
+            <div className="mt-auto md:mt-8 p-3 sm:p-4 md:p-0 md:p-8 border-t border-white/10 text-center lg:text-left relative z-10 hidden lg:block">
               <p className="text-xs sm:text-sm text-gray-400 mb-2">Want to see more?</p>
               <a href="/virtual-tour" className="text-turmeric-400 font-bold hover:text-white transition-colors uppercase tracking-wider text-xs flex items-center gap-2">
                 Take a Virtual Tour <ArrowRight size={12} className="sm:size-[14px]" />

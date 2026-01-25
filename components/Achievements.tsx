@@ -111,14 +111,14 @@ const Achievements: React.FC = () => {
                 </div>
 
                 {/* Filter Tabs */}
-                <div className="flex items-center gap-1.5 sm:gap-2 mb-6 sm:mb-8 md:mb-10 overflow-x-auto pb-2 sm:pb-3 no-scrollbar">
+                <div className="flex items-center gap-1.5 sm:gap-2 mb-6 sm:mb-8 md:mb-10 overflow-x-auto p-2 no-scrollbar">
                     {['All', 'University', 'Student', 'Professor'].map((cat) => (
                         <button
                             key={cat}
                             onClick={() => setFilter(cat)}
                             className={`px-3 sm:px-6 py-1.5 sm:py-2.5 rounded-full font-medium text-xs sm:text-sm transition-all duration-300 border whitespace-nowrap ${filter === cat
-                                    ? 'bg-earth-900 text-white border-earth-900 shadow-md transform scale-105'
-                                    : 'bg-white text-gray-500 border-gray-200 hover:border-turmeric-400 hover:text-turmeric-600'
+                                ? 'bg-earth-900 text-white border-earth-900 shadow-md transform scale-105'
+                                : 'bg-white text-gray-500 border-gray-200 hover:border-turmeric-400 hover:text-turmeric-600'
                                 }`}
                         >
                             {cat} Achievements
