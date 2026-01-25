@@ -94,7 +94,7 @@ const FormalHeader: React.FC = () => {
 
       {/* Desktop Header - Hidden on mobile */}
       <div
-        className={`hidden md:block w-full bg-white shadow-sm transition-all duration-300 ${isScrolled ? 'py-1' : ''
+        className={`hidden md:block w-full bg-white relative z-[60] shadow-[0_10px_30px_-5px_rgba(0,0,0,0.15)] transition-all duration-300 ${isScrolled ? 'py-1' : ''
           }`}
       >
         <div className={`container mx-auto px-4 relative transition-all duration-300 ${isScrolled ? 'py-1' : 'py-2 md:py-3'

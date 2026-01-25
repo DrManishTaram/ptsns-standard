@@ -162,7 +162,7 @@ const TopBar: React.FC = () => {
 
   return (
     <>
-      <div id="topbar" className="relative bg-white text-gray-800 text-xs sm:text-sm block h-auto md:h-12 font-medium z-[60] shadow-[0_15px_30px_-10px_rgba(0,0,0,0.3)] border-b border-blue-400 hidden md:block">
+      <div id="topbar" className="relative bg-white text-gray-800 text-xs sm:text-sm block h-auto md:h-12 font-medium z-[110] shadow-[0_10px_30px_-5px_rgba(0,0,0,0.15)] border-b border-gray-400 hidden md:block">
         <div className="w-full px-2 sm:px-3 lg:px-4 flex h-full justify-between items-center relative py-1.5 sm:py-2 md:py-0">
 
           <div className="relative z-10 flex items-center h-full pl-1 gap-1 w-full md:w-auto">
