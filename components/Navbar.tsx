@@ -215,12 +215,12 @@ const Navbar: React.FC = () => {
                   {link.href ? (
                     <Link
                       to={link.href}
-                      className="px-3 py-1.5 inline-flex items-center gap-1 whitespace-nowrap rounded transition-all duration-200 hover:bg-[#3b82f6]/20 hover:text-blue-200"
+                      className="px-3 py-1.5 inline-flex items-center gap-1 whitespace-nowrap rounded transition-all duration-200 hover:bg-blue-600 hover:text-white"
                     >
                       {link.name}
                     </Link>
                   ) : (
-                    <button className="px-3 py-1.5 inline-flex items-center gap-1 whitespace-nowrap rounded transition-all duration-200 hover:bg-[#3b82f6]/20 hover:text-blue-200 cursor-default">
+                    <button className="px-3 py-1.5 inline-flex items-center gap-1 whitespace-nowrap rounded transition-all duration-200 hover:bg-blue-600 hover:text-white cursor-default">
                       {link.name}
                       {link.megaMenu && (
                         <ChevronDown
