@@ -137,11 +137,11 @@ const Footer: React.FC = () => {
 
         {/* Developer Credit */}
         <div className="pt-4">
-          <div className="flex flex-col md:flex-row justify-center items-start gap-8 md:gap-12 mb-4">
+          <div className="flex flex-col md:flex-row justify-center items-center md:items-start gap-6 md:gap-12 mb-4">
             {/* Left Section: Designed & Developed by */}
-            <div className="flex flex-col items-center">
-              <p className="text-sm text-gray-400 mb-4 h-6">Designed & Developed by</p>
-              <div className="flex flex-col sm:flex-row gap-6 sm:gap-12">
+            <div className="flex flex-col items-center w-full md:w-auto">
+              <p className="text-sm text-gray-400 mb-4">Designed & Developed by</p>
+              <div className="flex flex-col sm:flex-row gap-4 sm:gap-12">
                 <div className="text-center">
                   <p className="text-base font-semibold text-turmeric-400 mb-1">Dr. Manish Taram</p>
                   <p className="text-xs text-gray-300">(Coordinator, AI Club, C.S Dept)</p>
@@ -157,19 +157,19 @@ const Footer: React.FC = () => {
             <div className="hidden md:block w-px h-20 bg-gray-700 self-center"></div>
 
             {/* Right Section: Website In-Charge */}
-            <div className="flex flex-col items-center">
-              <p className="text-sm text-gray-400 mb-4 h-6">Website In-Charge</p>
+            <div className="flex flex-col items-center w-full md:w-auto">
+              <p className="text-sm text-gray-400 mb-4">Website In-Charge</p>
               <p className="text-base font-semibold text-turmeric-400">Dr. Shubham Yadav</p>
             </div>
           </div>
         </div>
 
         {/* Footer Bottom - Copyright and Links */}
-        <div className="flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 gap-4">
-          <p className="font-medium tracking-wide">
+        <div className="flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 gap-4 pt-4 border-t border-gray-800">
+          <p className="font-medium tracking-wide text-center md:text-left">
             &copy; {new Date().getFullYear()} <span className="text-turmeric-500">Pandit Shambhunath Shukla University</span>. All Rights Reserved.
           </p>
-          <div className="flex items-center gap-6">
+          <div className="flex flex-row items-center gap-3 sm:gap-6 flex-wrap justify-center md:justify-end">
             <a href="#" className="hover:text-turmeric-400 transition-colors">Privacy Policy</a>
             <span className="w-1 h-1 bg-gray-700 rounded-full"></span>
             <a href="#" className="hover:text-turmeric-400 transition-colors">Terms of Use</a>
