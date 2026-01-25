@@ -4,23 +4,23 @@ import { Link } from 'react-router-dom';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-earth-900 text-white pt-6 md:pt-10 pb-10 border-t-4 border-turmeric-500 relative overflow-hidden">
+    <footer className="bg-earth-900 text-white pt-4 md:pt-6 pb-6 border-t-4 border-turmeric-500 relative overflow-hidden">
 
       {/* Decorative Background Elements */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-turmeric-500/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
       <div className="absolute bottom-0 left-0 w-64 h-64 bg-turmeric-600/5 rounded-full blur-[80px] translate-y-1/2 -translate-x-1/2 pointer-events-none"></div>
 
       <div className="container mx-auto px-4 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mb-8">
 
           {/* Column 1: Brand & About */}
-          <div className="space-y-6">
+          <div className="space-y-4">
             <div className="flex items-center gap-4">
-              <div className="w-16 h-16 rounded-full border-2 border-turmeric-400 p-1 bg-white/5 backdrop-blur-sm flex items-center justify-center flex-shrink-0">
+              <div className="w-12 h-12 rounded-full border-2 border-turmeric-400 p-1 bg-white/5 backdrop-blur-sm flex items-center justify-center flex-shrink-0">
                 <img src="/logo.jpg" alt="University Logo" className="w-full h-full object-contain rounded-full" />
               </div>
               <div>
-                <h3 className="font-serif font-bold text-xl leading-none text-turmeric-400">Pandit Shambhunath Shukla University</h3>
+                <h3 className="font-serif font-bold text-base leading-none text-turmeric-400 whitespace-nowrap">Pandit Shambhunath Shukla University</h3>
               </div>
             </div>
             <p className="text-gray-400 text-sm leading-relaxed border-l-2 border-turmeric-500/30 pl-4">
@@ -37,7 +37,7 @@ const Footer: React.FC = () => {
 
           {/* Column 2: Quick Links */}
           <div>
-            <h3 className="font-bold text-lg mb-8 flex items-center gap-3">
+            <h3 className="font-bold text-lg mb-4 flex items-center gap-3">
               <span className="w-8 h-1 bg-turmeric-500 rounded-full"></span>
               Quick Links
             </h3>
@@ -62,11 +62,11 @@ const Footer: React.FC = () => {
 
           {/* Column 3: Contact Info */}
           <div>
-            <h3 className="font-bold text-lg mb-8 flex items-center gap-3">
+            <h3 className="font-bold text-lg mb-4 flex items-center gap-3">
               <span className="w-8 h-1 bg-turmeric-500 rounded-full"></span>
               Contact Us
             </h3>
-            <ul className="space-y-5">
+            <ul className="space-y-3">
               <li className="flex items-start gap-4 group">
                 <div className="w-10 h-10 rounded-lg bg-turmeric-500/10 flex items-center justify-center flex-shrink-0 group-hover:bg-turmeric-500 transition-colors duration-300">
                   <MapPin size={20} className="text-turmeric-500 group-hover:text-white" />
@@ -103,7 +103,7 @@ const Footer: React.FC = () => {
 
           {/* Column 4: Location Map */}
           <div>
-            <h3 className="font-bold text-lg mb-8 flex items-center gap-3">
+            <h3 className="font-bold text-lg mb-4 flex items-center gap-3">
               <span className="w-8 h-1 bg-turmeric-500 rounded-full"></span>
               Locate Us
             </h3>
@@ -132,8 +132,11 @@ const Footer: React.FC = () => {
           </div>
         </div>
 
+        {/* Separator */}
+        <div className="w-full h-px bg-gray-700 my-4"></div>
+
         {/* Developer Credit */}
-        <div className="pt-8">
+        <div className="pt-4">
           <div className="flex flex-col md:flex-row justify-center items-start gap-8 md:gap-12 mb-4">
             {/* Left Section: Designed & Developed by */}
             <div className="flex flex-col items-center">
@@ -141,11 +144,11 @@ const Footer: React.FC = () => {
               <div className="flex flex-col sm:flex-row gap-6 sm:gap-12">
                 <div className="text-center">
                   <p className="text-base font-semibold text-turmeric-400 mb-1">Dr. Manish Taram</p>
-                  <p className="text-xs text-gray-500">(Coordinator, AI Club, C.S Dept)</p>
+                  <p className="text-xs text-gray-300">(Coordinator, AI Club, C.S Dept)</p>
                 </div>
                 <div className="text-center">
                   <p className="text-base font-semibold text-turmeric-400 mb-1">Anukalp Dwivedi</p>
-                  <p className="text-xs text-gray-500">(President, AI Club, C.S Dept)</p>
+                  <p className="text-xs text-gray-300">(President, AI Club, C.S Dept)</p>
                 </div>
               </div>
             </div>
