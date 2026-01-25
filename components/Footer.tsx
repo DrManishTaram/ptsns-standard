@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-earth-900 text-white pt-10 md:pt-20 pb-10 border-t-4 border-turmeric-500 relative overflow-hidden">
+    <footer className="bg-earth-900 text-white pt-6 md:pt-10 pb-10 border-t-4 border-turmeric-500 relative overflow-hidden">
 
       {/* Decorative Background Elements */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-turmeric-500/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
@@ -132,8 +132,37 @@ const Footer: React.FC = () => {
           </div>
         </div>
 
-        {/* Footer Bottom */}
-        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 gap-4">
+        {/* Developer Credit */}
+        <div className="pt-8">
+          <div className="flex flex-col md:flex-row justify-center items-start gap-8 md:gap-12 mb-4">
+            {/* Left Section: Designed & Developed by */}
+            <div className="flex flex-col items-center">
+              <p className="text-sm text-gray-400 mb-4 h-6">Designed & Developed by</p>
+              <div className="flex flex-col sm:flex-row gap-6 sm:gap-12">
+                <div className="text-center">
+                  <p className="text-base font-semibold text-turmeric-400 mb-1">Dr. Manish Taram</p>
+                  <p className="text-xs text-gray-500">(Coordinator, AI Club, C.S Dept)</p>
+                </div>
+                <div className="text-center">
+                  <p className="text-base font-semibold text-turmeric-400 mb-1">Anukalp Dwivedi</p>
+                  <p className="text-xs text-gray-500">(President, AI Club, C.S Dept)</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Vertical Divider */}
+            <div className="hidden md:block w-px h-20 bg-gray-700 self-center"></div>
+
+            {/* Right Section: Website In-Charge */}
+            <div className="flex flex-col items-center">
+              <p className="text-sm text-gray-400 mb-4 h-6">Website In-Charge</p>
+              <p className="text-base font-semibold text-turmeric-400">Dr. Shubham Yadav</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Footer Bottom - Copyright and Links */}
+        <div className="flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 gap-4">
           <p className="font-medium tracking-wide">
             &copy; {new Date().getFullYear()} <span className="text-turmeric-500">Pandit Shambhunath Shukla University</span>. All Rights Reserved.
           </p>
