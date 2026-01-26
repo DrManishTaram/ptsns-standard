@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Search, Menu, Phone, Mail } from 'lucide-react';
+import { Search, Menu, Phone, Mail, GraduationCap } from 'lucide-react';
 import { useSearch } from '../context/SearchContext';
 import { useMobileMenu } from '../context/MobileMenuContext';
 
@@ -157,6 +157,12 @@ const FormalHeader: React.FC = () => {
           </div>
 
           {/* Search Icon - Absolute Right */}
+          {/* Search Icon - Absolute Right - Visible only when scrolled */}
+          {/* Graduation Cap Watermark - Top Right Corner */}
+          <div className="absolute -right-6 -top-6 opacity-[0.08] transform rotate-12 pointer-events-none hidden md:block overflow-visible z-0">
+            <GraduationCap size={150} className="text-[#071133]" />
+          </div>
+
           {/* Search Icon - Absolute Right - Visible only when scrolled */}
           <button
             onClick={openSearch}
