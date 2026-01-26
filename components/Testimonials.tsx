@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Quote, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const testimonials = [
@@ -35,6 +35,17 @@ const Testimonials: React.FC = () => {
   const prev = () => {
     setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
   };
+  // Auto-slide functionality
+  useEffect(() => {
+    const interval = setInterval(() => {
+      next();
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [currentIndex]); // Re-run effect when index changes to avoid stale closures if relying on prev state internally in next() - wait, next uses functional update, so simple dependency or no dependency with robust function is fine. But putting next in dependency or just interval is better.
+  // Actually, next() is defined inside component, so it changes every render.
+  // Better to use functional update in setScroll which next() does.
+  // Let's just put the interval effect.
 
   return (
     <section className="py-12 md:py-24 bg-gradient-to-b from-turmeric-50 to-white">
@@ -59,7 +70,7 @@ const Testimonials: React.FC = () => {
 
             <div className="mt-6 overflow-hidden">
               <div
-                className="flex transition-transform duration-500 ease-in-out"
+                className="flex flex-nowrap transition-transform duration-700 ease-in-out will-change-transform"
                 style={{ transform: `translateX(-${currentIndex * 100}%)` }}
               >
                 {testimonials.map((testimonial) => (
