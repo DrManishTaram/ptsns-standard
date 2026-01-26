@@ -126,10 +126,10 @@ const Footer: React.FC = () => {
                 Open Map <ExternalLink size={10} />
               </a>
             </div>
-            <div className="text-white md:text-turmeric-500/80 text-xs md:text-[10px] mt-4 text-center font-medium md:font-normal">
+            <div className="text-white text-xs md:text-sm mt-4 text-center font-medium md:font-bold">
               <p className="font-bold">Pandit Shambhunath Shukla University Campus</p>
-              <p className="mt-1">Near Sarfa Dam Rd, Nawalpur, Shahdol</p>
-              <p>Madhya Pradesh, India (484001)</p>
+              <p className="mt-1 md:hidden">Near Sarfa Dam Rd, Nawalpur, Shahdol</p>
+              <p className="md:hidden">Madhya Pradesh, India (484001)</p>
             </div>
           </div>
         </div>
