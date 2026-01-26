@@ -44,7 +44,7 @@ const Hero: React.FC = () => {
   }, [numSlides]);
 
   return (
-    <section className="relative w-full pt-[19px] pb-6 md:pt-[35px] md:pb-10 overflow-hidden bg-[url('/sliderbg.png')] bg-fixed bg-cover bg-center">
+    <section className="relative w-full pt-2 pb-3 md:pt-[35px] md:pb-10 overflow-hidden bg-[url('/sliderbg.png')] bg-fixed bg-cover bg-center">
       {/* Dark Overlay for better contrast with Glass Effect */}
       <div className="absolute inset-0 bg-black/10 z-0"></div>
 
@@ -76,7 +76,7 @@ const Hero: React.FC = () => {
               return (
                 <div key={index} className="flex-shrink-0 w-full">
                   {/* Split Layout - Single column on mobile, two columns on desktop */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-0 min-h-[280px] md:min-h-[360px]">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-0 min-h-[200px] md:min-h-[360px]">
 
                     {/* LEFT SIDE - Framed Image */}
                     <div className="relative bg-transparent p-1.5 md:p-2 flex items-center justify-center">
