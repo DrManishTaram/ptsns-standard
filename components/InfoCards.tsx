@@ -16,28 +16,28 @@ const InfoCard: React.FC<CardProps> = ({ icon, title, items, accentColor, border
   const sanitizedTitle = title.replace(/[^a-zA-Z0-9]/g, '').toLowerCase(); // Sanitize for CSS class
 
   return (
-    <div 
+    <div
       className="bg-white p-0 shadow-2xl rounded-sm overflow-hidden transform transition-all duration-500 hover:-translate-y-3 group h-full flex flex-col relative z-20"
     >
       {/* Top Accent Bar */}
       <div className={`h-1.5 w-full ${accentColor}`}></div>
-      
-      <div className="p-6 flex-grow relative flex flex-col">
-          {/* Background Icon Watermark - More Prominent */}
-          <div className={`absolute -right-6 -top-6 opacity-[0.15] transform rotate-12 transition-transform group-hover:rotate-0 duration-700`}>
-              {React.cloneElement(icon as React.ReactElement, { size: 140, className: accentColor.replace('bg-', 'text-') })}
-          </div>
 
-          <div className="flex items-center space-x-3 mb-4 relative z-10">
-              <div className={`w-10 h-10 rounded-full flex items-center justify-center text-white shadow-lg ${accentColor}`}>
-                  {React.cloneElement(icon as React.ReactElement, { size: 18 })}
-              </div>
-              <h3 className="text-lg font-bold font-serif text-earth-900 group-hover:text-turmeric-700 transition-colors">{title}</h3>
+      <div className="p-6 flex-grow relative flex flex-col">
+        {/* Background Icon Watermark - More Prominent */}
+        <div className={`absolute -right-6 -top-6 opacity-[0.15] transform rotate-12 transition-transform group-hover:rotate-0 duration-700`}>
+          {React.cloneElement(icon as React.ReactElement, { size: 140, className: accentColor.replace('bg-', 'text-') })}
+        </div>
+
+        <div className="flex items-center space-x-3 mb-4 relative z-10">
+          <div className={`w-10 h-10 rounded-full flex items-center justify-center text-white shadow-lg ${accentColor}`}>
+            {React.cloneElement(icon as React.ReactElement, { size: 18 })}
           </div>
-          
-          {/* Marquee Container */}
-          <div className="relative z-10 flex-grow overflow-hidden h-80">
-            <style>{`
+          <h3 className="text-lg font-bold font-serif text-earth-900 group-hover:text-turmeric-700 transition-colors">{title}</h3>
+        </div>
+
+        {/* Marquee Container */}
+        <div className="relative z-10 flex-grow overflow-hidden h-80">
+          <style>{`
               @keyframes marqueeUp-${sanitizedTitle} {
                 0% {
                   transform: translateY(0);
@@ -50,31 +50,34 @@ const InfoCard: React.FC<CardProps> = ({ icon, title, items, accentColor, border
                 animation: marqueeUp-${sanitizedTitle} ${animationDuration}s linear infinite;
               }
             `}</style>
-            <ul className={`space-y-2 marquee-container-${sanitizedTitle}`}>
-                {[...items, ...items].map((item, idx) => (
-                <li key={idx} className={`${lightBgColor} border-l-4 ${borderColor} p-3 rounded-sm group/item transition-all hover:shadow-md flex flex-col justify-between flex-shrink-0 h-[75px]`}>
-                    <a href={item.link || '#'} className="block">
-                      <span className="text-gray-700 text-xs font-medium group-hover/item:text-gray-900 transition-colors line-clamp-2 block mb-1">
-                          {item.text}
-                      </span>
-                      {item.date && (
-                        <span className="text-xs text-gray-500 font-semibold block">
-                          {item.date}
-                        </span>
-                      )}
-                    </a>
-                </li>
-                ))}
-            </ul>
-          </div>
+          <ul className={`space-y-2 marquee-container-${sanitizedTitle}`}>
+            {[...items, ...items].map((item, idx) => (
+              <li key={idx} className={`${lightBgColor} border-l-4 ${borderColor} p-3 rounded-sm group/item transition-all hover:shadow-md flex flex-col justify-between flex-shrink-0 h-[75px]`}>
+                <a href={item.link || '#'} className="block">
+                  <span className="text-gray-700 text-xs font-medium group-hover/item:text-gray-900 transition-colors line-clamp-2 block mb-1">
+                    {item.text}
+                  </span>
+                  {item.date && (
+                    <span className="text-xs text-gray-500 font-semibold block">
+                      {item.date}
+                    </span>
+                  )}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
-      
+
       <div className="bg-slate-50 p-2 border-t border-gray-100 flex justify-between items-center group-hover:bg-gray-100 transition-colors">
-          <span className="text-xs font-bold text-gray-500 uppercase tracking-wider text-sm">Discover</span>
-          <button className={`w-7 h-7 rounded-full flex items-center justify-center ${accentColor} text-white opacity-0 group-hover:opacity-100 transform translate-x-4 group-hover:translate-x-0 transition-all duration-300`}>
-              <ArrowRight size={12} />
-          </button>
+        <span className="text-xs font-bold text-gray-500 uppercase tracking-wider text-sm">All Notifications</span>
+        <button className={`w-7 h-7 rounded-full flex items-center justify-center ${accentColor} text-white transition-all duration-300`}>
+          <ArrowRight size={12} />
+        </button>
       </div>
+
+      {/* Bottom Accent Bar */}
+      <div className={`h-1.5 w-full ${accentColor}`}></div>
     </div>
   );
 };
@@ -87,15 +90,13 @@ const InfoCards: React.FC = () => {
         {/* Section header - Enhanced with gradient and larger size */}
         <div className="mb-2 sm:mb-3 md:mb-4 text-center max-w-3xl mx-auto">
           <h2 className="text-[21px] sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold mb-2 sm:mb-4">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-500 to-orange-400">
-              University Notifications
-            </span>
+            <span className="text-black">University</span> <span className="text-blue-600">Notifications</span>
           </h2>
           <p className="text-xs sm:text-sm md:text-base text-gray-600 font-medium">Latest updates, quick links and highlights from the university</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
-          <InfoCard 
+          <InfoCard
             icon={<Bell />}
             title="Student Notifications"
             items={[
@@ -108,7 +109,7 @@ const InfoCards: React.FC = () => {
             borderColor="border-turmeric-300"
             lightBgColor="bg-turmeric-50"
           />
-          <InfoCard 
+          <InfoCard
             icon={<FileText />}
             title="University Circulars"
             items={[
@@ -121,7 +122,7 @@ const InfoCards: React.FC = () => {
             borderColor="border-forest-300"
             lightBgColor="bg-forest-50"
           />
-          <InfoCard 
+          <InfoCard
             icon={<Briefcase />}
             title="Recruitment & Tenders"
             items={[

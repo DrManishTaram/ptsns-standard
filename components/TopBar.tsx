@@ -167,17 +167,17 @@ const TopBar: React.FC = () => {
 
           <div className="relative z-10 flex items-center h-full pl-1 gap-1 w-full md:w-auto">
             <div className="flex items-center gap-1">
-              <span className="text-[#071133] font-bold uppercase tracking-wide text-[10px] sm:text-[11px]">Shahdol District</span>
+              <span className="text-blue-600 font-bold uppercase tracking-wide text-[10px] sm:text-[11px]">Shahdol District</span>
             </div>
             <div className="h-4 w-px bg-gray-300 mx-1"></div>
             <div className="flex items-center gap-1">
               <img src="/topbar/gihaldi.png" alt="G.I Tag Haldi" className="h-[25px] w-auto object-contain" />
-              <span className="text-[#071133] font-bold uppercase tracking-wide text-[10px] sm:text-[11px]">G.I Tag for Haldi</span>
+              <span className="text-blue-600 font-bold uppercase tracking-wide text-[10px] sm:text-[11px]">G.I Tag for Haldi</span>
             </div>
             <div className="h-4 w-px bg-gray-300 mx-1"></div>
             <div className="flex items-center gap-1">
               <img src="/topbar/tribal.png" alt="Tribal Heritage" className="h-[70px] w-auto object-contain" />
-              <span className="text-[#071133] font-bold uppercase tracking-wide text-[10px] sm:text-[11px]">Tribal Heritage</span>
+              <span className="text-blue-600 font-bold uppercase tracking-wide text-[10px] sm:text-[11px]">Tribal Heritage</span>
               <img src="/tiger.png" alt="Tiger" className="h-[75px] w-auto object-contain" />
             </div>
           </div>
@@ -229,13 +229,13 @@ const TopBar: React.FC = () => {
               <div className="p-1 bg-blue-600 rounded-full group-hover:bg-blue-700 transition-colors shadow-sm">
                 <Phone size={12} className="lg:size-[13px] text-white group-hover:text-white transition-colors" />
               </div>
-              <span className="text-[9px] lg:text-[11px] text-blue-800 group-hover:text-blue-600 transition-colors tracking-wide font-semibold hidden xl:inline">+91 7052 101 786</span>
+              <span className="text-[9px] lg:text-[11px] text-blue-600 group-hover:text-blue-600 transition-colors tracking-wide font-semibold hidden xl:inline">+91 7052 101 786</span>
             </a>
             <a href="mailto:info@psnsu.ac.in" className="flex items-center gap-1.5 group cursor-pointer opacity-80 hover:opacity-100 transition-opacity">
               <div className="p-1 bg-blue-600 rounded-full group-hover:bg-blue-700 transition-colors shadow-sm">
                 <Mail size={12} className="lg:size-[13px] text-white group-hover:text-white transition-colors" />
               </div>
-              <span className="text-[9px] lg:text-[11px] text-blue-800 group-hover:text-blue-600 transition-colors tracking-wide font-semibold hidden xl:inline">info@psnsu.ac.in</span>
+              <span className="text-[9px] lg:text-[11px] text-blue-600 group-hover:text-blue-600 transition-colors tracking-wide font-semibold hidden xl:inline">info@psnsu.ac.in</span>
             </a>
 
             <button
@@ -245,7 +245,7 @@ const TopBar: React.FC = () => {
               <div className="p-1 bg-blue-600 rounded-full group-hover:bg-blue-700 transition-colors shadow-sm">
                 <Search size={12} className="lg:size-[13px] text-white group-hover:text-white transition-colors" />
               </div>
-              <span className="text-[9px] lg:text-[11px] text-blue-800 group-hover:text-blue-600 transition-colors tracking-wide font-semibold hidden xl:inline">Search</span>
+              <span className="text-[9px] lg:text-[11px] text-blue-600 group-hover:text-blue-600 transition-colors tracking-wide font-semibold hidden xl:inline">Search</span>
             </button>
           </div>
         </div>
