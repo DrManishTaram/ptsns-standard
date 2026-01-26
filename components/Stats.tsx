@@ -49,16 +49,19 @@ const Counter: React.FC<{ end: number; duration?: number; suffix?: string }> = (
 };
 
 const StatItem: React.FC<{ icon: React.ReactNode; count: number; suffix: string; label: string; delay: string }> = ({ icon, count, suffix, label, delay }) => (
-  <div className={`flex flex-col items-center justify-center p-4 md:p-8 group relative animate-fade-up`} style={{ animationDelay: delay }}>
+  <div className={`flex flex-col items-center justify-center p-2 md:p-8 group relative animate-fade-up`} style={{ animationDelay: delay }}>
     <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
-    <div className="mb-6 p-5 bg-gradient-to-br from-white/10 to-white/5 rounded-full text-turmeric-400 group-hover:bg-turmeric-600 group-hover:text-white transition-all duration-500 transform group-hover:scale-110 shadow-lg border border-white/10">
-      {React.cloneElement(icon as React.ReactElement, { size: 36 })}
+    {/* Icon Container - Hidden on mobile, Order 1 on Desktop */}
+    <div className="hidden md:flex mb-6 p-5 bg-gradient-to-br from-white/10 to-white/5 rounded-full text-turmeric-400 group-hover:bg-turmeric-600 group-hover:text-white transition-all duration-500 transform group-hover:scale-110 shadow-lg border border-white/10 order-1">
+      {React.cloneElement(icon as React.ReactElement<any>, { size: 36 })}
     </div>
-    <h3 className="text-5xl font-bold text-white mb-3 font-serif flex items-baseline">
+    {/* Number - Order 1 on Mobile, Order 2 on Desktop */}
+    <h3 className="text-4xl md:text-5xl font-bold text-white mb-1 md:mb-3 font-serif flex items-baseline order-1 md:order-2">
       <Counter end={count} suffix={suffix} />
     </h3>
-    <p className="text-turmeric-100 font-bold tracking-widest uppercase text-xs relative z-10">
-      <span className="w-2 h-2 bg-turmeric-500 inline-block rounded-full mr-2"></span>
+    {/* Label - Order 2 on Mobile, Order 3 on Desktop */}
+    <p className="text-turmeric-100 font-bold tracking-widest uppercase text-[10px] md:text-xs relative z-10 order-2 md:order-3">
+      <span className="w-1.5 h-1.5 md:w-2 md:h-2 bg-turmeric-500 inline-block rounded-full mr-2"></span>
       {label}
     </p>
   </div>
@@ -71,7 +74,7 @@ const Stats: React.FC = () => {
       <div className="absolute inset-0 bg-black/60"></div>
 
       <div className="container mx-auto px-2 sm:px-4 relative z-10">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-8 divide-x divide-white/10">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-8 divide-y md:divide-y-0 md:divide-x divide-white/10">
           <StatItem icon={<Users />} count={5000} suffix="+" label="Students Enrolled" delay="0s" />
           <StatItem icon={<BookOpen />} count={120} suffix="+" label="Courses Offered" delay="0.1s" />
           <StatItem icon={<Award />} count={50} suffix="+" label="Awards Won" delay="0.2s" />
