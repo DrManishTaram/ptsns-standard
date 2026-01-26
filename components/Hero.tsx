@@ -83,7 +83,7 @@ const Hero: React.FC = () => {
                       {/* Detailed Navy Blue Border Frame */}
                       <div className="relative w-full aspect-[16/9] rounded-2xl p-[2px] bg-[#001f3f] shadow-2xl">
                         {/* Inner White Border - Thinner for elegance */}
-                        <div className="w-full h-full bg-white rounded-2xl p-1.5">
+                        <div className="w-full h-full bg-[#E6D8B5] rounded-2xl p-1.5">
                           {/* Image Container */}
                           <div className="relative w-full h-full rounded-xl overflow-hidden bg-gray-900 group">
                             {/* Blurred Background to fill space */}
@@ -107,7 +107,7 @@ const Hero: React.FC = () => {
                               className="relative z-10 w-full h-full object-contain transition-transform duration-700 group-hover:scale-105"
                             />
                             {/* Overlay Description */}
-                            <div className="absolute bottom-0 left-0 right-0 bg-black/60 p-4 backdrop-blur-sm z-20">
+                            <div className="absolute bottom-0 left-0 right-0 bg-black/60 p-4 backdrop-blur-sm z-20 rounded-b-xl">
                               <p className="text-white text-sm md:text-base font-medium text-center truncate">
                                 {leftSlide.subtitle.length > 75 ? `${leftSlide.subtitle.substring(0, 75)}...` : leftSlide.subtitle}
                               </p>
@@ -122,7 +122,7 @@ const Hero: React.FC = () => {
                       {/* Detailed Navy Blue Border Frame */}
                       <div className="relative w-full aspect-[16/9] rounded-2xl p-[2px] bg-[#001f3f] shadow-2xl">
                         {/* Inner White Border - Thinner for elegance */}
-                        <div className="w-full h-full bg-white rounded-2xl p-1.5">
+                        <div className="w-full h-full bg-[#E6D8B5] rounded-2xl p-1.5">
                           {/* Image Container */}
                           <div className="w-full h-full rounded-xl overflow-hidden bg-gray-900 relative group">
                             {/* Blurred Background to fill space */}
@@ -144,7 +144,7 @@ const Hero: React.FC = () => {
                               className="relative z-10 w-full h-full object-contain transition-transform duration-700 group-hover:scale-105"
                             />
                             {/* Overlay Description */}
-                            <div className="absolute bottom-0 left-0 right-0 bg-black/60 p-4 backdrop-blur-sm z-20">
+                            <div className="absolute bottom-0 left-0 right-0 bg-black/60 p-4 backdrop-blur-sm z-20 rounded-b-xl">
                               <p className="text-white text-sm md:text-base font-medium text-center truncate">
                                 {rightSlide.subtitle.length > 75 ? `${rightSlide.subtitle.substring(0, 75)}...` : rightSlide.subtitle}
                               </p>
