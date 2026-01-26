@@ -4,12 +4,12 @@ const slides = [
   {
     image: "/8.jpg",
     title: "Expert Faculty",
-    subtitle: "Our distinguished faculty members are leaders in their respective fields, dedicated to mentoring the next generation."
+    subtitle: "P.T.S.N.S, Shahdol Students at Smart India Hackathon 2025 Grand Finale."
   },
   {
     image: "/9.jpg",
     title: "Academic Excellence",
-    subtitle: "Fostering an environment of intellectual curiosity and rigorous academic pursuit."
+    subtitle: "1st Runner Up at U.P Hackathon 2025"
   },
   {
     image: "/10.jpg",
@@ -83,16 +83,26 @@ const Hero: React.FC = () => {
                         <div className="w-full h-full bg-white rounded-2xl p-1.5">
                           {/* Image Container */}
                           <div className="relative w-full h-full rounded-xl overflow-hidden bg-gray-900 group">
-                            {/* Background Image */}
+                            {/* Blurred Background to fill space */}
+                            <div className="absolute inset-0 w-full h-full overflow-hidden">
+                              <img
+                                src={leftSlide.image}
+                                alt=""
+                                aria-hidden="true"
+                                className="w-full h-full object-cover blur-md opacity-40 scale-110"
+                              />
+                            </div>
+
+                            {/* Main Image */}
                             <img
                               src={leftSlide.image}
                               alt={leftSlide.title}
                               loading={index === 0 ? "eager" : "lazy"}
                               {...(index === 0 ? { fetchPriority: "high" } : {})}
-                              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                              className="relative z-10 w-full h-full object-contain transition-transform duration-700 group-hover:scale-105"
                             />
                             {/* Overlay Description */}
-                            <div className="absolute bottom-0 left-0 right-0 bg-black/60 p-4 backdrop-blur-sm">
+                            <div className="absolute bottom-0 left-0 right-0 bg-black/60 p-4 backdrop-blur-sm z-20">
                               <p className="text-white text-sm md:text-base font-medium text-center truncate">
                                 {leftSlide.subtitle.length > 75 ? `${leftSlide.subtitle.substring(0, 75)}...` : leftSlide.subtitle}
                               </p>
@@ -110,15 +120,26 @@ const Hero: React.FC = () => {
                         <div className="w-full h-full bg-white rounded-2xl p-1.5">
                           {/* Image Container */}
                           <div className="w-full h-full rounded-xl overflow-hidden bg-gray-900 relative group">
+                            {/* Blurred Background to fill space */}
+                            <div className="absolute inset-0 w-full h-full overflow-hidden">
+                              <img
+                                src={rightSlide.image}
+                                alt=""
+                                aria-hidden="true"
+                                className="w-full h-full object-cover blur-md opacity-40 scale-110"
+                              />
+                            </div>
+
+                            {/* Main Image */}
                             <img
                               src={rightSlide.image}
                               alt={rightSlide.title}
                               loading={index === 0 ? "eager" : "lazy"}
                               {...(index === 0 ? { fetchPriority: "high" } : {})}
-                              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                              className="relative z-10 w-full h-full object-contain transition-transform duration-700 group-hover:scale-105"
                             />
                             {/* Overlay Description */}
-                            <div className="absolute bottom-0 left-0 right-0 bg-black/60 p-4 backdrop-blur-sm">
+                            <div className="absolute bottom-0 left-0 right-0 bg-black/60 p-4 backdrop-blur-sm z-20">
                               <p className="text-white text-sm md:text-base font-medium text-center truncate">
                                 {rightSlide.subtitle.length > 75 ? `${rightSlide.subtitle.substring(0, 75)}...` : rightSlide.subtitle}
                               </p>
