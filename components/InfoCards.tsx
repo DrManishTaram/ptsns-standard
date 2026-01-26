@@ -25,12 +25,12 @@ const InfoCard: React.FC<CardProps> = ({ icon, title, items, accentColor, border
       <div className="p-6 flex-grow relative flex flex-col">
         {/* Background Icon Watermark - More Prominent */}
         <div className={`absolute -right-6 -top-6 opacity-[0.15] transform rotate-12 transition-transform group-hover:rotate-0 duration-700`}>
-          {React.cloneElement(icon as React.ReactElement, { size: 140, className: accentColor.replace('bg-', 'text-') })}
+          {React.cloneElement(icon as React.ReactElement<any>, { size: 140, className: accentColor.replace('bg-', 'text-') })}
         </div>
 
         <div className="flex items-center space-x-3 mb-4 relative z-10">
           <div className={`w-10 h-10 rounded-full flex items-center justify-center text-white shadow-lg ${accentColor}`}>
-            {React.cloneElement(icon as React.ReactElement, { size: 18 })}
+            {React.cloneElement(icon as React.ReactElement<any>, { size: 18 })}
           </div>
           <h3 className="text-lg font-bold font-serif text-earth-900 group-hover:text-turmeric-700 transition-colors">{title}</h3>
         </div>
