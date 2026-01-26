@@ -11,7 +11,7 @@ const Footer: React.FC = () => {
       <div className="absolute bottom-0 left-0 w-64 h-64 bg-turmeric-600/5 rounded-full blur-[80px] translate-y-1/2 -translate-x-1/2 pointer-events-none"></div>
 
       <div className="container mx-auto px-4 relative z-10">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mb-8">
+        <div className="grid grid-cols-[0.85fr_1.15fr] lg:grid-cols-4 gap-6 md:gap-8 mb-8">
 
           {/* Column 1: Brand & About */}
           <div className="col-span-2 md:col-span-1 space-y-4 flex flex-col items-center text-center md:items-start md:text-left">
@@ -62,11 +62,11 @@ const Footer: React.FC = () => {
 
           {/* Column 3: Contact Info */}
           <div>
-            <h3 className="font-bold text-lg mb-4 flex flex-col md:flex-row items-start md:items-center gap-2 md:gap-3 pl-2 md:pl-0">
+            <h3 className="font-bold text-lg mb-4 flex flex-col md:flex-row items-start md:items-center gap-2 md:gap-3 pl-1 md:pl-0">
               <span className="w-8 h-1 bg-turmeric-500 rounded-full hidden md:block"></span>
               Contact Us
             </h3>
-            <ul className="space-y-3 pl-2 md:pl-0">
+            <ul className="space-y-3 pl-1 md:pl-0">
               <li className="flex items-start gap-4 group">
                 <div className="w-10 h-10 rounded-lg bg-turmeric-500/10 flex items-center justify-center flex-shrink-0 group-hover:bg-turmeric-500 transition-colors duration-300">
                   <MapPin size={20} className="text-turmeric-500 group-hover:text-white" />
