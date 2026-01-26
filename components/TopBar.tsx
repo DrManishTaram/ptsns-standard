@@ -171,12 +171,12 @@ const TopBar: React.FC = () => {
             </div>
             <div className="h-4 w-px bg-gray-300 mx-1"></div>
             <div className="flex items-center gap-1">
-              <img src="/topbar/gihaldi.png" alt="G.I Tag Haldi" className="h-8 w-auto object-contain drop-shadow-[0_0_5px_rgba(255,215,0,1)]" />
+              <img src="/topbar/gihaldi.png" alt="G.I Tag Haldi" className="h-[25px] w-auto object-contain" />
               <span className="text-[#071133] font-bold uppercase tracking-wide text-[10px] sm:text-[11px]">G.I Tag for Haldi</span>
             </div>
             <div className="h-4 w-px bg-gray-300 mx-1"></div>
             <div className="flex items-center gap-1">
-              <img src="/topbar/tribal.png" alt="Tribal Heritage" className="h-[60px] w-auto object-contain" />
+              <img src="/topbar/tribal.png" alt="Tribal Heritage" className="h-[70px] w-auto object-contain" />
               <span className="text-[#071133] font-bold uppercase tracking-wide text-[10px] sm:text-[11px]">Tribal Heritage</span>
               <img src="/tiger.png" alt="Tiger" className="h-[75px] w-auto object-contain" />
             </div>
