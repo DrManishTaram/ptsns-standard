@@ -172,7 +172,7 @@ const Chatbot: React.FC = () => {
         {/* Header */}
         <div className="bg-earth-900 p-4 rounded-t-2xl flex items-center gap-3 shadow-md">
           <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center border-2 border-turmeric-400 overflow-hidden p-0.5">
-            <img src="/medha-ai.png" alt="Medha AI" className="w-full h-full object-cover rounded-full" />
+            <img src="/medha-ai.png" alt="Medha AI" className="w-full h-full object-cover rounded-full" loading="lazy" decoding="async" />
           </div>
           <div>
             <h3 className="text-white font-serif font-bold tracking-wide text-lg">Medha Bot</h3>

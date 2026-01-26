@@ -121,7 +121,7 @@ const Facilities: React.FC = () => {
                 >
                   <div className="flex items-center gap-2 sm:gap-3 md:gap-4 w-full lg:w-auto">
                     <span className={`p-1 sm:p-1.5 md:p-2 rounded-lg transition-colors duration-300 ${activeTab === index ? 'bg-white/20' : 'bg-transparent group-hover:bg-white/5'}`}>
-                      {React.cloneElement(item.icon as React.ReactElement, { size: 18 })}
+                      {React.cloneElement(item.icon as React.ReactElement<any>, { size: 18 })}
                     </span>
                     <div className="text-left flex-1 lg:flex-none">
                       <h3 className={`font-bold text-xs sm:text-base md:text-lg leading-tight ${activeTab === index ? 'text-white' : 'text-gray-300 group-hover:text-white'}`}>
@@ -162,6 +162,8 @@ const Facilities: React.FC = () => {
                     src={item.image}
                     alt={item.title}
                     className="w-full h-full object-cover transition-transform duration-[10s] ease-linear transform scale-100 group-hover:scale-110"
+                    loading="lazy"
+                    decoding="async"
                   />
                   {/* Gradient Overlay - Desktop Only */}
                   <div className="hidden lg:block absolute inset-0 bg-gradient-to-t from-earth-900 via-earth-900/80 md:via-earth-900/60 to-transparent"></div>

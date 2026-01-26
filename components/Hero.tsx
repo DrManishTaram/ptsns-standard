@@ -92,6 +92,7 @@ const Hero: React.FC = () => {
                                 src={leftSlide.image}
                                 alt=""
                                 aria-hidden="true"
+                                loading={index === 0 ? "eager" : "lazy"}
                                 className="w-full h-full object-cover blur-md opacity-40 scale-110"
                               />
                             </div>
@@ -101,6 +102,7 @@ const Hero: React.FC = () => {
                               src={leftSlide.image}
                               alt={leftSlide.title}
                               loading={index === 0 ? "eager" : "lazy"}
+                              decoding={index === 0 ? "auto" : "async"}
                               {...(index === 0 ? { fetchPriority: "high" } : {})}
                               className="relative z-10 w-full h-full object-contain transition-transform duration-700 group-hover:scale-105"
                             />

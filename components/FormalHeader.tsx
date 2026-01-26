@@ -37,6 +37,10 @@ const FormalHeader: React.FC = () => {
               src="/logo.jpg"
               alt="PTSNSU Logo"
               className="h-full w-full object-contain"
+              loading="eager"
+              width="44"
+              height="44"
+              fetchPriority="high"
             />
           </div>
           {/* University Names - Centered */}
@@ -114,6 +118,8 @@ const FormalHeader: React.FC = () => {
                 <img
                   src="/logo.jpg"
                   alt="PTSNSU Logo"
+                  loading="eager"
+                  fetchPriority="high"
                   className={`w-auto object-contain transition-all duration-300 ${isScrolled ? 'h-6 md:h-8' : 'h-12 md:h-16'
                     }`}
                 />

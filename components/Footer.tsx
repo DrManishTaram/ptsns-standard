@@ -17,7 +17,7 @@ const Footer: React.FC = () => {
           <div className="col-span-2 md:col-span-1 space-y-4 flex flex-col items-center text-center md:items-start md:text-left">
             <div className="flex flex-col md:flex-row items-center gap-4">
               <div className="w-12 h-12 rounded-full border-2 border-turmeric-400 p-1 bg-white/5 backdrop-blur-sm flex items-center justify-center flex-shrink-0">
-                <img src="/logo.jpg" alt="University Logo" className="w-full h-full object-contain rounded-full" />
+                <img src="/logo.jpg" alt="University Logo" className="w-full h-full object-contain rounded-full" loading="lazy" decoding="async" />
               </div>
               <div>
                 <h3 className="font-serif font-bold text-base leading-none text-turmeric-400 whitespace-nowrap">Pandit Shambhunath Shukla University</h3>

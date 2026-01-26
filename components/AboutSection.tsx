@@ -92,7 +92,9 @@ const AboutSection: React.FC = () => {
               <img
                 src="https://ptsnsuniversity.ac.in/assets/college.png"
                 alt="PTSNS University Campus"
-                className="w-full h-auto object-cover transform hover:scale-105 transition-transform duration-700"
+                className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700"
+                loading="lazy"
+                decoding="async"
               />
 
               {/* Overlay Gradient */}

@@ -85,6 +85,8 @@ const Testimonials: React.FC = () => {
                           src={testimonial.image}
                           alt={testimonial.name}
                           className="w-full h-full rounded-full object-cover border-4 border-white"
+                          loading="lazy"
+                          decoding="async"
                         />
                       </div>
                       <h4 className="text-xl font-bold text-earth-900">{testimonial.name}</h4>

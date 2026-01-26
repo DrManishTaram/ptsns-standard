@@ -25,6 +25,8 @@ const VCMessageSection: React.FC = () => {
                 src="vc-seated.jpg"
                 alt="Prof. Ram Shankar - Vice Chancellor"
                 className="w-full h-[300px] md:h-[500px] object-cover object-top transform hover:scale-105 transition-transform duration-700"
+                loading="lazy"
+                decoding="async"
               />
               <div className="absolute bottom-6 left-6 z-20 text-white">
                 <h3 className="text-xl md:text-2xl font-serif font-bold">Prof. Ram Shankar</h3>
