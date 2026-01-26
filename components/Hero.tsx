@@ -44,10 +44,13 @@ const Hero: React.FC = () => {
   }, [numSlides]);
 
   return (
-    <section className="relative w-full bg-blue-200 pt-[19px] pb-6 md:pt-[35px] md:pb-10 overflow-hidden">
-      {/* Slider Container */}
-      <div className="w-full px-4 md:px-6">
-        <div className="relative overflow-hidden rounded-3xl shadow-2xl bg-[url('/slider-bg.png')] bg-cover bg-center">
+    <section className="relative w-full pt-[19px] pb-6 md:pt-[35px] md:pb-10 overflow-hidden bg-[url('/sliderbg.png')] bg-fixed bg-cover bg-center">
+      {/* Dark Overlay for better contrast with Glass Effect */}
+      <div className="absolute inset-0 bg-black/10 z-0"></div>
+
+      {/* Slider Container - Transparent so images slide over background */}
+      <div className="relative w-full px-4 md:px-6 z-10">
+        <div className="relative overflow-hidden rounded-3xl">
           {/* Slider Track */}
           <div
             className="flex transition-transform duration-700 ease-in-out"
@@ -156,15 +159,15 @@ const Hero: React.FC = () => {
         </div>
 
         {/* Dot Indicators */}
-        <div className="absolute bottom-1 md:bottom-2 left-1/2 -translate-x-1/2 z-10 flex gap-3 items-center justify-center">
+        <div className="absolute -bottom-5 md:-bottom-8 left-1/2 -translate-x-1/2 z-10 flex gap-3 items-center justify-center">
           {Array.from({ length: Math.ceil(slides.slice(0, 10).length / 2) }).map((_, index) => (
             <button
               key={index}
               onClick={() => setCurrent(index)}
               aria-label={`Go to slide ${index + 1}`}
-              className={`transition-all duration-300 rounded-full ${index === current
-                ? 'bg-[#001f3f] shadow-lg w-12 h-3'
-                : 'bg-blue-600 hover:bg-blue-800 w-3 h-3'
+              className={`transition-all duration-300 rounded-full border-2 border-white/80 shadow-sm ${index === current
+                ? 'bg-white w-10 h-2'
+                : 'bg-white/70 hover:bg-white w-2 h-2'
                 }`}
             />
           ))}
