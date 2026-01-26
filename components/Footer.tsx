@@ -11,11 +11,11 @@ const Footer: React.FC = () => {
       <div className="absolute bottom-0 left-0 w-64 h-64 bg-turmeric-600/5 rounded-full blur-[80px] translate-y-1/2 -translate-x-1/2 pointer-events-none"></div>
 
       <div className="container mx-auto px-4 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mb-8">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 mb-8">
 
           {/* Column 1: Brand & About */}
-          <div className="space-y-4">
-            <div className="flex items-center gap-4">
+          <div className="col-span-2 md:col-span-1 space-y-4 flex flex-col items-center text-center md:items-start md:text-left">
+            <div className="flex flex-col md:flex-row items-center gap-4">
               <div className="w-12 h-12 rounded-full border-2 border-turmeric-400 p-1 bg-white/5 backdrop-blur-sm flex items-center justify-center flex-shrink-0">
                 <img src="/logo.jpg" alt="University Logo" className="w-full h-full object-contain rounded-full" />
               </div>
@@ -23,10 +23,10 @@ const Footer: React.FC = () => {
                 <h3 className="font-serif font-bold text-base leading-none text-turmeric-400 whitespace-nowrap">Pandit Shambhunath Shukla University</h3>
               </div>
             </div>
-            <p className="text-gray-400 text-sm leading-relaxed border-l-2 border-turmeric-500/30 pl-4">
+            <p className="text-gray-400 text-sm leading-relaxed md:border-l-2 md:border-turmeric-500/30 md:pl-4">
               A premier institution dedicated to higher learning, research, and community service. We strive to mold the leaders of tomorrow through holistic education and clear vision.
             </p>
-            <div className="flex gap-3 pt-2">
+            <div className="flex gap-3 pt-2 justify-center md:justify-start">
               {[Facebook, Twitter, Instagram, Linkedin].map((Icon, idx) => (
                 <a key={idx} href="#" className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-turmeric-500 hover:text-white transition-all duration-300 border border-white/10 hover:border-turmeric-400 hover:shadow-[0_0_15px_rgba(234,179,8,0.4)] group">
                   <Icon size={18} className="text-gray-400 group-hover:text-white transition-colors" />
@@ -36,9 +36,9 @@ const Footer: React.FC = () => {
           </div>
 
           {/* Column 2: Quick Links */}
-          <div>
-            <h3 className="font-bold text-lg mb-4 flex items-center gap-3">
-              <span className="w-8 h-1 bg-turmeric-500 rounded-full"></span>
+          <div className="border-r border-gray-700 md:border-none pr-2 md:pr-0">
+            <h3 className="font-bold text-lg mb-4 flex flex-col md:flex-row items-start md:items-center gap-2 md:gap-3">
+              <span className="w-8 h-1 bg-turmeric-500 rounded-full hidden md:block"></span>
               Quick Links
             </h3>
             <ul className="space-y-3">
@@ -51,7 +51,7 @@ const Footer: React.FC = () => {
                 { name: 'Anti-Ragging Cell', href: '/anti-ragging' }
               ].map((link) => (
                 <li key={link.name}>
-                  <Link to={link.href} className="group flex items-center gap-2 text-gray-400 hover:text-turmeric-400 transition-colors text-sm">
+                  <Link to={link.href} className="group flex items-center gap-2 text-gray-400 hover:text-turmeric-400 transition-colors text-xs md:text-sm">
                     <ChevronRight size={14} className="text-turmeric-600 group-hover:translate-x-1 transition-transform" />
                     {link.name}
                   </Link>
@@ -62,18 +62,18 @@ const Footer: React.FC = () => {
 
           {/* Column 3: Contact Info */}
           <div>
-            <h3 className="font-bold text-lg mb-4 flex items-center gap-3">
-              <span className="w-8 h-1 bg-turmeric-500 rounded-full"></span>
+            <h3 className="font-bold text-lg mb-4 flex flex-col md:flex-row items-start md:items-center gap-2 md:gap-3 pl-2 md:pl-0">
+              <span className="w-8 h-1 bg-turmeric-500 rounded-full hidden md:block"></span>
               Contact Us
             </h3>
-            <ul className="space-y-3">
+            <ul className="space-y-3 pl-2 md:pl-0">
               <li className="flex items-start gap-4 group">
                 <div className="w-10 h-10 rounded-lg bg-turmeric-500/10 flex items-center justify-center flex-shrink-0 group-hover:bg-turmeric-500 transition-colors duration-300">
                   <MapPin size={20} className="text-turmeric-500 group-hover:text-white" />
                 </div>
                 <div>
-                  <h5 className="text-white text-sm font-bold mb-1">Campus Address</h5>
-                  <p className="text-gray-400 text-xs leading-relaxed">
+                  <h5 className="text-white text-xs md:text-sm font-bold mb-1">Campus Address</h5>
+                  <p className="text-gray-400 text-[10px] md:text-xs leading-relaxed">
                     Near Sarfa Dam Rd, Nawalpur, Shahdol,<br />Madhya Pradesh, India (484001)
                   </p>
                 </div>
@@ -102,7 +102,7 @@ const Footer: React.FC = () => {
           </div>
 
           {/* Column 4: Location Map */}
-          <div>
+          <div className="col-span-2 md:col-span-1">
             <h3 className="font-bold text-lg mb-4 flex items-center gap-3">
               <span className="w-8 h-1 bg-turmeric-500 rounded-full"></span>
               Locate Us
@@ -126,9 +126,11 @@ const Footer: React.FC = () => {
                 Open Map <ExternalLink size={10} />
               </a>
             </div>
-            <p className="text-[10px] text-turmeric-500/60 mt-4 text-right">
-              Pandit Shambhunath Shukla University Campus
-            </p>
+            <div className="text-white md:text-turmeric-500/80 text-xs md:text-[10px] mt-4 text-center font-medium md:font-normal">
+              <p className="font-bold">Pandit Shambhunath Shukla University Campus</p>
+              <p className="mt-1">Near Sarfa Dam Rd, Nawalpur, Shahdol</p>
+              <p>Madhya Pradesh, India (484001)</p>
+            </div>
           </div>
         </div>
 
