@@ -116,7 +116,7 @@ const Footer: React.FC = () => {
                 allowFullScreen
                 loading="lazy"
                 title="University Location Map"
-                className="grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 scale-100 group-hover:scale-105"
+                className="w-full h-full border-0 transition-transform duration-700 scale-100 group-hover:scale-105"
               ></iframe>
               <a
                 href="https://goo.gl/maps/example"
