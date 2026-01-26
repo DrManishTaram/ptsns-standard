@@ -99,7 +99,7 @@ const ContactSection: React.FC = () => {
                   allowFullScreen
                   loading="lazy"
                   title="University Location Map"
-                  className="grayscale group-hover:grayscale-0 transition-all duration-500 scale-105 group-hover:scale-100"
+                  className="transition-all duration-500 scale-105 group-hover:scale-100"
                 ></iframe>
               </div>
               <a

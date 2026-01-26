@@ -57,21 +57,30 @@ const Testimonials: React.FC = () => {
               <Quote size={24} fill="white" />
             </div>
 
-            <div className="mt-6 text-center">
-              <p className="text-lg md:text-xl text-gray-600 italic leading-relaxed mb-8">
-                "{testimonials[currentIndex].quote}"
-              </p>
+            <div className="mt-6 overflow-hidden">
+              <div
+                className="flex transition-transform duration-500 ease-in-out"
+                style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+              >
+                {testimonials.map((testimonial) => (
+                  <div key={testimonial.id} className="w-full flex-shrink-0 px-4 flex flex-col items-center">
+                    <p className="text-lg md:text-xl text-gray-600 italic leading-relaxed mb-8 text-center min-h-[8rem] flex items-center justify-center">
+                      "{testimonial.quote}"
+                    </p>
 
-              <div className="flex flex-col items-center justify-center">
-                <div className="w-20 h-20 p-1 bg-gradient-to-br from-turmeric-400 to-forest-800 rounded-full mb-4">
-                  <img
-                    src={testimonials[currentIndex].image}
-                    alt={testimonials[currentIndex].name}
-                    className="w-full h-full rounded-full object-cover border-4 border-white"
-                  />
-                </div>
-                <h4 className="text-xl font-bold text-earth-900">{testimonials[currentIndex].name}</h4>
-                <p className="text-turmeric-600 font-medium text-sm">{testimonials[currentIndex].dept}</p>
+                    <div className="flex flex-col items-center justify-center">
+                      <div className="w-20 h-20 p-1 bg-gradient-to-br from-turmeric-400 to-forest-800 rounded-full mb-4">
+                        <img
+                          src={testimonial.image}
+                          alt={testimonial.name}
+                          className="w-full h-full rounded-full object-cover border-4 border-white"
+                        />
+                      </div>
+                      <h4 className="text-xl font-bold text-earth-900">{testimonial.name}</h4>
+                      <p className="text-turmeric-600 font-medium text-sm">{testimonial.dept}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
