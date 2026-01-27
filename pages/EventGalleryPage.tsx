@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { 
+import {
     Calendar, Camera, Image, MapPin, Users, ArrowRight
 } from 'lucide-react';
 
@@ -158,11 +158,11 @@ const EventGalleryPage: React.FC = () => {
 
     return (
         <main className="min-h-screen bg-[#FDFCFE] text-slate-800 font-sans selection:bg-amber-100 selection:text-amber-900">
-            
+
             {/* 
                 HERO SECTION
             */}
-            <section className="relative pt-32 pb-40 overflow-hidden bg-white">
+            <section className="relative pt-20 pb-24 overflow-hidden bg-white">
                 {/* Background Effects */}
                 <div className="absolute inset-0 pointer-events-none overflow-hidden">
                     <div className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-amber-100/40 rounded-full blur-[120px] mix-blend-multiply"></div>
@@ -179,7 +179,7 @@ const EventGalleryPage: React.FC = () => {
                         </div>
 
                         <h1 className="text-6xl md:text-8xl font-serif font-medium tracking-tight mb-6 leading-[0.95] text-slate-900">
-                            Moments <br/>
+                            Moments <br />
                             <span className="italic text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500">
                                 That Matter.
                             </span>
@@ -195,11 +195,10 @@ const EventGalleryPage: React.FC = () => {
                                 <button
                                     key={year}
                                     onClick={() => { setSelectedYear(year); setSelectedMonth('All'); }}
-                                    className={`px-8 py-3 rounded-full text-sm font-bold transition-all ${
-                                        selectedYear === year
+                                    className={`px-8 py-3 rounded-full text-sm font-bold transition-all ${selectedYear === year
                                             ? 'bg-slate-900 text-white shadow-md'
                                             : 'text-slate-600 hover:bg-slate-100'
-                                    }`}
+                                        }`}
                                 >
                                     {year}
                                 </button>
@@ -214,7 +213,7 @@ const EventGalleryPage: React.FC = () => {
             */}
             <section className="relative z-20 pb-32 -mt-16">
                 <div className="container mx-auto px-4">
-                    
+
                     {/* Month Filter Bar */}
                     <div className="mb-12 overflow-x-auto pb-4 no-scrollbar">
                         <div className="flex items-center gap-3 w-max mx-auto">
@@ -222,11 +221,10 @@ const EventGalleryPage: React.FC = () => {
                                 <button
                                     key={month}
                                     onClick={() => setSelectedMonth(month)}
-                                    className={`px-5 py-2.5 rounded-full text-sm font-bold whitespace-nowrap transition-all border ${
-                                        selectedMonth === month
+                                    className={`px-5 py-2.5 rounded-full text-sm font-bold whitespace-nowrap transition-all border ${selectedMonth === month
                                             ? 'bg-amber-500 text-white border-amber-500 shadow-lg shadow-amber-200'
                                             : 'bg-white text-slate-500 border-slate-200 hover:border-amber-300 hover:text-amber-600'
-                                    }`}
+                                        }`}
                                 >
                                     {month}
                                 </button>
@@ -238,21 +236,21 @@ const EventGalleryPage: React.FC = () => {
                     {filteredEvents.length > 0 ? (
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                             {filteredEvents.map((event, idx) => (
-                                <Link 
-                                    key={event.id} 
+                                <Link
+                                    key={event.id}
                                     to={`/gallery/${event.id}`}
                                     className="group bg-white rounded-[2rem] overflow-hidden border border-slate-100 hover:shadow-2xl hover:shadow-slate-200/60 transition-all duration-500 hover:-translate-y-2 flex flex-col"
                                     style={{ animationDelay: `${idx * 0.1}s` }}
                                 >
                                     {/* Cover Image */}
                                     <div className="relative h-56 overflow-hidden">
-                                        <img 
-                                            src={event.coverImage} 
-                                            alt={event.title} 
+                                        <img
+                                            src={event.coverImage}
+                                            alt={event.title}
                                             className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                                         />
                                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-                                        
+
                                         {/* Tags */}
                                         <div className="absolute top-4 left-4 flex gap-2">
                                             {event.tags.map(tag => (
@@ -273,11 +271,11 @@ const EventGalleryPage: React.FC = () => {
                                         <div className="flex items-center gap-4 text-xs font-bold text-slate-400 mb-3 uppercase tracking-wider">
                                             <span className="flex items-center gap-1"><Calendar size={12} className="text-amber-500" /> {event.date}</span>
                                         </div>
-                                        
+
                                         <h3 className="text-xl font-serif font-bold text-slate-900 mb-2 group-hover:text-amber-600 transition-colors">
                                             {event.title}
                                         </h3>
-                                        
+
                                         <p className="text-slate-500 text-sm leading-relaxed mb-4 line-clamp-2">
                                             {event.description}
                                         </p>

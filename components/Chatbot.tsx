@@ -23,6 +23,9 @@ const Chatbot: React.FC = () => {
   const [isTyping, setIsTyping] = useState(false);
   const { isHiddenAreaVisible } = useHideOnSections();
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const [isKeyboardOpen, setIsKeyboardOpen] = useState(false);
+  const [viewportHeight, setViewportHeight] = useState(0);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -35,6 +38,69 @@ const Chatbot: React.FC = () => {
   useEffect(() => {
     if (isHiddenAreaVisible) setIsOpen(false);
   }, [isHiddenAreaVisible]);
+
+  // Detect mobile keyboard opening/closing
+  useEffect(() => {
+    // Only run on mobile devices
+    const isMobile = window.innerWidth < 768;
+    if (!isMobile) return;
+
+    // Store initial viewport height
+    const initialHeight = window.visualViewport?.height || window.innerHeight;
+    setViewportHeight(initialHeight);
+
+    const handleResize = () => {
+      const currentHeight = window.visualViewport?.height || window.innerHeight;
+      setViewportHeight(currentHeight);
+
+      // If viewport height decreased significantly (keyboard opened)
+      const heightDiff = initialHeight - currentHeight;
+      setIsKeyboardOpen(heightDiff > 150); // Threshold for keyboard detection
+    };
+
+    const handleFocus = () => {
+      // Small delay to ensure keyboard is fully shown
+      setTimeout(() => {
+        const currentHeight = window.visualViewport?.height || window.innerHeight;
+        setViewportHeight(currentHeight);
+        const heightDiff = initialHeight - currentHeight;
+        setIsKeyboardOpen(heightDiff > 150);
+      }, 300);
+    };
+
+    const handleBlur = () => {
+      setTimeout(() => {
+        setIsKeyboardOpen(false);
+        setViewportHeight(initialHeight);
+      }, 100);
+    };
+
+    // Listen to visual viewport resize (more reliable for mobile keyboards)
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener('resize', handleResize);
+    } else {
+      window.addEventListener('resize', handleResize);
+    }
+
+    // Add focus/blur listeners to input field
+    const inputElement = inputRef.current;
+    if (inputElement) {
+      inputElement.addEventListener('focus', handleFocus);
+      inputElement.addEventListener('blur', handleBlur);
+    }
+
+    return () => {
+      if (window.visualViewport) {
+        window.visualViewport.removeEventListener('resize', handleResize);
+      } else {
+        window.removeEventListener('resize', handleResize);
+      }
+      if (inputElement) {
+        inputElement.removeEventListener('focus', handleFocus);
+        inputElement.removeEventListener('blur', handleBlur);
+      }
+    };
+  }, [isOpen]);
 
   // Knowledge Base "AI" Logic
   const generateResponse = (query: string) => {
@@ -164,10 +230,20 @@ const Chatbot: React.FC = () => {
 
       {/* Chat Window - Also hidden when Contact Section is visible */}
       <div
-        className={`fixed bottom-24 right-4 md:bottom-28 md:right-8 z-[110] w-[90vw] md:w-[400px] bg-white rounded-2xl shadow-2xl border border-gray-100 flex flex-col transition-all duration-300 origin-bottom-right transform
+        className={`fixed z-[110] w-[90vw] md:w-[400px] bg-white rounded-2xl shadow-2xl border border-gray-100 flex flex-col transition-all duration-300 origin-bottom-right transform
           ${isOpen && !isHiddenAreaVisible ? 'scale-100 opacity-100' : 'scale-0 opacity-0 pointer-events-none'}
+          ${isKeyboardOpen ? 'md:bottom-28 md:right-8' : 'bottom-24 right-4 md:bottom-28 md:right-8'}
         `}
-        style={{ height: 'min(600px, 70vh)' }}
+        style={{
+          height: isKeyboardOpen
+            ? `${Math.min(viewportHeight - 80, 500)}px` // Dynamic height when keyboard is open
+            : 'min(600px, 70vh)', // Default height
+          ...(isKeyboardOpen && {
+            bottom: 'auto',
+            top: '60px', // Position from top when keyboard is open
+            maxHeight: `${viewportHeight - 80}px`
+          })
+        }}
       >
         {/* Header */}
         <div className="bg-earth-900 p-4 rounded-t-2xl flex items-center gap-3 shadow-md">
@@ -228,6 +304,7 @@ const Chatbot: React.FC = () => {
         <div className="p-4 bg-white border-t border-gray-100 rounded-b-2xl">
           <div className="flex items-center gap-2 bg-stone-50 p-1.5 pr-2 rounded-full border border-gray-200 focus-within:border-turmeric-500 focus-within:ring-2 focus-within:ring-turmeric-100 transition-all">
             <input
+              ref={inputRef}
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
