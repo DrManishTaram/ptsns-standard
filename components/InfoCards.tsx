@@ -95,7 +95,7 @@ const InfoCards: React.FC = () => {
           <p className="text-xs sm:text-sm md:text-base text-gray-600 font-medium">Latest updates, quick links and highlights from the university</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <InfoCard
             icon={<Bell />}
             title="Student Notifications"
