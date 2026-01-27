@@ -40,17 +40,17 @@ const Loader: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
             handleComplete();
             return 100;
           }
-          return prev + 5; // Fast increment
+          return prev + 10; // Very Fast increment for finish
         });
-      }, 20);
+      }, 10);
     } else {
-      // Slow trickle if still loading
+      // Smoother trickle if still loading
       interval = setInterval(() => {
         setProgress(prev => {
           if (prev >= 90) return 90; // Stall at 90% until loaded
-          return prev + 0.5; // Slow increment
+          return prev + 2; // Faster initial loading feel
         });
-      }, 50);
+      }, 30);
     }
 
     return () => clearInterval(interval);
@@ -60,7 +60,7 @@ const Loader: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
     setIsExiting(true);
     setTimeout(() => {
       onComplete();
-    }, 800); // Wait for exit animation
+    }, 400); // Wait for exit animation
   };
 
   return (
@@ -102,7 +102,13 @@ const Loader: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
             {/* Main Logo Sphere */}
             <div className="relative w-32 h-32 md:w-44 md:h-44 bg-white rounded-full shadow-[0_0_60px_rgba(59,130,246,0.4)] flex items-center justify-center overflow-hidden z-20 transform hover:scale-105 transition-transform duration-500">
               <div className="absolute inset-0 bg-gradient-to-br from-white via-gray-50 to-gray-200"></div>
-              <img src="/logo.jpg" alt="Logo" className="w-[85%] h-[85%] object-contain relative z-10 animate-[zoomIn_1s_ease-out]" />
+              <img
+                src="/logo.jpg"
+                alt="Logo"
+                className="w-[85%] h-[85%] object-contain relative z-10 animate-[zoomIn_0.5s_ease-out]"
+                loading="eager"
+                fetchPriority="high"
+              />
             </div>
 
             {/* Orbiting Tech Elements */}
