@@ -69,7 +69,7 @@ const InitiativesSection: React.FC = () => {
       <div className="absolute -left-40 top-40 w-96 h-96 bg-turmeric-100/30 rounded-full blur-3xl mix-blend-multiply opacity-70 animate-blob"></div>
       <div className="absolute -right-40 bottom-40 w-96 h-96 bg-blue-100/30 rounded-full blur-3xl mix-blend-multiply opacity-70 animate-blob animation-delay-2000"></div>
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="w-full max-w-screen-xl mx-auto px-4 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <span className="inline-block py-1 px-4 rounded-full bg-forest-50 border border-forest-100 text-forest-700 font-bold tracking-widest uppercase text-xs mb-4 shadow-sm">
             Key University Initiatives

@@ -28,7 +28,7 @@ const FormalHeader: React.FC = () => {
   return (
     <>
       {/* Mobile Sticky Header - Only visible on mobile */}
-      <div className="md:hidden sticky top-0 z-[100] w-full bg-white shadow-md flex flex-col h-28">
+      <div className="lg:hidden sticky top-0 z-[100] w-full bg-white shadow-md flex flex-col h-28">
         {/* Top Section - 70% Height - Navy Blue */}
         <div className="h-[70%] w-full bg-[#071133] flex items-center justify-center px-1 gap-1 border-b-[3px] border-[#FFA500]">
           {/* Logo - Round Shape */}
@@ -69,7 +69,7 @@ const FormalHeader: React.FC = () => {
         {/* Bottom Section - 30% Height - Light Blue */}
         <div className="h-[30%] w-full bg-blue-100 flex items-center justify-between px-4">
           {/* Contact Info - Styled Icons */}
-          <div className="flex items-center gap-4 w-full justify-start pl-10">
+          <div className="flex items-center gap-2 xs:gap-4 w-full justify-start pl-2 overflow-x-auto scrollbar-hide">
             <div className="flex items-center gap-2">
               <div className="bg-[#071133] rounded-full p-1 flex items-center justify-center shadow-sm">
                 <Phone size={10} className="text-white" />
@@ -85,23 +85,35 @@ const FormalHeader: React.FC = () => {
             </div>
           </div>
 
-          {/* Hamburger Menu */}
-          <button
-            onClick={toggleMobileMenu}
-            className="p-1 hover:bg-blue-200 rounded-md transition-colors flex-shrink-0"
-            aria-label="Open Menu"
-          >
-            <Menu size={24} className="text-[#071133]" />
-          </button>
+
+          {/* Search Button */}
+          <div className="flex items-center gap-3">
+            <button
+              onClick={openSearch}
+              className="p-1 hover:bg-blue-200 rounded-md transition-colors flex-shrink-0"
+              aria-label="Search"
+            >
+              <Search size={20} className="text-[#071133]" />
+            </button>
+
+            {/* Hamburger Menu */}
+            <button
+              onClick={toggleMobileMenu}
+              className="p-1 hover:bg-blue-200 rounded-md transition-colors flex-shrink-0"
+              aria-label="Open Menu"
+            >
+              <Menu size={24} className="text-[#071133]" />
+            </button>
+          </div>
         </div>
       </div>
 
       {/* Desktop Header - Hidden on mobile */}
       <div
-        className={`hidden md:block w-full bg-white relative z-[60] shadow-[0_10px_30px_-5px_rgba(0,0,0,0.15)] transition-all duration-300 overflow-hidden ${isScrolled ? 'py-1' : ''
+        className={`hidden lg:block w-full bg-white relative z-[60] shadow-[0_10px_30px_-5px_rgba(0,0,0,0.15)] transition-all duration-300 overflow-hidden ${isScrolled ? 'py-1' : ''
           }`}
       >
-        <div className={`container mx-auto px-4 relative transition-all duration-300 ${isScrolled ? 'py-1' : 'py-2 md:py-3'
+        <div className={`w-full max-w-screen-xl mx-auto px-4 relative transition-all duration-300 ${isScrolled ? 'py-1' : 'py-2 lg:py-3'
           }`}>
           <div className="flex flex-col md:flex-row items-center justify-center gap-2">
 
@@ -120,7 +132,7 @@ const FormalHeader: React.FC = () => {
                   alt="PTSNSU Logo"
                   loading="eager"
                   fetchPriority="high"
-                  className={`w-auto object-contain transition-all duration-300 ${isScrolled ? 'h-6 md:h-8' : 'h-12 md:h-16'
+                  className={`w-auto object-contain transition-all duration-300 ${isScrolled ? 'h-6 lg:h-8' : 'h-12 lg:h-16'
                     }`}
                 />
               </div>

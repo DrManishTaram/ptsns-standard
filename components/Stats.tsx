@@ -73,7 +73,7 @@ const Stats: React.FC = () => {
       {/* Dark Overlay */}
       <div className="absolute inset-0 bg-black/60"></div>
 
-      <div className="container mx-auto px-2 sm:px-4 relative z-10">
+      <div className="w-full max-w-screen-xl mx-auto px-2 sm:px-4 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-8 divide-y md:divide-y-0 md:divide-x divide-white/10">
           <StatItem icon={<Users />} count={5000} suffix="+" label="Students Enrolled" delay="0s" />
           <StatItem icon={<BookOpen />} count={120} suffix="+" label="Courses Offered" delay="0.1s" />

@@ -36,7 +36,7 @@ const AboutSection: React.FC = () => {
       <div className="absolute -left-32 top-32 w-[500px] h-[500px] bg-gradient-radial from-blue-900/20 via-blue-900/5 to-transparent rounded-full blur-3xl pointer-events-none animate-pulse"></div>
       <div className="absolute -right-32 bottom-20 w-[600px] h-[600px] bg-gradient-radial from-purple-900/20 via-purple-900/5 to-transparent rounded-full blur-3xl pointer-events-none animate-pulse" style={{ animationDelay: '1s' }}></div>
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="w-full max-w-screen-xl mx-auto px-4 relative z-10">
         <div className="flex flex-col lg:flex-row items-center gap-16">
 
           {/* Content Side */}

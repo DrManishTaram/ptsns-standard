@@ -49,7 +49,7 @@ const Academics: React.FC = () => {
       <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-radial from-turmeric-50/60 to-transparent opacity-60 blur-3xl pointer-events-none -translate-y-1/2 translate-x-1/2"></div>
       <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-radial from-blue-50/60 to-transparent opacity-60 blur-3xl pointer-events-none translate-y-1/3 -translate-x-1/4"></div>
 
-      <div className="container mx-auto px-2 sm:px-4 relative z-10">
+      <div className="w-full max-w-screen-xl mx-auto px-2 sm:px-4 relative z-10">
         {/* Header content */}
         <div className="text-center max-w-3xl mx-auto mb-6 sm:mb-8">
           <span className="inline-block py-1 px-3 sm:px-4 rounded-full bg-blue-50 border border-blue-100 text-blue-600 font-bold tracking-widest uppercase text-[10px] sm:text-xs mb-2 sm:mb-3 shadow-sm">

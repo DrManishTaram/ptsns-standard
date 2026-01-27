@@ -70,7 +70,7 @@ const Facilities: React.FC = () => {
       <div className="absolute top-0 left-0 w-full h-[60%] bg-stone-50 skew-y-3 transform origin-top-left -z-10"></div>
       <div className="hidden lg:block absolute right-0 top-1/4 w-64 h-64 bg-turmeric-100/50 rounded-full blur-3xl -z-10"></div>
 
-      <div className="container mx-auto px-2 sm:px-4 md:px-8">
+      <div className="w-full max-w-screen-xl mx-auto px-2 sm:px-4 md:px-8">
 
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14 md:mb-20 animate-fade-up">

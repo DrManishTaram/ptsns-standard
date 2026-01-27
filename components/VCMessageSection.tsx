@@ -14,7 +14,7 @@ const VCMessageSection: React.FC = () => {
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-turmeric-100/40 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
       <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-forest-100/30 rounded-full blur-3xl translate-y-1/3 -translate-x-1/4"></div>
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="w-full max-w-screen-xl mx-auto px-4 relative z-10">
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
 
           {/* Image Section */}

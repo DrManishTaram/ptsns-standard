@@ -74,7 +74,7 @@ const Achievements: React.FC = () => {
             {/* Decorative Background */}
             <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-turmeric-50 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2"></div>
 
-            <div className="container mx-auto px-2 sm:px-4 md:px-8 relative z-10">
+            <div className="w-full max-w-screen-xl mx-auto px-2 sm:px-4 md:px-8 relative z-10">
 
                 {/* Header Section */}
                 <div className="flex flex-col md:flex-row justify-between items-end mb-8 sm:mb-12 md:mb-16 gap-3 sm:gap-4 md:gap-6">
