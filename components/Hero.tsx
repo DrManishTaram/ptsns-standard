@@ -35,6 +35,24 @@ const Hero: React.FC = () => {
   const activeSlides = slides.slice(0, 10);
   const numSlides = Math.ceil(activeSlides.length / 2);
 
+  // Preload critical images for instant display
+  useEffect(() => {
+    // Preload background image
+    const bgImg = new Image();
+    bgImg.src = '/sliderbg.png';
+
+    // Preload first slide images (left and right)
+    if (activeSlides.length > 0) {
+      const firstImg = new Image();
+      firstImg.src = activeSlides[0].image;
+
+      if (activeSlides.length > 1) {
+        const secondImg = new Image();
+        secondImg.src = activeSlides[1].image;
+      }
+    }
+  }, []);
+
   // Auto-slide effect
   useEffect(() => {
     const timer = setInterval(() => {
@@ -92,7 +110,7 @@ const Hero: React.FC = () => {
                                 src={leftSlide.image}
                                 alt=""
                                 aria-hidden="true"
-                                loading={index === 0 ? "eager" : "lazy"}
+                                loading="eager"
                                 className="w-full h-full object-cover blur-md opacity-40 scale-110"
                               />
                             </div>
@@ -101,9 +119,9 @@ const Hero: React.FC = () => {
                             <img
                               src={leftSlide.image}
                               alt={leftSlide.title}
-                              loading={index === 0 ? "eager" : "lazy"}
-                              decoding={index === 0 ? "auto" : "async"}
-                              {...(index === 0 ? { fetchPriority: "high" } : {})}
+                              loading="eager"
+                              decoding="auto"
+                              fetchPriority="high"
                               className="relative z-10 w-full h-full object-contain transition-transform duration-700 group-hover:scale-105"
                             />
                             {/* Overlay Description */}
@@ -131,6 +149,7 @@ const Hero: React.FC = () => {
                                 src={rightSlide.image}
                                 alt=""
                                 aria-hidden="true"
+                                loading="eager"
                                 className="w-full h-full object-cover blur-md opacity-40 scale-110"
                               />
                             </div>
@@ -139,8 +158,9 @@ const Hero: React.FC = () => {
                             <img
                               src={rightSlide.image}
                               alt={rightSlide.title}
-                              loading={index === 0 ? "eager" : "lazy"}
-                              {...(index === 0 ? { fetchPriority: "high" } : {})}
+                              loading="eager"
+                              decoding="auto"
+                              fetchPriority="high"
                               className="relative z-10 w-full h-full object-contain transition-transform duration-700 group-hover:scale-105"
                             />
                             {/* Overlay Description */}
