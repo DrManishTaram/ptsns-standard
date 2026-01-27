@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { MessagesSquare, X, Send, Bot, User, Sparkles, ChevronRight } from 'lucide-react';
+import { MessagesSquare, X, Send, Bot, User, Sparkles, ChevronRight, ChevronDown } from 'lucide-react';
 import { useHideOnSections } from './hooks/useHideOnSections';
 
 interface Message {
@@ -250,13 +250,20 @@ const Chatbot: React.FC = () => {
           <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center border-2 border-turmeric-400 overflow-hidden p-0.5">
             <img src="/medha-ai.png" alt="Medha AI" className="w-full h-full object-cover rounded-full" loading="lazy" decoding="async" />
           </div>
-          <div>
+          <div className="flex-1">
             <h3 className="text-white font-serif font-bold tracking-wide text-lg">Medha Bot</h3>
             <div className="flex items-center gap-1.5">
               <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
               <span className="text-xs text-gray-300">Online | AI Powered</span>
             </div>
           </div>
+          <button
+            onClick={() => setIsOpen(false)}
+            className="p-2.5 hover:bg-white/10 rounded-full transition-colors"
+            aria-label="Collapse chatbot"
+          >
+            <ChevronDown size={24} className="text-white" />
+          </button>
         </div>
 
         {/* Messages Buffer */}
@@ -302,7 +309,7 @@ const Chatbot: React.FC = () => {
 
         {/* Input Area */}
         <div className="p-4 bg-white border-t border-gray-100 rounded-b-2xl">
-          <div className="flex items-center gap-2 bg-stone-50 p-1.5 pr-2 rounded-full border border-gray-200 focus-within:border-turmeric-500 focus-within:ring-2 focus-within:ring-turmeric-100 transition-all">
+          <div className="flex items-center gap-2 bg-stone-50 p-1.5 pr-2 rounded-full border-2 border-blue-500 focus-within:border-blue-600 focus-within:ring-2 focus-within:ring-blue-100 transition-all">
             <input
               ref={inputRef}
               type="text"
@@ -315,9 +322,9 @@ const Chatbot: React.FC = () => {
             <button
               onClick={handleSend}
               disabled={!input.trim()}
-              className="p-2.5 bg-earth-900 text-white rounded-full hover:bg-turmeric-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors shadow-sm"
+              className="p-2.5 bg-blue-500 text-white rounded-full hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors shadow-sm"
             >
-              <Send size={16} />
+              <Send size={16} className="text-white" />
             </button>
           </div>
           <div className="text-center mt-2">
