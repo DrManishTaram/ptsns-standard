@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const AboutSection: React.FC = () => {
   return (
-    <section id="about" className="py-12 md:py-24 relative overflow-hidden bg-earth-900">
+    <section id="about" className="py-12 md:py-24 relative overflow-hidden bg-[#EAE6CC]">
       {/* Masterpiece Divider */}
       <div className="absolute top-0 left-0 w-full z-20 pointer-events-none select-none">
         {/* Base Line */}
@@ -30,7 +30,7 @@ const AboutSection: React.FC = () => {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-turmeric-500/10 via-transparent to-transparent pointer-events-none"></div>
 
       {/* Subtle Grid Pattern */}
-      <div className="absolute inset-0 opacity-[0.05] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#ffffff 1px, transparent 1px)', backgroundSize: '32px 32px' }}></div>
+      <div className="absolute inset-0 opacity-[0.05] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#0f172a 1px, transparent 1px)', backgroundSize: '32px 32px' }}></div>
 
       {/* Elegant Light Bursts */}
       <div className="absolute -left-32 top-32 w-[500px] h-[500px] bg-gradient-radial from-blue-900/20 via-blue-900/5 to-transparent rounded-full blur-3xl pointer-events-none animate-pulse"></div>
@@ -46,12 +46,12 @@ const AboutSection: React.FC = () => {
                 <span className="w-2 h-2 rounded-full bg-turmeric-500 animate-pulse"></span>
                 About the University
               </span>
-              <h2 className="text-4xl lg:text-5xl font-serif font-bold text-white leading-[1.15]">
-                About <span className="text-transparent bg-clip-text bg-gradient-to-r from-turmeric-400 to-yellow-200">Pandit Shambhunath Shukla University</span>
+              <h2 className="text-4xl lg:text-5xl font-serif font-bold text-earth-900 leading-[1.15]">
+                About <span className="text-transparent bg-clip-text bg-gradient-to-r from-turmeric-600 to-forest-600">Pandit Shambhunath Shukla University</span>
               </h2>
             </div>
 
-            <p className="text-lg text-gray-300 leading-relaxed font-light">
+            <p className="text-lg text-blue-900 leading-relaxed font-bold">
               Pandit Shambhunath Shukla University, Shahdol is not just an institution; it is a movement towards educational emancipation. Established to cater to the aspirations of the tribal-dominated region, we blend traditional wisdom with modern scientific temper.
             </p>
 
@@ -62,13 +62,13 @@ const AboutSection: React.FC = () => {
                 { icon: Award, title: "Excellence", desc: "NAAC Accredited Institution" },
                 { icon: CheckCircle, title: "Holistic Growth", desc: "Sports & Cultural Focus" }
               ].map((item, idx) => (
-                <div key={idx} className="flex items-start gap-4 p-4 rounded-xl bg-white/5 hover:bg-white/10 backdrop-blur-sm transition-all border border-white/10 hover:border-turmeric-500/30 group hover:-translate-y-1 duration-300" style={{ animationDelay: `${idx * 100}ms` }}>
-                  <div className="p-3 bg-white/10 rounded-lg shadow-sm group-hover:bg-turmeric-500 group-hover:text-earth-900 transition-colors text-turmeric-400 group-hover:animate-bounce-small">
+                <div key={idx} className="flex items-start gap-4 p-4 rounded-xl bg-earth-900/5 hover:bg-earth-900/10 backdrop-blur-sm transition-all border border-earth-900/10 hover:border-turmeric-500/30 group hover:-translate-y-1 duration-300" style={{ animationDelay: `${idx * 100}ms` }}>
+                  <div className="p-3 bg-earth-900/5 rounded-lg shadow-sm group-hover:bg-turmeric-500 group-hover:text-white transition-colors text-turmeric-600 group-hover:animate-bounce-small">
                     <item.icon size={24} />
                   </div>
                   <div>
-                    <h4 className="font-bold text-white text-sm">{item.title}</h4>
-                    <p className="text-xs text-gray-400 mt-1">{item.desc}</p>
+                    <h4 className="font-bold text-earth-900 text-sm">{item.title}</h4>
+                    <p className="text-xs text-earth-700 mt-1">{item.desc}</p>
                   </div>
                 </div>
               ))}
@@ -76,9 +76,9 @@ const AboutSection: React.FC = () => {
 
             <div className="pt-4">
               <Link to="/about">
-                <button className="group px-8 py-4 bg-white text-earth-900 rounded-full font-bold shadow-lg hover:bg-turmeric-500 transition-all duration-300 flex items-center gap-3 pl-10 hover:shadow-turmeric-500/30 hover:scale-105">
+                <button className="group px-8 py-4 bg-earth-900 text-white rounded-full font-bold shadow-lg hover:bg-turmeric-600 transition-all duration-300 flex items-center gap-3 pl-10 hover:shadow-turmeric-500/30 hover:scale-105">
                   Explore Our Heritage
-                  <div className="bg-earth-900/10 p-1.5 rounded-full group-hover:bg-white/20 transition-colors">
+                  <div className="bg-white/20 p-1.5 rounded-full group-hover:bg-white/20 transition-colors">
                     <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
                   </div>
                 </button>
