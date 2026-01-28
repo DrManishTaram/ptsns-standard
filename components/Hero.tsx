@@ -30,6 +30,7 @@ const slides = [
 
 const Hero: React.FC = () => {
   const [current, setCurrent] = useState(0);
+  const [imageOrientations, setImageOrientations] = useState<Record<string, 'landscape' | 'portrait'>>({});
 
   // Ensure max 10 images (5 paired slides)
   const activeSlides = slides.slice(0, 10);
@@ -61,6 +62,15 @@ const Hero: React.FC = () => {
     return () => clearInterval(timer);
   }, [numSlides]);
 
+  const handleImageLoad = (e: React.SyntheticEvent<HTMLImageElement, Event>, imgSrc: string) => {
+    const img = e.currentTarget;
+    const isPortrait = img.naturalHeight > img.naturalWidth;
+    setImageOrientations(prev => ({
+      ...prev,
+      [imgSrc]: isPortrait ? 'portrait' : 'landscape'
+    }));
+  };
+
   return (
     <section className="relative w-full pt-2 pb-3 md:pt-[35px] md:pb-10 overflow-hidden bg-[url('/sliderbg.png')] bg-fixed bg-cover bg-center">
       {/* Dark Overlay for better contrast with Glass Effect */}
@@ -91,6 +101,9 @@ const Hero: React.FC = () => {
               const leftSlide = activeSlides[leftIndex];
               const rightSlide = activeSlides[rightIndex] || activeSlides[0];
 
+              const isLeftPortrait = imageOrientations[leftSlide.image] === 'portrait';
+              const isRightPortrait = imageOrientations[rightSlide.image] === 'portrait';
+
               return (
                 <div key={index} className="flex-shrink-0 w-full">
                   {/* Split Layout - Single column on mobile, two columns on desktop */}
@@ -104,25 +117,27 @@ const Hero: React.FC = () => {
                         <div className="w-full h-full bg-[#E6D8B5] rounded-2xl p-1.5">
                           {/* Image Container */}
                           <div className="relative w-full h-full rounded-xl overflow-hidden bg-gray-900 group">
-                            {/* Blurred Background to fill space */}
-                            <div className="absolute inset-0 w-full h-full overflow-hidden">
-                              <img
-                                src={leftSlide.image}
-                                alt=""
-                                aria-hidden="true"
-                                loading="eager"
-                                className="w-full h-full object-cover blur-md opacity-40 scale-110"
-                              />
-                            </div>
+                            {/* Blurred Background - Only for Portrait */}
+                            {(isLeftPortrait || !imageOrientations[leftSlide.image]) && (
+                              <div className="absolute inset-0 w-full h-full overflow-hidden">
+                                <img
+                                  src={leftSlide.image}
+                                  alt=""
+                                  aria-hidden="true"
+                                  className="w-full h-full object-cover blur-xl opacity-50 scale-110"
+                                />
+                              </div>
+                            )}
 
                             {/* Main Image */}
                             <img
                               src={leftSlide.image}
                               alt={leftSlide.title}
+                              onLoad={(e) => handleImageLoad(e, leftSlide.image)}
                               loading="eager"
                               decoding="auto"
                               fetchPriority="high"
-                              className="relative z-10 w-full h-full object-contain transition-transform duration-700 group-hover:scale-105"
+                              className={`relative z-10 w-full h-full transition-transform duration-700 group-hover:scale-105 ${isLeftPortrait ? 'object-contain' : 'object-cover'}`}
                             />
                             {/* Overlay Description */}
                             <div className="absolute bottom-0 left-0 right-0 bg-black/60 p-4 backdrop-blur-sm z-20 rounded-b-xl">
@@ -143,25 +158,27 @@ const Hero: React.FC = () => {
                         <div className="w-full h-full bg-[#E6D8B5] rounded-2xl p-1.5">
                           {/* Image Container */}
                           <div className="w-full h-full rounded-xl overflow-hidden bg-gray-900 relative group">
-                            {/* Blurred Background to fill space */}
-                            <div className="absolute inset-0 w-full h-full overflow-hidden">
-                              <img
-                                src={rightSlide.image}
-                                alt=""
-                                aria-hidden="true"
-                                loading="eager"
-                                className="w-full h-full object-cover blur-md opacity-40 scale-110"
-                              />
-                            </div>
+                            {/* Blurred Background - Only for Portrait */}
+                            {(isRightPortrait || !imageOrientations[rightSlide.image]) && (
+                              <div className="absolute inset-0 w-full h-full overflow-hidden">
+                                <img
+                                  src={rightSlide.image}
+                                  alt=""
+                                  aria-hidden="true"
+                                  className="w-full h-full object-cover blur-xl opacity-50 scale-110"
+                                />
+                              </div>
+                            )}
 
                             {/* Main Image */}
                             <img
                               src={rightSlide.image}
                               alt={rightSlide.title}
+                              onLoad={(e) => handleImageLoad(e, rightSlide.image)}
                               loading="eager"
                               decoding="auto"
                               fetchPriority="high"
-                              className="relative z-10 w-full h-full object-contain transition-transform duration-700 group-hover:scale-105"
+                              className={`relative z-10 w-full h-full transition-transform duration-700 group-hover:scale-105 ${isRightPortrait ? 'object-contain' : 'object-cover'}`}
                             />
                             {/* Overlay Description */}
                             <div className="absolute bottom-0 left-0 right-0 bg-black/60 p-4 backdrop-blur-sm z-20 rounded-b-xl">
