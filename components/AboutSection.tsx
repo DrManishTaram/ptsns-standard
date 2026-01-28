@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const AboutSection: React.FC = () => {
   return (
-    <section id="about" className="py-12 md:py-24 relative overflow-hidden bg-[#EAE6CC]">
+    <section id="about" className="py-12 md:py-24 relative overflow-hidden bg-[#FFFAF0]">
       {/* Masterpiece Divider */}
       <div className="absolute top-0 left-0 w-full z-20 pointer-events-none select-none">
         {/* Base Line */}
