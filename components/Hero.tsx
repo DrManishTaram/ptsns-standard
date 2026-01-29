@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const slides = [
   {
@@ -197,20 +198,22 @@ const Hero: React.FC = () => {
           </div>
         </div>
 
-        {/* Dot Indicators */}
-        <div className="absolute -bottom-5 md:-bottom-8 left-1/2 -translate-x-1/2 z-10 flex gap-3 items-center justify-center">
-          {Array.from({ length: Math.ceil(slides.slice(0, 10).length / 2) }).map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrent(index)}
-              aria-label={`Go to slide ${index + 1}`}
-              className={`transition-all duration-300 rounded-full border-2 border-white/80 shadow-sm ${index === current
-                ? 'bg-white w-10 h-2'
-                : 'bg-white/70 hover:bg-white w-2 h-2'
-                }`}
-            />
-          ))}
-        </div>
+        {/* Navigation Buttons */}
+        <button
+          onClick={() => setCurrent((prev) => (prev - 1 + numSlides) % numSlides)}
+          className="absolute left-8 md:left-10 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-black/60 hover:bg-black/80 backdrop-blur-sm flex items-center justify-center text-white transition-all duration-300 group"
+          aria-label="Previous slide"
+        >
+          <ChevronLeft size={24} className="group-hover:-translate-x-0.5 transition-transform" />
+        </button>
+
+        <button
+          onClick={() => setCurrent((prev) => (prev + 1) % numSlides)}
+          className="absolute right-8 md:right-10 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-black/60 hover:bg-black/80 backdrop-blur-sm flex items-center justify-center text-white transition-all duration-300 group"
+          aria-label="Next slide"
+        >
+          <ChevronRight size={24} className="group-hover:translate-x-0.5 transition-transform" />
+        </button>
       </div>
     </section>
   );
