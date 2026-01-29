@@ -195,7 +195,7 @@ const Navbar: React.FC = () => {
 
   return (
     <>
-      <div className="hidden lg:block bg-[#071133] shadow-md relative z-50 border-b-[3px] border-[#FFA500]">
+      <div className="hidden lg:block bg-[#071133] shadow-md relative z-50 border-b-[5px] border-[#FFA500]">
         <nav className="max-w-screen-xl mx-auto px-4">
           {/* Decreased vertical padding (py-0) and use flex items to define height */}
           <div className="flex justify-center items-center gap-1 text-[13px] font-medium text-white h-[45px]">

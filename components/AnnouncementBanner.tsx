@@ -38,7 +38,7 @@ const AnnouncementBanner: React.FC = () => {
                         `}>
                   {item.label}
                 </span>
-                <span className="text-black font-semibold">{item.text}</span>
+                <span className="text-black font-bold text-sm">{item.text}</span>
                 <a href={item.link} className="flex items-center text-[10px] sm:text-xs font-bold text-turmeric-700 hover:text-turmeric-900 underline decoration-turmeric-300 hover:decoration-turmeric-600 underline-offset-2 transition-all">
                   Check Details <ArrowRight size={10} className="ml-1" />
                 </a>
