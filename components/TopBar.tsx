@@ -225,18 +225,7 @@ const TopBar: React.FC = () => {
               </button>
             </div>
 
-            <a href="tel:+917052101786" className="flex items-center gap-1.5 group cursor-pointer opacity-80 hover:opacity-100 transition-opacity">
-              <div className="p-1 bg-blue-600 rounded-full group-hover:bg-blue-700 transition-colors shadow-sm">
-                <Phone size={12} className="lg:size-[13px] text-white group-hover:text-white transition-colors" />
-              </div>
-              <span className="text-[9px] lg:text-[11px] text-blue-600 group-hover:text-blue-600 transition-colors tracking-wide font-semibold hidden xl:inline">+91 7052 101 786</span>
-            </a>
-            <a href="mailto:info@psnsu.ac.in" className="flex items-center gap-1.5 group cursor-pointer opacity-80 hover:opacity-100 transition-opacity">
-              <div className="p-1 bg-blue-600 rounded-full group-hover:bg-blue-700 transition-colors shadow-sm">
-                <Mail size={12} className="lg:size-[13px] text-white group-hover:text-white transition-colors" />
-              </div>
-              <span className="text-[9px] lg:text-[11px] text-blue-600 group-hover:text-blue-600 transition-colors tracking-wide font-semibold hidden xl:inline">info@psnsu.ac.in</span>
-            </a>
+
 
             <button
               onClick={openSearch}

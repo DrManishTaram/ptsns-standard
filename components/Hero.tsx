@@ -72,7 +72,7 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <section className="relative w-full pt-2 pb-3 md:pt-[35px] md:pb-10 overflow-hidden bg-[url('/sliderbg.png')] bg-fixed bg-cover bg-center">
+    <section className="relative w-full pt-1 pb-2 md:pt-2 md:pb-4 overflow-hidden bg-[url('/sliderbg.png')] bg-fixed bg-cover bg-center">
       {/* Dark Overlay for better contrast with Glass Effect */}
       <div className="absolute inset-0 bg-black/10 z-0"></div>
 
@@ -107,12 +107,12 @@ const Hero: React.FC = () => {
               return (
                 <div key={index} className="flex-shrink-0 w-full">
                   {/* Split Layout - Single column on mobile, two columns on desktop */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-0 min-h-[200px] md:min-h-[360px]">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-0 min-h-[200px] md:min-h-[400px]">
 
                     {/* LEFT SIDE - Framed Image */}
                     <div className="relative bg-transparent p-1.5 md:p-2 flex items-center justify-center">
                       {/* Detailed Navy Blue Border Frame */}
-                      <div className="relative w-full aspect-[16/9] rounded-2xl p-[2px] bg-[#001f3f] shadow-2xl">
+                      <div className="relative w-full aspect-[16/10] rounded-2xl p-[2px] bg-[#001f3f] shadow-2xl">
                         {/* Inner White Border - Thinner for elegance */}
                         <div className="w-full h-full bg-[#E6D8B5] rounded-2xl p-1.5">
                           {/* Image Container */}
@@ -153,7 +153,7 @@ const Hero: React.FC = () => {
                     {/* RIGHT SIDE - Framed Image - Hidden on mobile */}
                     <div className="hidden md:block relative bg-transparent p-1.5 md:p-2 md:flex items-center justify-center">
                       {/* Detailed Navy Blue Border Frame */}
-                      <div className="relative w-full aspect-[16/9] rounded-2xl p-[2px] bg-[#001f3f] shadow-2xl">
+                      <div className="relative w-full aspect-[16/10] rounded-2xl p-[2px] bg-[#001f3f] shadow-2xl">
                         {/* Inner White Border - Thinner for elegance */}
                         <div className="w-full h-full bg-[#E6D8B5] rounded-2xl p-1.5">
                           {/* Image Container */}

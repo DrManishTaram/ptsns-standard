@@ -74,10 +74,10 @@ const Facilities: React.FC = () => {
 
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-6 sm:mb-8 md:mb-10 animate-fade-up">
-          <h4 className="text-turmeric-600 font-bold uppercase tracking-[0.2em] text-xs sm:text-sm mb-2 sm:mb-3">Campus Infrastructure</h4>
+          <h4 className="text-blue-600 font-bold uppercase tracking-[0.2em] text-xs sm:text-sm mb-2 sm:mb-3">Campus Infrastructure</h4>
           <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-earth-900 mb-4 sm:mb-6 relative inline-block">
             Our World-Class Facilities
-            <span className="absolute -bottom-1 sm:-bottom-2 left-1/4 right-1/4 h-0.5 sm:h-1 bg-gradient-to-r from-transparent via-turmeric-500 to-transparent"></span>
+            <span className="absolute -bottom-1 sm:-bottom-2 left-1/4 right-1/4 h-0.5 sm:h-1 bg-gradient-to-r from-transparent via-blue-500 to-transparent"></span>
           </h2>
           <p className="text-xs sm:text-lg text-gray-600 leading-relaxed">
             We provide an environment where students can thrive academically, socially, and physically with state-of-the-art infrastructure.
@@ -88,7 +88,7 @@ const Facilities: React.FC = () => {
         <div className="flex flex-col lg:flex-row bg-white rounded-2xl md:rounded-[2rem] shadow-2xl overflow-hidden border border-gray-100 min-h-0 md:min-h-[450px]">
 
           {/* Navigation Sidebar */}
-          <div className="w-full lg:w-[35%] bg-earth-900 text-white flex flex-col justify-start lg:justify-center relative overflow-hidden order-1 z-20">
+          <div className="w-full lg:w-[35%] bg-gradient-to-b from-blue-600 to-indigo-700 text-white flex flex-col justify-start lg:justify-center relative overflow-hidden order-1 z-20">
             {/* Texture Overlay */}
             <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
 
@@ -114,8 +114,8 @@ const Facilities: React.FC = () => {
                     p-2 sm:p-3 md:p-3 rounded-xl transition-all duration-500 border border-transparent 
                     min-w-[140px] sm:w-auto lg:w-full animate-flip-up
                     ${activeTab === index
-                      ? 'bg-gradient-to-r from-turmeric-600 to-turmeric-500 text-white shadow-lg lg:scale-100 lg:translate-x-4'
-                      : 'text-gray-400 bg-white/5 lg:bg-transparent hover:bg-white/10 hover:text-white'
+                      ? 'bg-white/20 text-white shadow-lg lg:scale-100 lg:translate-x-4 backdrop-blur-sm'
+                      : 'text-blue-100 bg-white/5 lg:bg-transparent hover:bg-white/10 hover:text-white'
                     }`}
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
@@ -124,10 +124,10 @@ const Facilities: React.FC = () => {
                       {React.cloneElement(item.icon as React.ReactElement<any>, { size: 18 })}
                     </span>
                     <div className="text-left flex-1 lg:flex-none">
-                      <h3 className={`font-bold text-xs sm:text-base md:text-lg leading-tight ${activeTab === index ? 'text-white' : 'text-gray-300 group-hover:text-white'}`}>
+                      <h3 className={`font-bold text-xs sm:text-base md:text-lg leading-tight ${activeTab === index ? 'text-white' : 'text-blue-100 group-hover:text-white'}`}>
                         {item.title}
                       </h3>
-                      <p className={`text-[9px] sm:text-xs font-medium mt-0.5 lg:block ${activeTab === index ? 'text-turmeric-100' : 'hidden'}`}>
+                      <p className={`text-[9px] sm:text-xs font-medium mt-0.5 lg:block ${activeTab === index ? 'text-blue-200' : 'hidden'}`}>
                         {item.subtitle}
                       </p>
                     </div>
@@ -139,8 +139,8 @@ const Facilities: React.FC = () => {
 
             {/* Bottom Contact/More Info - Desktop Only */}
             <div className="mt-auto md:mt-8 p-3 sm:p-4 md:p-0 md:p-8 border-t border-white/10 text-center lg:text-left relative z-10 hidden lg:block">
-              <p className="text-xs sm:text-sm text-gray-400 mb-2">Want to see more?</p>
-              <a href="/virtual-tour" className="text-turmeric-400 font-bold hover:text-white transition-colors uppercase tracking-wider text-xs flex items-center gap-2">
+              <p className="text-xs sm:text-sm text-blue-100 mb-2">Want to see more?</p>
+              <a href="/virtual-tour" className="text-white font-bold hover:text-blue-200 transition-colors uppercase tracking-wider text-xs flex items-center gap-2">
                 Take a Virtual Tour <ArrowRight size={12} className="sm:size-[14px]" />
               </a>
             </div>
@@ -166,15 +166,15 @@ const Facilities: React.FC = () => {
                     decoding="async"
                   />
                   {/* Gradient Overlay - Desktop Only */}
-                  <div className="hidden lg:block absolute inset-0 bg-gradient-to-t from-earth-900 via-earth-900/80 md:via-earth-900/60 to-transparent"></div>
+                  <div className="hidden lg:block absolute inset-0 bg-gradient-to-t from-indigo-900 via-indigo-900/80 md:via-indigo-900/60 to-transparent"></div>
                   {/* Gradient Overlay - Mobile Only (Bottom Fade) */}
                   <div className="lg:hidden absolute bottom-0 left-0 w-full h-20 sm:h-24 bg-gradient-to-t from-white to-transparent"></div>
                 </div>
 
                 {/* Content Container */}
                 <div className="relative lg:absolute lg:bottom-0 lg:left-0 w-full p-4 sm:p-6 lg:p-10 text-earth-900 lg:text-white bg-white lg:bg-transparent flex-grow">
-                  <div className="flex items-center gap-2 text-turmeric-600 lg:text-turmeric-400 font-bold uppercase tracking-wider text-xs sm:text-sm mb-2 sm:mb-3">
-                    <span className="w-6 sm:w-8 h-0.5 bg-turmeric-500"></span>
+                  <div className="flex items-center gap-2 text-blue-600 lg:text-blue-400 font-bold uppercase tracking-wider text-xs sm:text-sm mb-2 sm:mb-3">
+                    <span className="w-6 sm:w-8 h-0.5 bg-blue-500"></span>
                     {item.subtitle}
                   </div>
 
@@ -198,7 +198,7 @@ const Facilities: React.FC = () => {
                   </div>
 
                   <div className="mt-4 sm:mt-6 lg:mt-8 pt-3 sm:pt-4 lg:pt-6 border-t border-gray-100 lg:hidden text-center">
-                    <button className="text-turmeric-600 font-bold items-center justify-center gap-2 inline-flex text-xs sm:text-sm uppercase tracking-wide">
+                    <button className="text-blue-600 font-bold items-center justify-center gap-2 inline-flex text-xs sm:text-sm uppercase tracking-wide">
                       View More Details <ArrowRight size={14} className="sm:size-[16px]" />
                     </button>
                   </div>

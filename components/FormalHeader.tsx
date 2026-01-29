@@ -181,6 +181,22 @@ const FormalHeader: React.FC = () => {
             <GraduationCap size={150} className="text-[#071133]" />
           </div>
 
+          {/* Contact Info - Bottom Right - Visible only when NOT scrolled */}
+          <div className={`absolute -right-10 bottom-0.5 flex items-center gap-2 transition-all duration-300 ${!isScrolled ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible translate-y-4'}`}>
+            <a href="tel:+917052101786" className="flex items-center gap-1 group cursor-pointer">
+              <div className="p-[3px] bg-blue-600 rounded-full group-hover:bg-blue-700 transition-colors shadow-sm flex items-center justify-center">
+                <Phone size={10} className="text-white" />
+              </div>
+              <span className="text-[10px] font-bold text-blue-600 group-hover:text-blue-800 transition-colors hidden xl:inline tracking-wide">+91 7052 101 786</span>
+            </a>
+            <a href="mailto:info@psnsu.ac.in" className="flex items-center gap-1 group cursor-pointer">
+              <div className="p-[3px] bg-blue-600 rounded-full group-hover:bg-blue-700 transition-colors shadow-sm flex items-center justify-center">
+                <Mail size={10} className="text-white" />
+              </div>
+              <span className="text-[11px] font-bold text-blue-600 group-hover:text-blue-800 transition-colors hidden xl:inline tracking-wide">info@psnsu.ac.in</span>
+            </a>
+          </div>
+
           {/* Search Icon - Absolute Right - Visible only when scrolled */}
           <button
             onClick={openSearch}
