@@ -10,8 +10,8 @@ const Footer: React.FC = () => {
       <div className="absolute top-0 right-0 w-96 h-96 bg-turmeric-500/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
       <div className="absolute bottom-0 left-0 w-64 h-64 bg-turmeric-600/5 rounded-full blur-[80px] translate-y-1/2 -translate-x-1/2 pointer-events-none"></div>
 
-      <div className="w-full max-w-screen-xl mx-auto px-4 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-[0.85fr_1.15fr] lg:grid-cols-4 gap-6 md:gap-8 mb-8">
+      <div className="w-full max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-[0.85fr_1.15fr] lg:grid-cols-[1.5fr_0.8fr_0.85fr_0.85fr] gap-8 lg:gap-12 mb-8">
 
           {/* Column 1: Brand & About */}
           <div className="col-span-2 md:col-span-1 space-y-4 flex flex-col items-center text-center md:items-start md:text-left">

@@ -65,7 +65,7 @@ const Facilities: React.FC = () => {
   }, [isAutoPlaying]);
 
   return (
-    <section className="py-12 md:py-20 md:py-28 bg-white relative overflow-hidden" id="facilities">
+    <section className="py-8 md:py-12 bg-white relative overflow-hidden" id="facilities">
       {/* Background Elements */}
       <div className="absolute top-0 left-0 w-full h-[60%] bg-stone-50 skew-y-3 transform origin-top-left -z-10"></div>
       <div className="hidden lg:block absolute right-0 top-1/4 w-64 h-64 bg-turmeric-100/50 rounded-full blur-3xl -z-10"></div>
@@ -73,7 +73,7 @@ const Facilities: React.FC = () => {
       <div className="w-full max-w-screen-xl mx-auto px-2 sm:px-4 md:px-8">
 
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14 md:mb-20 animate-fade-up">
+        <div className="text-center max-w-3xl mx-auto mb-6 sm:mb-8 md:mb-10 animate-fade-up">
           <h4 className="text-turmeric-600 font-bold uppercase tracking-[0.2em] text-xs sm:text-sm mb-2 sm:mb-3">Campus Infrastructure</h4>
           <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-earth-900 mb-4 sm:mb-6 relative inline-block">
             Our World-Class Facilities
@@ -85,7 +85,7 @@ const Facilities: React.FC = () => {
         </div>
 
         {/* Main Content: Tabbed Interface */}
-        <div className="flex flex-col lg:flex-row bg-white rounded-2xl md:rounded-[2rem] shadow-2xl overflow-hidden border border-gray-100 min-h-0 md:min-h-[600px]">
+        <div className="flex flex-col lg:flex-row bg-white rounded-2xl md:rounded-[2rem] shadow-2xl overflow-hidden border border-gray-100 min-h-0 md:min-h-[450px]">
 
           {/* Navigation Sidebar */}
           <div className="w-full lg:w-[35%] bg-earth-900 text-white flex flex-col justify-start lg:justify-center relative overflow-hidden order-1 z-20">
@@ -96,9 +96,9 @@ const Facilities: React.FC = () => {
               className="
                     flex flex-row lg:flex-col 
                     overflow-x-auto lg:overflow-visible 
-                    p-2 sm:p-3 md:p-8 
-                    gap-1.5 sm:gap-2 md:gap-3
-                    space-y-0 lg:space-y-2 
+                    p-2 sm:p-3 md:p-4 
+                    gap-1.5 sm:gap-2 lg:gap-1
+
                     relative z-10 
                     no-scrollbar
                 "
@@ -111,7 +111,7 @@ const Facilities: React.FC = () => {
                   onClick={() => setActiveTab(index)}
                   className={`
                     group flex-shrink-0 lg:flex-shrink flex items-center justify-center lg:justify-between 
-                    p-2 sm:p-3 md:p-5 rounded-xl transition-all duration-500 border border-transparent 
+                    p-2 sm:p-3 md:p-3 rounded-xl transition-all duration-500 border border-transparent 
                     min-w-[140px] sm:w-auto lg:w-full animate-flip-up
                     ${activeTab === index
                       ? 'bg-gradient-to-r from-turmeric-600 to-turmeric-500 text-white shadow-lg lg:scale-100 lg:translate-x-4'
@@ -147,7 +147,7 @@ const Facilities: React.FC = () => {
           </div>
 
           {/* Image & Detail Showcase */}
-          <div className="w-full lg:w-[65%] relative bg-gray-50 lg:bg-gray-900 group min-h-[350px] sm:min-h-[400px] md:min-h-[450px] lg:min-h-auto order-2 flex flex-col lg:block">
+          <div className="w-full lg:w-[65%] relative bg-gray-50 lg:bg-gray-900 group min-h-[350px] sm:min-h-[400px] lg:min-h-auto order-2 flex flex-col lg:block">
             {facilitiesData.map((item, index) => (
               <div
                 key={item.id}
@@ -172,17 +172,17 @@ const Facilities: React.FC = () => {
                 </div>
 
                 {/* Content Container */}
-                <div className="relative lg:absolute lg:bottom-0 lg:left-0 w-full p-4 sm:p-6 lg:p-16 text-earth-900 lg:text-white bg-white lg:bg-transparent flex-grow">
+                <div className="relative lg:absolute lg:bottom-0 lg:left-0 w-full p-4 sm:p-6 lg:p-10 text-earth-900 lg:text-white bg-white lg:bg-transparent flex-grow">
                   <div className="flex items-center gap-2 text-turmeric-600 lg:text-turmeric-400 font-bold uppercase tracking-wider text-xs sm:text-sm mb-2 sm:mb-3">
                     <span className="w-6 sm:w-8 h-0.5 bg-turmeric-500"></span>
                     {item.subtitle}
                   </div>
 
-                  <h3 className="text-2xl sm:text-3xl lg:text-5xl font-serif font-bold mb-3 sm:mb-4 lg:mb-4 leading-tight animate-slide-down">
+                  <h3 className="text-2xl sm:text-3xl lg:text-4xl font-serif font-bold mb-2 sm:mb-3 lg:mb-3 leading-tight animate-slide-down">
                     {item.title}
                   </h3>
 
-                  <p className="text-gray-600 lg:text-gray-200 text-xs sm:text-base lg:text-lg mb-4 sm:mb-6 lg:mb-8 leading-relaxed max-w-2xl opacity-90 lg:line-clamp-none">
+                  <p className="text-gray-600 lg:text-gray-200 text-xs sm:text-base mb-3 sm:mb-4 lg:mb-6 leading-relaxed max-w-2xl opacity-90 lg:line-clamp-none">
                     {item.description}
                   </p>
 

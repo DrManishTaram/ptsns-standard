@@ -345,14 +345,14 @@ const Navbar: React.FC = () => {
         {/* Backdrop Overlay */}
         {isMobileMenuOpen && (
           <div
-            className="lg:hidden fixed inset-0 bg-black/50 z-[90] transition-opacity duration-300"
+            className="lg:hidden fixed inset-0 bg-black/50 z-[290] transition-opacity duration-300"
             onClick={closeMobileMenu}
           />
         )}
 
         {/* Sidebar */}
         <div
-          className={`lg:hidden fixed top-0 right-0 h-full w-[70%] bg-white shadow-2xl z-[100] transform transition-transform duration-300 ease-in-out overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+          className={`lg:hidden fixed top-0 right-0 h-full w-[80%] max-w-[320px] bg-white shadow-2xl z-[300] transform transition-transform duration-300 ease-in-out overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
             }`}
         >
           {/* Sidebar Header */}
