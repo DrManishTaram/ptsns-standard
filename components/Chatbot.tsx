@@ -183,7 +183,7 @@ const Chatbot: React.FC = () => {
               <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </div>
             {/* Alert Badge */}
-            <div className="absolute -top-1 -left-2 bg-turmeric-400 text-earth-900 text-[8px] font-black px-1.5 py-0.5 rounded shadow-sm border border-white transform -rotate-12 animate-pulse">
+            <div className="absolute -top-1 -left-2 !bg-yellow-300 !text-red-600 text-[8px] font-black px-1.5 py-0.5 rounded shadow-sm border border-white transform -rotate-12 animate-pulse" style={{ backgroundColor: '#fde047', color: '#dc2626' }}>
               NOW!
             </div>
           </div>
@@ -202,7 +202,7 @@ const Chatbot: React.FC = () => {
             <ChevronRight size={14} className="group-hover:translate-x-1 transition-transform" />
           </div>
           {/* Alert Badge */}
-          <div className="absolute -top-3 -left-2 bg-turmeric-400 text-earth-900 text-[9px] font-black px-1.5 py-0.5 rounded shadow-sm border border-white transform -rotate-12 animate-pulse">
+          <div className="absolute -top-3 -left-2 !bg-yellow-300 !text-red-600 text-[9px] font-black px-1.5 py-0.5 rounded shadow-sm border border-white transform -rotate-12 animate-pulse" style={{ backgroundColor: '#fde047', color: '#dc2626' }}>
             NOW!
           </div>
         </div>
