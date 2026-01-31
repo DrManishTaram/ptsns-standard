@@ -12,7 +12,7 @@ const InitiativeCard: React.FC<{
   link?: string;
 }> = ({ title, subtitle, description, icon, color, gradient, link }) => {
   const CardContent = () => (
-    <div className="group relative overflow-hidden bg-white rounded-3xl transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl border border-gray-100">
+    <div className="group relative overflow-hidden bg-white rounded-3xl transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl border border-gray-100 h-full">
       {/* Background Gradient - Now Default */}
       <div className={`absolute inset-0 bg-gradient-to-br ${gradient} opacity-100`}></div>
 
@@ -53,7 +53,7 @@ const InitiativeCard: React.FC<{
 
   if (link) {
     return (
-      <Link to={link} className="block">
+      <Link to={link} className="block h-full">
         <CardContent />
       </Link>
     );
@@ -89,7 +89,7 @@ const InitiativesSection: React.FC = () => {
             description="Empowering Health, One Click Away. Access healthcare resources, track wellness activities, and stay informed — anytime, anywhere."
             icon={<Activity size={32} />}
             color="bg-rose-500"
-            gradient="from-rose-500 to-rose-600"
+            gradient="from-rose-500 to-orange-500"
           />
 
           <InitiativeCard
