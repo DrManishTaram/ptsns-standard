@@ -84,6 +84,15 @@ const InitiativesSection: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <InitiativeCard
+            title="Abhilekh App"
+            subtitle="DIGITAL GOVERNANCE"
+            description="AI-Powered File Tracking System for transparent, efficient, and accountable movement of university files. Track file status, locations, and timelines in real time — anytime, anywhere."
+            icon={<Smartphone size={32} />}
+            color="bg-turmeric-500"
+            gradient="from-turmeric-500 to-orange-500"
+          />
+
+          <InitiativeCard
             title="Aarogyam App"
             subtitle="Health & Wellness"
             description="Empowering Health, One Click Away. Access healthcare resources, track wellness activities, and stay informed — anytime, anywhere."
@@ -103,15 +112,6 @@ const InitiativesSection: React.FC = () => {
           />
 
           <InitiativeCard
-            title="Samarth Portal"
-            subtitle="Student Services"
-            description="Integrated University Management System. A one-stop portal for admissions, examinations, results, and student lifecycle management."
-            icon={<Smartphone size={32} />}
-            color="bg-turmeric-500"
-            gradient="from-turmeric-500 to-orange-500"
-          />
-
-          <InitiativeCard
             title="Green Campus"
             subtitle="Sustainability"
             description="Eco-friendly initiatives including solar energy adoption, rainwater harvesting, and plastic-free campus drives."
@@ -121,48 +121,7 @@ const InitiativesSection: React.FC = () => {
           />
         </div>
 
-        {/* Floating App Showcase (Optional Aesthetic Touch) */}
-        <div className="mt-20 relative rounded-3xl bg-earth-900 overflow-hidden shadow-2xl">
-          <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
-          <div className="absolute inset-0 bg-gradient-to-r from-earth-900 via-earth-800 to-earth-900 opacity-90"></div>
 
-          <div className="relative z-10 flex flex-col md:flex-row items-center justify-between p-12 gap-10">
-            <div className="max-w-xl text-white">
-              <h3 className="text-3xl font-serif font-bold mb-4">Arogyam App</h3>
-              <p className="text-gray-300 text-lg mb-8">
-                Experience the convenience of our digital university ecosystem. Download our official apps to stay connected and productive.
-              </p>
-              <div className="flex gap-4">
-                <button className="flex items-center gap-3 bg-white text-earth-900 px-6 py-3 rounded-xl font-bold hover:bg-turmeric-400 transition-colors">
-                  <Smartphone size={24} />
-                  <div className="text-left leading-tight">
-                    <div className="text-[10px] uppercase tracking-wider">Download on the</div>
-                    <div className="text-sm">App Store</div>
-                  </div>
-                </button>
-                <button className="flex items-center gap-3 bg-white/10 text-white border border-white/20 px-6 py-3 rounded-xl font-bold hover:bg-white/20 transition-colors">
-                  <Globe size={24} />
-                  <div className="text-left leading-tight">
-                    <div className="text-[10px] uppercase tracking-wider">Get it on</div>
-                    <div className="text-sm">Google Play</div>
-                  </div>
-                </button>
-              </div>
-            </div>
-
-            {/* Abstract Phone Mockup Art */}
-            <div className="relative w-full max-w-sm h-64 md:h-80 flex items-center justify-center">
-              <div className="absolute w-44 h-full bg-white/5 rounded-[3rem] border-8 border-white/10 rotate-[-10deg] transform translate-y-4 blur-sm"></div>
-              <div className="relative w-44 h-full bg-black rounded-[3rem] border-8 border-gray-800 shadow-2xl rotate-[5deg] overflow-hidden group hover:rotate-0 transition-transform duration-500">
-                <div className="absolute top-0 w-full h-full bg-gradient-to-b from-gray-800 to-gray-900 flex flex-col items-center justify-center">
-                  <ShieldCheck size={48} className="text-turmeric-500 mb-4" />
-                  <span className="text-white font-bold tracking-widest">PTSNS</span>
-                  <span className="text-xs text-gray-500 uppercase mt-1">Digital Campus</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
 
       </div>
     </section>

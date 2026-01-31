@@ -139,21 +139,31 @@ const Achievements: React.FC = () => {
                                 className="group bg-white rounded-2xl overflow-hidden border border-gray-100 hover:border-turmeric-200 shadow-sm hover:shadow-2xl transition-all duration-500 flex flex-col h-full cursor-pointer"
                             >
                                 {/* Image Area */}
-                                <div className="h-40 sm:h-48 md:h-60 overflow-hidden relative">
+                                <div className="h-40 sm:h-48 md:h-60 overflow-hidden relative bg-gray-100">
+                                    {/* Blurred Background for Ambiance */}
+                                    <img
+                                        src={item.image}
+                                        alt=""
+                                        className="absolute inset-0 w-full h-full object-cover blur-sm scale-110 opacity-80"
+                                    />
+
+                                    {/* Main Image - Full View */}
                                     <img
                                         src={item.image}
                                         alt={item.title}
-                                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                        className="relative w-full h-full object-contain z-10 transition-transform duration-700 group-hover:scale-105"
                                     />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60"></div>
+
+                                    {/* Gradient Overlay */}
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 z-20"></div>
 
                                     {/* Date Badge */}
-                                    <div className="absolute top-2 sm:top-4 left-2 sm:left-4 bg-white/90 backdrop-blur-sm px-2 sm:px-3 py-0.5 sm:py-1 rounded-lg text-[10px] sm:text-xs font-bold text-earth-900 shadow-sm">
+                                    <div className="absolute top-2 sm:top-4 left-2 sm:left-4 bg-white/90 backdrop-blur-sm px-2 sm:px-3 py-0.5 sm:py-1 rounded-lg text-[10px] sm:text-xs font-bold text-earth-900 shadow-sm z-30">
                                         {item.date}
                                     </div>
 
                                     {/* Category Badge */}
-                                    <div className={`absolute bottom-2 sm:bottom-4 right-2 sm:right-4 text-white text-[9px] sm:text-xs font-bold px-2 sm:px-3 py-0.5 sm:py-1 rounded-full uppercase tracking-wide shadow-sm flex items-center gap-1
+                                    <div className={`absolute bottom-2 sm:bottom-4 right-2 sm:right-4 text-white text-[9px] sm:text-xs font-bold px-2 sm:px-3 py-0.5 sm:py-1 rounded-full uppercase tracking-wide shadow-sm flex items-center gap-1 z-30
                             ${item.category === 'University' ? 'bg-turmeric-600' :
                                             item.category === 'Student' ? 'bg-blue-600' : 'bg-purple-600'}
                         `}>
