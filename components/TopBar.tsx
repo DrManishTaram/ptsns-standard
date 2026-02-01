@@ -143,6 +143,14 @@ const TopBar: React.FC = () => {
     return () => clearTimeout(debounceTimer);
   }, [searchQuery, performSearch]);
 
+  // Reset search when closed
+  useEffect(() => {
+    if (!isSearchOpen) {
+      setSearchQuery('');
+      setSearchResults([]);
+    }
+  }, [isSearchOpen]);
+
   const handleResultClick = (result: SearchResult) => {
     closeSearch();
     setSearchQuery('');
