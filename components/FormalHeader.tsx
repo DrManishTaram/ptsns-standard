@@ -30,7 +30,7 @@ const FormalHeader: React.FC = () => {
       {/* Mobile Sticky Header - Only visible on mobile */}
       <div className="lg:hidden sticky top-0 z-[100] w-full bg-white shadow-md flex flex-col h-28">
         {/* Top Section - 70% Height - Navy Blue */}
-        <div className="h-[70%] w-full bg-[#071133] flex items-center justify-center px-1 gap-1 border-b-[3px] border-[#FFA500]">
+        <div className="h-[70%] w-full bg-blue-100 flex items-center justify-center px-1 gap-1 border-b-[3px] border-[#FFA500]">
           {/* Logo - Round Shape */}
           <div className="flex-shrink-0 bg-white rounded-full p-1 h-11 w-11 flex items-center justify-center overflow-hidden">
             <img
@@ -46,7 +46,7 @@ const FormalHeader: React.FC = () => {
           {/* University Names - Centered */}
           <div className="flex flex-col justify-center items-center text-center min-w-0">
             <h1
-              className="text-white font-bold text-[9px] leading-tight uppercase"
+              className="text-[#071133] font-bold text-[9px] leading-tight uppercase"
               style={{
                 fontFamily: '"Noto Serif", serif',
                 fontWeight: 700
@@ -55,7 +55,7 @@ const FormalHeader: React.FC = () => {
               PANDIT SHAMBHUNATH SHUKLA VISHWAVIDYALAYA, SHAHDOL (M.P.)
             </h1>
             <h2
-              className="text-white font-bold text-[13px] leading-tight mt-2"
+              className="text-[#071133] font-bold text-[13px] leading-tight mt-2"
               style={{
                 fontFamily: '"Noto Serif Devanagari", serif',
                 fontWeight: 700
@@ -67,21 +67,21 @@ const FormalHeader: React.FC = () => {
         </div>
 
         {/* Bottom Section - 30% Height - Light Blue */}
-        <div className="h-[30%] w-full bg-blue-100 flex items-center justify-between px-4">
+        <div className="h-[30%] w-full bg-[#071133] flex items-center justify-between px-4">
           {/* Contact Info - Styled Icons */}
           <div className="flex items-center gap-2 xs:gap-4 w-full justify-start pl-2 overflow-x-auto scrollbar-hide">
             <div className="flex items-center gap-2">
-              <div className="bg-[#071133] rounded-full p-1 flex items-center justify-center shadow-sm">
-                <Phone size={10} className="text-white" />
+              <div className="bg-white rounded-full p-1 flex items-center justify-center shadow-sm">
+                <Phone size={10} className="text-[#071133]" />
               </div>
-              <span className="text-[#071133] text-[10px] font-semibold">07653-252525</span>
+              <span className="text-white text-[10px] font-semibold">07653-252525</span>
             </div>
 
             <div className="flex items-center gap-2">
-              <div className="bg-[#071133] rounded-full p-1 flex items-center justify-center shadow-sm">
-                <Mail size={10} className="text-white" />
+              <div className="bg-white rounded-full p-1 flex items-center justify-center shadow-sm">
+                <Mail size={10} className="text-[#071133]" />
               </div>
-              <span className="text-[#071133] text-[10px] font-semibold">info@ptsnsu.ac.in</span>
+              <span className="text-white text-[10px] font-semibold">info@ptsnsu.ac.in</span>
             </div>
           </div>
 
@@ -90,19 +90,19 @@ const FormalHeader: React.FC = () => {
           <div className="flex items-center gap-3">
             <button
               onClick={openSearch}
-              className="p-1 hover:bg-blue-200 rounded-md transition-colors flex-shrink-0"
+              className="p-1 hover:bg-blue-900 rounded-md transition-colors flex-shrink-0"
               aria-label="Search"
             >
-              <Search size={20} className="text-[#071133]" />
+              <Search size={20} className="text-white" />
             </button>
 
             {/* Hamburger Menu */}
             <button
               onClick={toggleMobileMenu}
-              className="p-1 hover:bg-blue-200 rounded-md transition-colors flex-shrink-0"
+              className="p-1 hover:bg-blue-900 rounded-md transition-colors flex-shrink-0"
               aria-label="Open Menu"
             >
-              <Menu size={24} className="text-[#071133]" />
+              <Menu size={24} className="text-white" />
             </button>
           </div>
         </div>
