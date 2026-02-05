@@ -14,7 +14,7 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-[0.85fr_1.15fr] lg:grid-cols-[1.5fr_0.8fr_0.85fr_0.85fr] gap-8 lg:gap-12 mb-8">
 
           {/* Column 1: Brand & About */}
-          <div className="col-span-2 md:col-span-1 space-y-4 flex flex-col items-center text-center md:items-start md:text-left">
+          <div className="space-y-4 flex flex-col items-center text-center md:items-start md:text-left">
             <div className="flex flex-col md:flex-row items-center gap-4">
               <div className="w-12 h-12 rounded-full border-2 border-turmeric-400 p-1 bg-white/5 backdrop-blur-sm flex items-center justify-center flex-shrink-0">
                 <img src="/logo.jpg" alt="University Logo" className="w-full h-full object-contain rounded-full" loading="lazy" decoding="async" />
@@ -36,12 +36,12 @@ const Footer: React.FC = () => {
           </div>
 
           {/* Column 2: Quick Links */}
-          <div className="border-r border-gray-700 md:border-none pr-2 md:pr-0">
-            <h3 className="font-bold text-lg mb-4 flex flex-col md:flex-row items-start md:items-center gap-2 md:gap-3">
+          <div className="flex flex-col items-center md:items-start">
+            <h3 className="font-bold text-lg mb-4 flex flex-col md:flex-row items-center md:items-center gap-2 md:gap-3">
               <span className="w-8 h-1 bg-turmeric-500 rounded-full hidden md:block"></span>
               Quick Links
             </h3>
-            <ul className="space-y-3">
+            <ul className="space-y-3 flex flex-col items-center md:items-start">
               {[
                 { name: 'Admission Procedure', href: '/admission-notification' },
                 { name: 'Academic Calendar', href: '/calendar' },
@@ -61,38 +61,38 @@ const Footer: React.FC = () => {
           </div>
 
           {/* Column 3: Contact Info */}
-          <div>
-            <h3 className="font-bold text-lg mb-4 flex flex-col md:flex-row items-start md:items-center gap-2 md:gap-3 pl-1 md:pl-0">
+          <div className="flex flex-col items-center md:items-start">
+            <h3 className="font-bold text-lg mb-4 flex flex-col md:flex-row items-center md:items-center gap-2 md:gap-3">
               <span className="w-8 h-1 bg-turmeric-500 rounded-full hidden md:block"></span>
               Contact Us
             </h3>
-            <ul className="space-y-3 pl-1 md:pl-0">
-              <li className="flex items-start gap-4 group">
+            <ul className="space-y-3 flex flex-col items-center md:items-start">
+              <li className="flex flex-col md:flex-row items-center md:items-start gap-3 md:gap-4 group">
                 <div className="w-10 h-10 rounded-lg bg-turmeric-500/10 flex items-center justify-center flex-shrink-0 group-hover:bg-turmeric-500 transition-colors duration-300">
                   <MapPin size={20} className="text-turmeric-500 group-hover:text-white" />
                 </div>
-                <div>
+                <div className="text-center md:text-left">
                   <h5 className="text-white text-xs md:text-sm font-bold mb-1">Campus Address</h5>
                   <p className="text-gray-400 text-[10px] md:text-xs leading-relaxed">
                     Near Sarfa Dam Rd, Nawalpur, Shahdol,<br />Madhya Pradesh, India (484001)
                   </p>
                 </div>
               </li>
-              <li className="flex items-start gap-4 group">
+              <li className="flex flex-col md:flex-row items-center md:items-start gap-3 md:gap-4 group">
                 <div className="w-10 h-10 rounded-lg bg-turmeric-500/10 flex items-center justify-center flex-shrink-0 group-hover:bg-turmeric-500 transition-colors duration-300">
                   <Phone size={20} className="text-turmeric-500 group-hover:text-white" />
                 </div>
-                <div>
+                <div className="text-center md:text-left">
                   <h5 className="text-white text-sm font-bold mb-1">Phone</h5>
                   <p className="text-gray-400 text-xs">+91 7052 101 786</p>
                   <p className="text-gray-400 text-xs">+91 7223 828 512</p>
                 </div>
               </li>
-              <li className="flex items-start gap-4 group">
+              <li className="flex flex-col md:flex-row items-center md:items-start gap-3 md:gap-4 group">
                 <div className="w-10 h-10 rounded-lg bg-turmeric-500/10 flex items-center justify-center flex-shrink-0 group-hover:bg-turmeric-500 transition-colors duration-300">
                   <Mail size={20} className="text-turmeric-500 group-hover:text-white" />
                 </div>
-                <div>
+                <div className="text-center md:text-left">
                   <h5 className="text-white text-sm font-bold mb-1">Email</h5>
                   <p className="text-gray-400 text-xs">info@psnsu.ac.in</p>
                   <p className="text-gray-400 text-xs">registrar@psnsu.ac.in</p>
@@ -102,8 +102,8 @@ const Footer: React.FC = () => {
           </div>
 
           {/* Column 4: Location Map */}
-          <div className="col-span-2 md:col-span-1">
-            <h3 className="font-bold text-lg mb-4 flex items-center gap-3">
+          <div className="flex flex-col items-center md:items-start">
+            <h3 className="font-bold text-lg mb-4 flex flex-col md:flex-row items-center md:items-center gap-2 md:gap-3">
               <span className="w-8 h-1 bg-turmeric-500 rounded-full"></span>
               Locate Us
             </h3>
