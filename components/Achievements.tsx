@@ -129,7 +129,7 @@ const Achievements: React.FC = () => {
                 {/* Grid Layout */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
                     {filteredItems.map((item) => {
-                        const CardWrapper = item.link ? Link : 'div';
+                        const CardWrapper = (item.link ? Link : 'div') as any;
                         const cardProps = item.link ? { to: item.link } : {};
 
                         return (
@@ -167,7 +167,7 @@ const Achievements: React.FC = () => {
                             ${item.category === 'University' ? 'bg-turmeric-600' :
                                             item.category === 'Student' ? 'bg-blue-600' : 'bg-purple-600'}
                         `}>
-                                        {React.cloneElement(item.icon as React.ReactElement, { size: 12 })}
+                                        {React.cloneElement(item.icon as React.ReactElement<any>, { size: 12 })}
                                         <span className="hidden sm:inline">{item.category}</span>
                                     </div>
                                 </div>
