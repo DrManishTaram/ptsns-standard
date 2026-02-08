@@ -33,6 +33,7 @@ const Hero: React.FC = () => {
   const [current, setCurrent] = useState(0);
   const [imageOrientations, setImageOrientations] = useState<Record<string, 'landscape' | 'portrait'>>({});
   const [isMobile, setIsMobile] = useState(false);
+  const [isResetting, setIsResetting] = useState(false);
 
   // Ensure max 10 images (5 paired slides)
   const activeSlides = slides.slice(0, 10);
@@ -41,41 +42,100 @@ const Hero: React.FC = () => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
     };
-
-    // Initial check
     handleResize();
-
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const numSlides = isMobile ? activeSlides.length : Math.ceil(activeSlides.length / 2);
+  // Construct pages logic
+  const pages = React.useMemo(() => {
+    if (activeSlides.length === 0) return [];
 
-  // Preload critical images for instant display
-  useEffect(() => {
-    // Preload background image
-    const bgImg = new Image();
-    bgImg.src = '/sliderbg.png';
+    if (isMobile) {
+      return activeSlides.map(s => [s]);
+    } else {
+      const desktopPages = [];
+      const count = Math.ceil(activeSlides.length / 2);
+      for (let i = 0; i < count; i++) {
+        let left = i * 2;
+        let right = left + 1;
 
-    // Preload first slide images (left and right)
-    if (activeSlides.length > 0) {
-      const firstImg = new Image();
-      firstImg.src = activeSlides[0].image;
+        // Handle odd number of slides: overlap the last slide logic
+        if (right >= activeSlides.length && activeSlides.length > 1) {
+          left = activeSlides.length - 2;
+          right = activeSlides.length - 1;
+        } else if (activeSlides.length === 1) {
+          right = 0; // Duplicate for single image
+        }
 
-      if (activeSlides.length > 1 && !isMobile) {
-        const secondImg = new Image();
-        secondImg.src = activeSlides[1].image;
+        const page = [activeSlides[left]];
+        // Add right slide if it's different or explicit duplicate needed
+        page.push(activeSlides[right]);
+
+        desktopPages.push(page);
       }
+      return desktopPages;
     }
   }, [activeSlides, isMobile]);
+
+  // Append clone of first page for infinite loop
+  const extendedPages = React.useMemo(() => {
+    if (pages.length === 0) return [];
+    return [...pages, pages[0]];
+  }, [pages]);
+
+  // Preload critical images
+  useEffect(() => {
+    const bgImg = new Image();
+    bgImg.src = '/sliderbg.png';
+    // Preload first page images
+    if (pages.length > 0 && pages[0]) {
+      pages[0].forEach(slide => {
+        const img = new Image();
+        img.src = slide.image;
+      });
+    }
+  }, [pages]);
+
+  const nextSlide = React.useCallback(() => {
+    if (isResetting || pages.length === 0) return;
+    setCurrent(prev => prev + 1);
+  }, [isResetting, pages.length]);
+
+  const prevSlide = React.useCallback(() => {
+    if (isResetting || pages.length === 0) return;
+    setCurrent(prev => (prev - 1 + pages.length) % pages.length); // Standard prev for now
+  }, [isResetting, pages.length]);
+
+  // Handle Loop Reset
+  useEffect(() => {
+    if (current === pages.length) {
+      const timeout = setTimeout(() => {
+        setIsResetting(true);
+        setCurrent(0);
+      }, 700); // Match transition duration
+      return () => clearTimeout(timeout);
+    }
+  }, [current, pages.length]);
+
+  // Clear Resetting State
+  useEffect(() => {
+    if (isResetting) {
+      // Small delay to ensure render cycle with transition-none has hit
+      const timeout = setTimeout(() => {
+        setIsResetting(false);
+      }, 50);
+      return () => clearTimeout(timeout);
+    }
+  }, [isResetting]);
 
   // Auto-slide effect
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % numSlides);
+      nextSlide();
     }, 7000);
     return () => clearInterval(timer);
-  }, [numSlides]);
+  }, [nextSlide]);
 
   const handleImageLoad = (e: React.SyntheticEvent<HTMLImageElement, Event>, imgSrc: string) => {
     const img = e.currentTarget;
@@ -96,32 +156,13 @@ const Hero: React.FC = () => {
         <div className="relative overflow-hidden rounded-3xl">
           {/* Slider Track */}
           <div
-            className="flex transition-transform duration-700 ease-in-out"
+            className={`flex transition-transform duration-700 ease-in-out ${isResetting ? 'transition-none' : ''}`}
             style={{ transform: `translateX(-${current * 100}%)` }}
           >
-            {Array.from({ length: numSlides }).map((_, index) => {
-              // Calculate indices for the pair
-              let leftIndex: number;
-              let rightIndex: number = -1;
-
-              if (isMobile) {
-                leftIndex = index;
-              } else {
-                leftIndex = index * 2;
-                rightIndex = leftIndex + 1;
-
-                // Handle odd number of slides: overlap the last slide
-                if (rightIndex >= activeSlides.length && activeSlides.length > 1) {
-                  leftIndex = activeSlides.length - 2;
-                  rightIndex = activeSlides.length - 1;
-                } else if (activeSlides.length === 1) {
-                  // Determine behavior for single image (duplicate it)
-                  rightIndex = 0;
-                }
-              }
-
-              const leftSlide = activeSlides[leftIndex];
-              const rightSlide = !isMobile && rightIndex !== -1 ? (activeSlides[rightIndex] || activeSlides[0]) : null;
+            {extendedPages.map((pageSlides, index) => {
+              const leftSlide = pageSlides[0];
+              const rightSlide = pageSlides[1]; // May be undefined in mobile if loop above changed (but my logic ensures arrays of 1)
+              // Wait, mobile map is `[s]`. So pageSlides[1] is undefined. Correct.
 
               const isLeftPortrait = imageOrientations[leftSlide.image] === 'portrait';
               const isRightPortrait = rightSlide ? imageOrientations[rightSlide.image] === 'portrait' : false;
@@ -222,7 +263,7 @@ const Hero: React.FC = () => {
 
         {/* Navigation Buttons */}
         <button
-          onClick={() => setCurrent((prev) => (prev - 1 + numSlides) % numSlides)}
+          onClick={prevSlide}
           className="absolute left-8 md:left-10 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-black/60 hover:bg-black/80 backdrop-blur-sm flex items-center justify-center text-white transition-all duration-300 group"
           aria-label="Previous slide"
         >
@@ -230,14 +271,14 @@ const Hero: React.FC = () => {
         </button>
 
         <button
-          onClick={() => setCurrent((prev) => (prev + 1) % numSlides)}
+          onClick={nextSlide}
           className="absolute right-8 md:right-10 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-black/60 hover:bg-black/80 backdrop-blur-sm flex items-center justify-center text-white transition-all duration-300 group"
           aria-label="Next slide"
         >
           <ChevronRight size={24} className="group-hover:translate-x-0.5 transition-transform" />
         </button>
       </div>
-    </section >
+    </section>
   );
 };
 
