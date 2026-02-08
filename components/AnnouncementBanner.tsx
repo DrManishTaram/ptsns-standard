@@ -27,24 +27,35 @@ const AnnouncementBanner: React.FC = () => {
         <div className="flex-1 overflow-hidden relative h-full flex items-center group">
           <div className="flex items-center space-x-12 whitespace-nowrap animate-marquee group-hover:[animation-play-state:paused] will-change-transform">
             {/* Duplicate the content enough times to ensure smooth loop */}
-            {[...announcements, ...announcements, ...announcements].map((item, idx) => (
-              <div key={idx} className="flex items-center gap-3 text-xs font-medium">
-                <span className={`
-                            px-1.5 py-0.5 rounded-[3px] text-[10px] font-bold uppercase tracking-wide
-                            ${item.label === 'New' ? 'bg-red-100 text-red-600' :
-                    item.label === 'Results' ? 'bg-green-100 text-green-600' :
-                      item.label === 'Event' ? 'bg-purple-100 text-purple-600' :
-                        'bg-blue-100 text-blue-600'}
-                        `}>
-                  {item.label}
-                </span>
-                <span className="text-black font-bold text-sm">{item.text}</span>
-                <a href={item.link} className="flex items-center text-[10px] sm:text-xs font-bold text-turmeric-700 hover:text-turmeric-900 underline decoration-turmeric-300 hover:decoration-turmeric-600 underline-offset-2 transition-all">
-                  Check Details <ArrowRight size={10} className="ml-1" />
-                </a>
-                <span className="text-turmeric-300 mx-2">•</span>
-              </div>
-            ))}
+            {[...announcements, ...announcements, ...announcements].map((item, idx) => {
+              const glowColor =
+                item.label === 'New' ? 'rgba(239, 68, 68, 0.6)' :
+                  item.label === 'Results' ? 'rgba(34, 197, 94, 0.6)' :
+                    item.label === 'Event' ? 'rgba(168, 85, 247, 0.6)' :
+                      'rgba(59, 130, 246, 0.6)';
+
+              return (
+                <div key={idx} className="flex items-center gap-3 text-xs font-medium">
+                  <span
+                    style={{ '--glow-color': glowColor, animation: 'glow-blink 1.5s infinite alternate' } as React.CSSProperties}
+                    className={`
+                      px-1.5 py-0.5 rounded-[3px] text-[10px] font-bold uppercase tracking-wide
+                      ${item.label === 'New' ? 'bg-red-100 text-red-600' :
+                        item.label === 'Results' ? 'bg-green-100 text-green-600' :
+                          item.label === 'Event' ? 'bg-purple-100 text-purple-600' :
+                            'bg-blue-100 text-blue-600'}
+                    `}
+                  >
+                    {item.label}
+                  </span>
+                  <span className="text-black font-bold text-sm">{item.text}</span>
+                  <a href={item.link} className="flex items-center text-[10px] sm:text-xs font-bold text-turmeric-700 hover:text-turmeric-900 underline decoration-turmeric-300 hover:decoration-turmeric-600 underline-offset-2 transition-all">
+                    Check Details <ArrowRight size={10} className="ml-1" />
+                  </a>
+                  <span className="text-turmeric-300 mx-2">•</span>
+                </div>
+              );
+            })}
           </div>
 
           {/* Fade Gradients for visual polish */}
@@ -60,6 +71,19 @@ const AnnouncementBanner: React.FC = () => {
         }
         .animate-marquee {
             animation: marquee 40s linear infinite;
+        }
+        @keyframes glow-blink {
+          0%, 100% { 
+            box-shadow: 0 0 5px var(--glow-color), 0 0 10px var(--glow-color); 
+            opacity: 1; 
+          }
+          50% { 
+            box-shadow: 0 0 20px var(--glow-color), 0 0 30px var(--glow-color); 
+            opacity: 0.8; 
+          }
+        }
+        .animate-glow {
+          animation: glow-blink 1.5s infinite alternate;
         }
       `}</style>
     </div>
