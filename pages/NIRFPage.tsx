@@ -2,13 +2,10 @@ import React from 'react';
 import { Download, GraduationCap, FileText, BookOpen, TrendingUp, Award, Users, Globe, Mail, Info } from 'lucide-react';
 
 const NIRFPage: React.FC = () => {
+    // Download functionality disabled until PDF is available
     const handleDownloadPDF = () => {
-        const link = document.createElement('a');
-        link.href = '/PTSNS_NIRF_2025-26.pdf';
-        link.download = 'PTSNS_NIRF_2025-26.pdf';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
+        // TODO: Add PDF file to public folder and enable download
+        console.log('Download button clicked - PDF not yet available');
     };
 
     return (
@@ -37,8 +34,8 @@ const NIRFPage: React.FC = () => {
                         </div>
 
 
-                        {/* Main Heading - Responsive sizing and wrapping */}
-                        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif font-bold tracking-tight leading-relaxed animate-fade-in-up delay-100 mb-2 flex items-center gap-2 sm:gap-3 justify-center flex-wrap py-3 sm:py-4 pb-4 sm:pb-5 min-h-[3rem] sm:min-h-[4rem] md:min-h-[5rem]">
+                        {/* Main Heading - Single line on mobile */}
+                        <h1 className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-serif font-bold tracking-tight leading-relaxed animate-fade-in-up delay-100 mb-2 flex items-center gap-2 sm:gap-3 justify-center py-3 sm:py-4 pb-4 sm:pb-5 min-h-[3rem] sm:min-h-[4rem] md:min-h-[5rem]">
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-turmeric-600 to-forest-500 inline-block pb-2">
                                 NIRF Rankings
                             </span>
