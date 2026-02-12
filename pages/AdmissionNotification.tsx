@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const AdmissionNotification: React.FC = () => {
     return (
-        <div className="min-h-screen bg-stone-50">
+        <div className="min-h-screen bg-stone-50 animate-fade-in-up">
 
             {/* Hero Header */}
             <div className="bg-earth-900 text-white relative py-10 overflow-hidden">

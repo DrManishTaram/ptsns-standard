@@ -3,7 +3,7 @@ import { Quote, CheckCircle, ArrowRight, User, Mail, Phone } from 'lucide-react'
 
 const VCMessage: React.FC = () => {
     return (
-        <div className="min-h-screen bg-stone-50">
+        <div className="min-h-screen bg-stone-50 animate-fade-in-up">
 
             {/* Page Header */}
             <div className="bg-earth-900 text-white relative py-10 overflow-hidden">

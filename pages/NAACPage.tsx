@@ -409,7 +409,7 @@ const NAACPage: React.FC = () => {
     };
 
     return (
-        <section className="min-h-screen bg-slate-50 py-2 md:py-4 relative overflow-hidden" id="naac-portal">
+        <section className="min-h-screen bg-slate-50 py-2 md:py-4 relative overflow-hidden animate-fade-in-up" id="naac-portal">
             {/* Background Decorations */}
             <div className="absolute top-0 left-0 w-full h-[400px] bg-gradient-to-b from-blue-50/50 to-transparent -z-10"></div>
 

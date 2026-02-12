@@ -10,7 +10,7 @@ interface GenericPageProps {
 
 const GenericPage: React.FC<GenericPageProps> = ({ title, category = "Pages", children }) => {
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen bg-slate-50 animate-fade-in-up">
       {/* Page Header */}
       <div className="bg-earth-900 text-white relative overflow-hidden py-8 md:py-12">
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center opacity-10 mix-blend-overlay"></div>
