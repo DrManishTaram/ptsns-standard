@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { ChevronDown, ChevronRight, Menu, X, FileText, Download, Image, BookOpen, Users, Building, Award, Lightbulb, Shield, TrendingUp } from 'lucide-react';
 
 interface SubCriterion {
@@ -18,6 +18,8 @@ const NAACPage: React.FC = () => {
     const [activeCriterion, setActiveCriterion] = useState<string>('dashboard');
     const [expandedCriteria, setExpandedCriteria] = useState<Set<string>>(new Set());
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const scrollContainerRef = useRef<HTMLDivElement>(null);
+    const expandedItemRef = useRef<HTMLDivElement>(null);
 
     const criteria: Criterion[] = [
         {
@@ -101,6 +103,26 @@ const NAACPage: React.FC = () => {
         },
     ];
 
+    // Auto-center expanded menu in sidebar
+    useEffect(() => {
+        if (expandedItemRef.current && scrollContainerRef.current && expandedCriteria.size > 0) {
+            const container = scrollContainerRef.current;
+            const expandedElement = expandedItemRef.current;
+
+            // Calculate the position to center the expanded item
+            const containerHeight = container.clientHeight;
+            const elementTop = expandedElement.offsetTop;
+            const elementHeight = expandedElement.clientHeight;
+
+            // Scroll to center the expanded item
+            const scrollTo = elementTop - (containerHeight / 2) + (elementHeight / 2);
+            container.scrollTo({
+                top: scrollTo,
+                behavior: 'smooth'
+            });
+        }
+    }, [expandedCriteria]);
+
     const toggleCriterion = (criterionId: string) => {
         // If clicking on already expanded criterion, close it
         if (expandedCriteria.has(criterionId)) {
@@ -121,10 +143,17 @@ const NAACPage: React.FC = () => {
             return;
         }
 
-        // Auto-expand if it's a main criterion (close all others, open only this one)
+
+        // Auto-expand if it's a main criterion
         const isMainCriterion = criteria.some(c => c.id === id);
         if (isMainCriterion) {
-            setExpandedCriteria(new Set([id]));
+            // If clicking on already expanded and active criterion, collapse it
+            if (expandedCriteria.has(id) && activeCriterion === id) {
+                setExpandedCriteria(new Set());
+            } else {
+                // Close all others and open only this one
+                setExpandedCriteria(new Set([id]));
+            }
             return;
         }
 
@@ -154,7 +183,7 @@ const NAACPage: React.FC = () => {
             </div>
 
             {/* Scrollable Menu */}
-            <div className="flex-1 overflow-y-auto naac-scrollbar px-3 pb-3 pt-6 space-y-1">
+            <div ref={scrollContainerRef} className="flex-1 overflow-y-auto naac-scrollbar px-3 pb-3 pt-6 space-y-1">
                 {/* Dashboard */}
                 <button
                     onClick={() => handleMenuClick('dashboard')}
@@ -175,7 +204,11 @@ const NAACPage: React.FC = () => {
                     const isActive = activeCriterion === criterion.id || criterion.subCriteria.some(sub => sub.id === activeCriterion);
 
                     return (
-                        <div key={criterion.id} className="rounded-lg overflow-hidden transition-all duration-300">
+                        <div
+                            key={criterion.id}
+                            ref={isExpanded ? expandedItemRef : null}
+                            className="rounded-lg overflow-hidden transition-all duration-300"
+                        >
                             {/* Main Criterion - Split Interaction */}
                             <div className={`flex items-center w-full transition-colors group ${isActive ? 'bg-blue-600 shadow-md shadow-blue-200' : 'hover:bg-blue-600'}`}>
                                 {/* Name - Navigates to Criterion View */}
@@ -412,7 +445,7 @@ const NAACPage: React.FC = () => {
 
             {/* Main Container - 95% Width */}
             <div className="w-[95%] mx-auto relative z-10">
-                <div className="bg-white rounded-[1rem] shadow-xl overflow-hidden border border-gray-100 min-h-[80vh] flex flex-col lg:flex-row">
+                <div className="bg-white rounded-[1rem] shadow-xl overflow-hidden border border-gray-100 h-[85vh] flex flex-col lg:flex-row">
 
                     <aside
                         className={`
@@ -454,17 +487,28 @@ const NAACPage: React.FC = () => {
             {/* Custom Scrollbar Styles */}
             <style>{`
                 .naac-scrollbar::-webkit-scrollbar {
-                    width: 5px;
+                    width: 8px;
                 }
                 .naac-scrollbar::-webkit-scrollbar-track {
-                    background: transparent;
+                    background: rgba(37, 99, 235, 0.1);
+                    border-radius: 10px;
+                    margin: 4px;
                 }
                 .naac-scrollbar::-webkit-scrollbar-thumb {
-                    background: rgba(255, 255, 255, 0.2);
+                    background: rgba(37, 99, 235, 0.6);
                     border-radius: 10px;
+                    border: 1px solid rgba(37, 99, 235, 0.3);
+                    min-height: 30px;
+                    height: 30%;
                 }
                 .naac-scrollbar::-webkit-scrollbar-thumb:hover {
-                    background: rgba(255, 255, 255, 0.4);
+                    background: rgba(37, 99, 235, 0.8);
+                }
+                
+                /* Smooth scroll behavior for auto-centering */
+                .naac-scrollbar {
+                    scroll-behavior: smooth;
+                    overflow-y: scroll !important;
                 }
             `}</style>
         </section>
