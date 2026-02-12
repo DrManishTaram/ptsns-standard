@@ -152,7 +152,8 @@ const Navbar: React.FC = () => {
     },
     { name: 'Online Services', href: '/online-services' },
     { name: 'Event Gallery', href: '/gallery' },
-    { name: 'NAAC', href: '/naac' }
+    { name: 'NAAC', href: '/naac' },
+    { name: 'NIRF', href: '/nirf' }
   ];
 
   // Helper function to count total items in mega menu
@@ -198,7 +199,7 @@ const Navbar: React.FC = () => {
       <div className="hidden lg:block bg-[#071133] shadow-md relative z-50 border-b-[5px] border-[#FFA500]">
         <nav className="max-w-screen-xl mx-auto px-4">
           {/* Decreased vertical padding (py-0) and use flex items to define height */}
-          <div className="flex justify-center items-center gap-1 text-[13px] font-medium text-white h-[45px]">
+          <div className="flex justify-center items-center gap-1 text-[13.5px] font-medium text-white h-[45px]">
 
             {navLinks.map(link => {
               const totalItems = link.megaMenu ? getTotalItems(link.megaMenu) : 0;

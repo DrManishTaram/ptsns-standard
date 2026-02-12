@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-earth-900 text-white pt-4 md:pt-6 pb-6 border-t-4 border-turmeric-500 relative overflow-hidden">
+    <footer className="bg-[#071133] text-white pt-4 md:pt-6 pb-6 border-t-[5px] border-[#FFA500] relative overflow-hidden">
 
       {/* Decorative Background Elements */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-turmeric-500/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>

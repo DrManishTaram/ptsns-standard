@@ -22,6 +22,7 @@ const ClubCulturePage = lazy(() => import('./pages/ClubCulturePage'));
 const ClubDetailsPage = lazy(() => import('./pages/ClubDetailsPage'));
 const EventGalleryPage = lazy(() => import('./pages/EventGalleryPage'));
 const EventDetailPage = lazy(() => import('./pages/EventDetailPage'));
+const NIRFPage = lazy(() => import('./pages/NIRFPage'));
 
 // Component to scroll to top on every route change
 const ScrollToTop: React.FC = () => {
@@ -126,6 +127,9 @@ const App: React.FC = () => {
                 {/* Event Gallery */}
                 <Route path="/gallery" element={<EventGalleryPage />} />
                 <Route path="/gallery/:eventId" element={<EventDetailPage />} />
+
+                {/* NIRF Page */}
+                <Route path="/nirf" element={<NIRFPage />} />
 
                 {/* Catch all */}
                 <Route path="*" element={<NotFound />} />
