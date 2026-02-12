@@ -29,8 +29,8 @@ const FormalHeader: React.FC = () => {
     <>
       {/* Mobile Sticky Header - Only visible on mobile */}
       <div className="lg:hidden sticky top-0 z-[100] w-full bg-white shadow-md flex flex-col h-28">
-        {/* Top Section - 70% Height - Navy Blue */}
-        <div className="h-[70%] w-full bg-blue-100 flex items-center justify-center px-1 gap-1 border-b-[3px] border-[#FFA500]">
+        {/* Top Section - 70% Height - Crisp White */}
+        <div className="h-[70%] w-full bg-white flex items-center justify-center px-1 gap-1 border-b-[3px] border-[#FFA500]">
           {/* Logo - Round Shape */}
           <div className="flex-shrink-0 bg-white rounded-full p-1 h-11 w-11 flex items-center justify-center overflow-hidden">
             <img
