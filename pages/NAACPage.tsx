@@ -102,9 +102,11 @@ const NAACPage: React.FC = () => {
     ];
 
     const toggleCriterion = (criterionId: string) => {
+        // If clicking on already expanded criterion, close it
         if (expandedCriteria.has(criterionId)) {
             setExpandedCriteria(new Set());
         } else {
+            // Close all others and open only this one
             setExpandedCriteria(new Set([criterionId]));
         }
     };
@@ -119,24 +121,17 @@ const NAACPage: React.FC = () => {
             return;
         }
 
-        // Auto-expand if it's a main criterion
+        // Auto-expand if it's a main criterion (close all others, open only this one)
         const isMainCriterion = criteria.some(c => c.id === id);
         if (isMainCriterion) {
-            setExpandedCriteria(prev => {
-                const newSet = new Set(prev);
-                newSet.add(id);
-                return newSet;
-            });
+            setExpandedCriteria(new Set([id]));
+            return;
         }
 
-        // Ensure parent is expanded if it's a sub-criterion (optional safety)
+        // Ensure parent is expanded if it's a sub-criterion (close all others, open only parent)
         const parentCriterion = criteria.find(c => c.subCriteria.some(sub => sub.id === id));
         if (parentCriterion) {
-            setExpandedCriteria(prev => {
-                const newSet = new Set(prev);
-                newSet.add(parentCriterion.id);
-                return newSet;
-            });
+            setExpandedCriteria(new Set([parentCriterion.id]));
         }
     };
 
