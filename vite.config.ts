@@ -29,9 +29,39 @@ export default defineConfig(({ mode }) => {
       },
       rollupOptions: {
         output: {
-          manualChunks: {
-            'react-vendor': ['react', 'react-dom', 'react-router-dom'],
-            'icons': ['lucide-react'],
+          manualChunks: (id) => {
+            // Vendor libraries - rarely change, cache aggressively
+            if (id.includes('node_modules')) {
+              if (id.includes('react') || id.includes('react-dom') || id.includes('react-router')) {
+                return 'react-vendor';
+              }
+              if (id.includes('lucide-react')) {
+                return 'icons';
+              }
+              // Other node_modules
+              return 'vendor';
+            }
+
+            // Home page components - frequently viewed
+            if (id.includes('/components/Hero') ||
+              id.includes('/components/InfoCards') ||
+              id.includes('/components/VCMessageSection') ||
+              id.includes('/components/AboutSection')) {
+              return 'home-components';
+            }
+
+            // Common utilities - used across pages
+            if (id.includes('/components/Navbar') ||
+              id.includes('/components/Footer') ||
+              id.includes('/components/TopBar') ||
+              id.includes('/components/FormalHeader')) {
+              return 'layout-components';
+            }
+
+            // Chatbot - optional feature
+            if (id.includes('/components/Chatbot')) {
+              return 'chatbot';
+            }
           },
         },
       },
