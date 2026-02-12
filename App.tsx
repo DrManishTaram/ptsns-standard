@@ -36,6 +36,14 @@ const ScrollToTop: React.FC = () => {
   return null;
 };
 
+// Wrapper component to control Chatbot visibility based on route
+const ChatbotWrapper: React.FC = () => {
+  const { pathname } = useLocation();
+  const isHomePage = pathname === '/';
+
+  return <Chatbot isHomePage={isHomePage} />;
+};
+
 const App: React.FC = () => {
   const [loading, setLoading] = React.useState(true);
 
@@ -49,7 +57,7 @@ const App: React.FC = () => {
         <Router>
           <ScrollToTop />
           <div className="min-h-screen flex flex-col font-sans text-earth-800 relative">
-            <Chatbot />
+            <ChatbotWrapper />
             <TopBar />
             <div className="sticky top-0 z-[100]">
               <FormalHeader />
