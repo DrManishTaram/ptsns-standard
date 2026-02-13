@@ -176,7 +176,7 @@ const NAACPage: React.FC = () => {
                         <Award className="text-blue-600" size={20} />
                     </div>
                     <div>
-                        <h2 className="text-2xl font-bold font-serif tracking-wide text-black">PTSNS UNIVERSITY</h2>
+                        <h2 className="text-2xl font-bold font-serif tracking-wide text-black">PT.S.N.S UNIVERSITY</h2>
                         <p className="text-slate-600 text-sm uppercase tracking-wider font-semibold">NAAC ACCREDITATION PORTAL</p>
                     </div>
                 </div>
@@ -267,7 +267,7 @@ const NAACPage: React.FC = () => {
                 <div className="h-full flex flex-col animate-fade-in relative">
                     {/* Header - Sticky & Styled - Reduced height on mobile */}
                     <div className="sticky top-0 z-20 bg-[#cfecf7] h-[80px] md:h-[120px] flex flex-col justify-center px-4 pt-2 pb-2 md:pb-4 border-b border-white shadow-sm items-center">
-                        <h1 className="text-lg md:text-xl lg:text-4xl font-serif font-bold text-earth-900 mb-0.5 md:mb-1 text-center">NAAC Dashboard</h1>
+                        <h1 className="text-lg md:text-xl lg:text-4xl font-serif font-bold text-earth-900 mb-0.5 md:mb-1 text-center">NAAC Criterion Dashboard</h1>
                         <p className="text-slate-500 text-[9px] md:text-[10px] lg:text-sm text-center hidden md:block">
                             Welcome to the NAAC Accreditation Portal. Select a criterion to view details.
                         </p>
