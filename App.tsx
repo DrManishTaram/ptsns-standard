@@ -25,6 +25,8 @@ const EventGalleryPage = lazy(() => import('./pages/EventGalleryPage'));
 const EventDetailPage = lazy(() => import('./pages/EventDetailPage'));
 const NIRFPage = lazy(() => import('./pages/NIRFPage'));
 const NAACPage = lazy(() => import('./pages/NAACPage'));
+const SchoolsAndDepartments = lazy(() => import('./pages/SchoolsAndDepartments'));
+const DepartmentPage = lazy(() => import('./pages/DepartmentPage'));
 
 // Component to scroll to top on every route change
 const ScrollToTop: React.FC = () => {
@@ -87,7 +89,8 @@ const App: React.FC = () => {
                 <Route path="/act-statutes" element={<GenericPage title="Act, Statutes & Ordinances" category="Official" />} />
 
                 {/* Academics */}
-                <Route path="/schools-departments" element={<GenericPage title="Schools & Departments" category="Academics" />} />
+                <Route path="/schools-departments" element={<SchoolsAndDepartments />} />
+                <Route path="/department/:id" element={<DepartmentPage />} />
                 <Route path="/programs" element={<GenericPage title="Academic Programs" category="Academics" />} />
                 <Route path="/syllabus" element={<GenericPage title="Syllabus (NEP)" category="Academics" />} />
                 <Route path="/calendar" element={<GenericPage title="Academic Calendar" category="Academics" />} />
