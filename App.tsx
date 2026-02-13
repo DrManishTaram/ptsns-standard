@@ -4,6 +4,7 @@ import TopBar from './components/TopBar';
 import FormalHeader from './components/FormalHeader';
 import Navbar from './components/Navbar';
 import AnnouncementBanner from './components/AnnouncementBanner';
+import PopupBanner from './components/PopupBanner';
 import Footer from './components/Footer';
 import Chatbot from './components/Chatbot';
 import Loader from './components/Loader';
@@ -64,6 +65,7 @@ const App: React.FC = () => {
               <Navbar />
               <AnnouncementBanner />
             </div>
+            <PopupBanner />
 
             <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="animate-spin rounded-full h-12 w-12 border-b-2 border-turmeric-600"></div></div>}>
               <Routes>

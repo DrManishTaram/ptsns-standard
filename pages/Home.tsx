@@ -11,6 +11,7 @@ import Testimonials from '../components/Testimonials';
 import ContactSection from '../components/ContactSection';
 import InitiativesSection from '../components/InitiativesSection';
 
+
 const Home: React.FC = () => {
   return (
     <main className="flex-grow animate-fade-in-up">
