@@ -445,7 +445,7 @@ const NAACPage: React.FC = () => {
 
             {/* Main Container - 95% Width */}
             <div className="w-[95%] mx-auto relative z-10">
-                <div className="bg-white rounded-[1rem] shadow-xl overflow-hidden border border-gray-100 h-[85vh] flex flex-col lg:flex-row">
+                <div className="bg-white rounded-[1rem] shadow-xl overflow-hidden border border-gray-100 h-[85vh] lg:h-auto lg:aspect-[3.0] lg:min-h-[480px] flex flex-col lg:flex-row">
 
                     <aside
                         className={`
@@ -486,29 +486,26 @@ const NAACPage: React.FC = () => {
 
             {/* Custom Scrollbar Styles */}
             <style>{`
+                /* Smooth scroll behavior for auto-centering */
+                .naac-scrollbar {
+                    scroll-behavior: smooth;
+                    overflow-y: auto !important;
+                }
                 .naac-scrollbar::-webkit-scrollbar {
                     width: 8px;
                 }
                 .naac-scrollbar::-webkit-scrollbar-track {
-                    background: rgba(37, 99, 235, 0.1);
+                    background-color: #dbeafe !important;
                     border-radius: 10px;
                     margin: 4px;
                 }
                 .naac-scrollbar::-webkit-scrollbar-thumb {
-                    background: rgba(37, 99, 235, 0.6);
+                    background-color: #2563eb !important;
                     border-radius: 10px;
-                    border: 1px solid rgba(37, 99, 235, 0.3);
-                    min-height: 30px;
-                    height: 30%;
+                    border: 1px solid #1d4ed8;
                 }
                 .naac-scrollbar::-webkit-scrollbar-thumb:hover {
-                    background: rgba(37, 99, 235, 0.8);
-                }
-                
-                /* Smooth scroll behavior for auto-centering */
-                .naac-scrollbar {
-                    scroll-behavior: smooth;
-                    overflow-y: scroll !important;
+                    background-color: #1d4ed8 !important;
                 }
             `}</style>
         </section>
