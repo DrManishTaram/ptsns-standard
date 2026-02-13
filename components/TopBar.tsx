@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSearch } from '../context/SearchContext';
 
 // Search Index - Define all searchable content
+// Search Index - Define all searchable content
 interface SearchResult {
   title: string;
   description: string;
@@ -11,6 +12,7 @@ interface SearchResult {
   path?: string; // For page navigation
   sectionId?: string; // For scrolling to section
   keywords: string[];
+  content?: string; // For broad full-text search simulation
 }
 
 const searchIndex: SearchResult[] = [
@@ -73,7 +75,14 @@ const searchIndex: SearchResult[] = [
   { title: 'Convocation', description: 'Convocation ceremony details', type: 'page', path: '/convocation', keywords: ['convocation', 'graduation', 'ceremony', 'degree'] },
 
   // Important Info & Rankings
-  { title: 'NAAC Accreditation', description: 'NAAC accreditation details', type: 'page', path: '/naac', keywords: ['naac', 'accreditation', 'grade', 'quality', 'assessment'] },
+  {
+    title: 'NAAC Accreditation',
+    description: 'NAAC accreditation details, criteria, and reports',
+    type: 'page',
+    path: '/naac',
+    keywords: ['naac', 'accreditation', 'grade', 'quality', 'assessment', 'ssr', 'self study report'],
+    content: 'Criterion I: Curricular Aspects, Curriculum Design & Development, Academic Flexibility, Curriculum Enrichment, Feedback System. Criterion II: Teaching-Learning & Evaluation, Student Enrollment and Profile, Catering to Student Diversity, Teaching-Learning Process, Teacher Profile and Quality, Evaluation Process and Reforms, Student Performance and Learning Outcomes. Criterion III: Research & Innovation, Research Funding, Publications, Extension Activities, Collaborations. Criterion IV: Infrastructure & Learning Resources, Physical Facilities, Library as a Learning Resource, IT Infrastructure, Maintenance of Campus Facilities. Criterion V: Student Support & Progression, Student Support, Student Progression, Student Participation and Activities, Alumni Engagement. Criterion VI: Governance, Leadership & Management, Institutional Vision and Leadership, Strategy Development and Deployment, Faculty Empowerment Strategies, Financial Management and Resource Mobilization, Internal Quality Assurance System. Criterion VII: Institutional Values & Best Practices, Institutional Values and Social Responsibilities, Best Practices, Institutional Distinctiveness. Dashboard, Verified, Gallery.'
+  },
   { title: 'NIRF Ranking', description: 'NIRF ranking data', type: 'page', path: '/nirf', keywords: ['nirf', 'ranking', 'national', 'framework'] },
   { title: 'Tender Notices', description: 'Procurement and tenders', type: 'page', path: '/tenders', keywords: ['tender', 'procurement', 'bids', 'notices'] },
   { title: 'Job Openings', description: 'Careers at the university', type: 'page', path: '/jobs', keywords: ['jobs', 'careers', 'vacancies', 'recruitment', 'faculty'] },
@@ -83,7 +92,128 @@ const searchIndex: SearchResult[] = [
   { title: 'Media Gallery', description: 'Photos and videos of events', type: 'page', path: '/gallery', keywords: ['media', 'gallery', 'photos', 'images', 'videos', 'events'] },
 
   // Achievements
-  { title: 'AI Hackathon Achievement', description: 'Students win AI Hackathon', type: 'page', path: '/achievements/ai-hackathon', keywords: ['hackathon', 'projects', 'achievement', 'students', 'ai', 'winner'] },
+  {
+    title: 'AI Hackathon Winners',
+    description: 'Anukalp Dwivedi & Sourabh Majhi - 2nd Place at Smart India Hackathon',
+    type: 'page',
+    path: '/achievements/ai-hackathon',
+    keywords: ['hackathon', 'projects', 'achievement', 'students', 'ai', 'winner', 'anukalp', 'dwivedi', 'sourabh', 'majhi', 'iit', 'smart', 'india']
+  },
+  {
+    title: 'Research Excellence',
+    description: 'Dr. Anjali Sharma - Published in Nature Journal',
+    type: 'section',
+    sectionId: 'achievements',
+    keywords: ['research', 'nature', 'journal', 'anjali', 'sharma', 'renewable', 'energy', 'science']
+  },
+  {
+    title: 'Sports Achievements',
+    description: 'Rohan Singh - Gold Medal in Archery',
+    type: 'section',
+    sectionId: 'achievements',
+    keywords: ['sports', 'archery', 'rohan', 'singh', 'gold', 'medal', 'championship']
+  },
+  {
+    title: 'Lifetime Achievement',
+    description: 'Prof. R.K. Mishra - Botany Contribution',
+    type: 'section',
+    sectionId: 'achievements',
+    keywords: ['lifetime', 'achievement', 'award', 'mishra', 'botany', 'science']
+  },
+
+  // Key People (from Testimonials & Leadership)
+  {
+    title: 'Prof. Ram Shankar',
+    description: 'Hon\'ble Vice Chancellor',
+    type: 'page',
+    path: '/vc-message',
+    keywords: ['vc', 'vice', 'chancellor', 'ram', 'shankar', 'professor', 'leader']
+  },
+  {
+    title: 'Arunendra Shukla',
+    description: 'Department of English - Student Voice',
+    type: 'section',
+    sectionId: 'testimonials',
+    keywords: ['arunendra', 'shukla', 'english', 'student', 'testimonial']
+  },
+  {
+    title: 'Priya Patel',
+    description: 'Computer Science - Student Voice',
+    type: 'section',
+    sectionId: 'testimonials',
+    keywords: ['priya', 'patel', 'computer', 'science', 'cs', 'student', 'testimonial', 'startup']
+  },
+  {
+    title: 'Rahul Sharma',
+    description: 'Business Administration - Student Voice',
+    type: 'section',
+    sectionId: 'testimonials',
+    keywords: ['rahul', 'sharma', 'business', 'administration', 'mba', 'bba', 'student', 'testimonial']
+  },
+
+  // Initiatives & Apps
+  {
+    title: 'Abhilekh App',
+    description: 'AI-Powered File Tracking System',
+    type: 'section',
+    sectionId: 'initiatives',
+    keywords: ['abhilekh', 'app', 'file', 'tracking', 'governance', 'digital', 'ai']
+  },
+  {
+    title: 'Aarogyam App',
+    description: 'Health & Wellness Platform',
+    type: 'section',
+    sectionId: 'initiatives',
+    keywords: ['aarogyam', 'app', 'health', 'wellness', 'medical', 'digital']
+  },
+
+  // Locations
+  {
+    title: 'Campus Location',
+    description: 'Nawalpur, Near Sarfa Dam Road, Shahdol',
+    type: 'page',
+    path: '/contact',
+    keywords: ['location', 'address', 'map', 'nawalpur', 'sarfa', 'dam', 'shahdol', 'campus']
+  },
+
+  // Key People (Footer & Administration)
+  {
+    title: 'Dr. Manish Taram',
+    description: 'Coordinator, AI Club & Assistant Professor (C.S Dept)',
+    type: 'section',
+    sectionId: 'footer',
+    keywords: ['manish', 'taram', 'coordinator', 'ai', 'club', 'cs', 'computer', 'science', 'faculty', 'developer']
+  },
+  {
+    title: 'Dr. Shubham Yadav',
+    description: 'Website In-Charge',
+    type: 'section',
+    sectionId: 'footer',
+    keywords: ['shubham', 'yadav', 'website', 'charge', 'admin', 'faculty']
+  },
+  {
+    title: 'Website Development Team',
+    description: 'Designed & Developed by AI Club (C.S Dept)',
+    type: 'section',
+    sectionId: 'footer',
+    keywords: ['website', 'team', 'developer', 'design', 'ai', 'club', 'anukalp', 'manish', 'taram']
+  },
+
+  // Contact & Support (Footer)
+  {
+    title: 'Registrar Contact',
+    description: 'registrar@psnsu.ac.in',
+    type: 'page',
+    path: '/contact',
+    keywords: ['registrar', 'email', 'contact', 'support', 'administration']
+  },
+  {
+    title: 'General Enquiry',
+    description: 'info@psnsu.ac.in / +91 7052 101 786',
+    type: 'page',
+    path: '/contact',
+    keywords: ['info', 'email', 'phone', 'contact', 'enquiry', 'help', 'support']
+  },
 
   // Generic Sections (for homepage scrolling)
   { title: 'Hero Section', description: 'Main banner and introduction', type: 'section', sectionId: 'hero', keywords: ['banner', 'introduction', 'welcome', 'home'] },
@@ -178,10 +308,12 @@ const TopBar: React.FC = () => {
 
     const lowerQuery = query.toLowerCase();
     const results = searchIndex.filter(item => {
+      // Robust searching: Check title, description, keywords, AND content
       return (
         item.title.toLowerCase().includes(lowerQuery) ||
         item.description.toLowerCase().includes(lowerQuery) ||
-        item.keywords.some(keyword => keyword.toLowerCase().includes(lowerQuery))
+        item.keywords.some(keyword => keyword.toLowerCase().includes(lowerQuery)) ||
+        (item.content && item.content.toLowerCase().includes(lowerQuery))
       );
     });
 
@@ -210,15 +342,12 @@ const TopBar: React.FC = () => {
     setSearchQuery('');
     setSearchResults([]);
 
+    const targetPath = result.path || '/';
+
     if (result.type === 'section' && result.sectionId) {
-      setTimeout(() => {
-        const element = document.getElementById(result.sectionId!);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      }, 100);
-    } else if (result.type === 'page' && result.path) {
-      navigate(result.path);
+      navigate(`${targetPath}#${result.sectionId}`);
+    } else {
+      navigate(targetPath);
     }
   };
 

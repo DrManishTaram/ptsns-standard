@@ -37,24 +37,29 @@ const PopupBanner: React.FC = () => {
     const location = useLocation();
 
     useEffect(() => {
-        // Only show if on homepage
-        if (location.pathname === '/') {
+        // Only show if on homepage AND hasn't seen popup in this session
+        const hasSeen = sessionStorage.getItem('hasSeenPopup');
+
+        if (location.pathname === '/' && !hasSeen) {
             const timer = setTimeout(() => {
                 setVisibleNotices(notices); // Load all notices
                 setIsMounted(true);
             }, 500);
             return () => clearTimeout(timer);
         } else {
+            // Hide if navigating away, or if already seen
             setVisibleNotices([]);
             setIsMounted(false);
         }
     }, [location.pathname]);
 
     const handleClose = () => {
-        // Remove the first notice (FIFO) or last notice (LIFO)?
-        // User asked: "behind banner will only be visible when front one is closed"
-        // This implies stacking. If we render the *last* item as top, we remove the last item.
-        // Let's treat the array as a stack: render the last item.
+        // If closing the last specific notice, mark session as seen
+        if (visibleNotices.length <= 1) {
+            sessionStorage.setItem('hasSeenPopup', 'true');
+        }
+
+        // Remove the top notice
         setVisibleNotices(prev => prev.slice(0, -1));
     };
 

@@ -63,7 +63,7 @@ const InitiativeCard: React.FC<{
 
 const InitiativesSection: React.FC = () => {
   return (
-    <section className="py-12 md:py-24 bg-slate-50 relative overflow-hidden">
+    <section id="initiatives" className="py-12 md:py-24 bg-slate-50 relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent"></div>
       <div className="absolute -left-40 top-40 w-96 h-96 bg-turmeric-100/30 rounded-full blur-3xl mix-blend-multiply opacity-70 animate-blob"></div>

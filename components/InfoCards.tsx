@@ -85,7 +85,7 @@ const InfoCard: React.FC<CardProps> = ({ icon, title, items, accentColor, border
 const InfoCards: React.FC = () => {
   return (
     // New standalone section for notifications placed below the hero/slider
-    <section className="relative z-10 mt-6 sm:mt-8 md:mt-12 pb-10 sm:pb-12 md:pb-16 px-2 sm:px-4 bg-transparent">
+    <section id="features" className="relative z-10 mt-6 sm:mt-8 md:mt-12 pb-10 sm:pb-12 md:pb-16 px-2 sm:px-4 bg-transparent">
       <div className="w-full px-1 mx-auto">
         {/* Section header - Enhanced with gradient and larger size */}
         <div className="mb-2 sm:mb-3 md:mb-4 text-center max-w-3xl mx-auto">
