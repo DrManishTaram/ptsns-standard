@@ -11,11 +11,13 @@ import Loader from './components/Loader';
 import { SearchProvider } from './context/SearchContext';
 import { MobileMenuProvider } from './context/MobileMenuContext';
 import Home from './pages/Home';
+const UniversityOverview = lazy(() => import('./pages/UniversityOverview'));
 
 // Lazy load other page components for better performance
 const About = lazy(() => import('./pages/About'));
 const GenericPage = lazy(() => import('./pages/GenericPage'));
 const VCMessage = lazy(() => import('./pages/VCMessage'));
+const ChancellorMessage = lazy(() => import('./pages/ChancellorMessage'));
 const AdmissionNotification = lazy(() => import('./pages/AdmissionNotification'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 const AIHackathonAchievement = lazy(() => import('./pages/AIHackathonAchievement'));
@@ -75,12 +77,12 @@ const App: React.FC = () => {
                 <Route path="/about" element={<About />} />
 
                 {/* The University */}
-                <Route path="/overview" element={<GenericPage title="University Overview" category="The University" />} />
+                <Route path="/overview" element={<UniversityOverview />} />
                 <Route path="/history" element={<GenericPage title="History & Heritage" category="The University" />} />
                 <Route path="/vision-mission" element={<GenericPage title="Vision & Mission" category="The University" />} />
                 <Route path="/kulgeet" element={<GenericPage title="University Kulgeet" category="The University" />} />
                 <Route path="/virtual-tour" element={<GenericPage title="Virtual Tour" category="The University" />} />
-                <Route path="/chancellor-message" element={<GenericPage title="Chancellor's Message" category="Administration" />} />
+                <Route path="/chancellor-message" element={<ChancellorMessage />} />
                 <Route path="/vc-message" element={<VCMessage />} />
                 <Route path="/registrar" element={<GenericPage title="Office of The Registrar" category="Administration" />} />
                 <Route path="/executive-council" element={<GenericPage title="Executive Council" category="Administration" />} />
