@@ -150,9 +150,9 @@ const Navbar: React.FC = () => {
         }
       ]
     },
-    { name: 'Online Services', href: '/online-services' },
     { name: 'Event Gallery', href: '/gallery' },
     { name: 'NAAC', href: '/naac' },
+    { name: 'Online Services', href: 'https://ptsnsuonline.com/' },
     { name: 'NIRF', href: '/nirf' }
   ];
 
@@ -214,12 +214,23 @@ const Navbar: React.FC = () => {
                   className="relative group h-full flex items-center"
                 >
                   {link.href ? (
-                    <Link
-                      to={link.href}
-                      className="px-3 py-1.5 inline-flex items-center gap-1 whitespace-nowrap rounded transition-all duration-200 hover:bg-blue-600 hover:text-white"
-                    >
-                      {link.name}
-                    </Link>
+                    link.href.startsWith('http') ? (
+                      <a
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-3 py-1.5 inline-flex items-center gap-1 whitespace-nowrap rounded transition-all duration-200 hover:bg-blue-600 hover:text-white"
+                      >
+                        {link.name}
+                      </a>
+                    ) : (
+                      <Link
+                        to={link.href}
+                        className="px-3 py-1.5 inline-flex items-center gap-1 whitespace-nowrap rounded transition-all duration-200 hover:bg-blue-600 hover:text-white"
+                      >
+                        {link.name}
+                      </Link>
+                    )
                   ) : (
                     <button className="px-3 py-1.5 inline-flex items-center gap-1 whitespace-nowrap rounded transition-all duration-200 hover:bg-blue-600 hover:text-white cursor-default">
                       {link.name}
@@ -375,13 +386,25 @@ const Navbar: React.FC = () => {
                 <li key={link.name}>
                   {link.href ? (
                     // Simple link without submenu
-                    <Link
-                      to={link.href}
-                      onClick={closeMobileMenu}
-                      className="block px-4 py-3 text-[#071133] font-semibold rounded-md hover:bg-blue-50 transition-colors"
-                    >
-                      {link.name}
-                    </Link>
+                    link.href.startsWith('http') ? (
+                      <a
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={closeMobileMenu}
+                        className="block px-4 py-3 text-[#071133] font-semibold rounded-md hover:bg-blue-50 transition-colors"
+                      >
+                        {link.name}
+                      </a>
+                    ) : (
+                      <Link
+                        to={link.href}
+                        onClick={closeMobileMenu}
+                        className="block px-4 py-3 text-[#071133] font-semibold rounded-md hover:bg-blue-50 transition-colors"
+                      >
+                        {link.name}
+                      </Link>
+                    )
                   ) : (
                     // Accordion for mega menu
                     <div>
