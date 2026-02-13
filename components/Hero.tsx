@@ -3,19 +3,19 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const slides = [
   {
+    image: "/10.jpg",
+    title: "Research & Innovation",
+    subtitle: "Hon'ble VC Prof. Ram Shankar on 77th Republic Day Celebration"
+  },
+  {
     image: "/8.jpg",
     title: "Expert Faculty",
-    subtitle: "P.T.S.N.S, Shahdol Students at Smart India Hackathon 2025 Grand Finale."
+    subtitle: "University Pride - Our Students at Smart India Hackathon 25' Grand Finale."
   },
   {
     image: "/9.jpg",
     title: "Academic Excellence",
-    subtitle: "1st Runner Up at U.P Hackathon 2025"
-  },
-  {
-    image: "/10.jpg",
-    title: "Research & Innovation",
-    subtitle: "Pioneering research initiatives that contribute to societal growth and development."
+    subtitle: "1st Runner Up at U.P Hackathon Defeating 23 IITs."
   },
   {
     image: "/11.jpg",

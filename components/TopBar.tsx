@@ -239,10 +239,10 @@ const TopBar: React.FC = () => {
               onClick={openSearch}
               className="flex items-center gap-1.5 group cursor-pointer opacity-80 hover:opacity-100 transition-opacity"
             >
-              <div className="p-1 bg-blue-600 rounded-full group-hover:bg-blue-700 transition-colors shadow-sm">
+              <div className="p-1 bg-[#DC143C] rounded-full group-hover:bg-[#B01030] transition-colors shadow-sm">
                 <Search size={12} className="lg:size-[13px] text-white group-hover:text-white transition-colors" />
               </div>
-              <span className="text-[9px] lg:text-[11px] text-blue-600 group-hover:text-blue-600 transition-colors tracking-wide font-semibold hidden xl:inline">Search</span>
+              <span className="text-[9px] lg:text-[10px] text-[#DC143C] group-hover:text-[#B01030] transition-colors tracking-wide font-bold uppercase hidden xl:inline">Search</span>
             </button>
           </div>
         </div>
