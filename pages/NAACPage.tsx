@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { ChevronDown, ChevronRight, Menu, X, FileText, Download, Image, BookOpen, Users, Building, Award, Lightbulb, Shield, TrendingUp } from 'lucide-react';
+import { ChevronDown, ChevronRight, ChevronLeft, ArrowLeft, Menu, X, FileText, Download, Image, BookOpen, Users, Building, Award, Lightbulb, Shield, TrendingUp } from 'lucide-react';
 
 interface SubCriterion {
     id: string;
@@ -265,17 +265,41 @@ const NAACPage: React.FC = () => {
         if (activeCriterion === 'dashboard') {
             return (
                 <div className="h-full flex flex-col animate-fade-in relative">
-                    {/* Header - Sticky & Styled */}
-                    <div className="sticky top-0 z-20 bg-[#cfecf7] h-[120px] flex flex-col justify-center px-4 pt-2 pb-4 border-b border-white shadow-sm items-center">
-                        <h1 className="text-xl sm:text-4xl font-serif font-bold text-earth-900 mb-1 text-center">NAAC Dashboard</h1>
-                        <p className="text-slate-500 text-[10px] sm:text-sm text-center">
+                    {/* Header - Sticky & Styled - Reduced height on mobile */}
+                    <div className="sticky top-0 z-20 bg-[#cfecf7] h-[80px] md:h-[120px] flex flex-col justify-center px-4 pt-2 pb-2 md:pb-4 border-b border-white shadow-sm items-center">
+                        <h1 className="text-lg md:text-xl lg:text-4xl font-serif font-bold text-earth-900 mb-0.5 md:mb-1 text-center">NAAC Dashboard</h1>
+                        <p className="text-slate-500 text-[9px] md:text-[10px] lg:text-sm text-center hidden md:block">
                             Welcome to the NAAC Accreditation Portal. Select a criterion to view details.
                         </p>
                     </div>
 
                     {/* Scrollable Content */}
-                    <div className="p-4 flex-1 overflow-y-auto">
-                        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+                    <div className="p-3 md:p-4 flex-1 overflow-y-auto">
+                        {/* Mobile: Simple List View */}
+                        <div className="md:hidden space-y-2">
+                            {criteria.map((criterion, index) => {
+                                const Icon = criterion.icon;
+                                return (
+                                    <button
+                                        key={criterion.id}
+                                        onClick={() => handleMenuClick(criterion.id)}
+                                        className="w-full flex items-center gap-3 p-3 bg-white border border-gray-200 rounded-lg hover:bg-blue-50 hover:border-blue-300 transition-all duration-200 text-left"
+                                    >
+                                        <div className="w-10 h-10 rounded-lg bg-blue-600 text-white flex-shrink-0 flex items-center justify-center shadow-sm">
+                                            <Icon size={18} />
+                                        </div>
+                                        <div className="flex-1 min-w-0">
+                                            <h3 className="font-bold text-earth-900 text-sm leading-tight">{criterion.title}</h3>
+                                            <p className="text-[10px] text-slate-500 font-medium mt-0.5">{criterion.subCriteria.length} Sub-criteria</p>
+                                        </div>
+                                        <ChevronRight size={16} className="text-slate-400 flex-shrink-0" />
+                                    </button>
+                                );
+                            })}
+                        </div>
+
+                        {/* Desktop: Card Grid View */}
+                        <div className="hidden md:grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
                             {criteria.map((criterion, index) => {
                                 const Icon = criterion.icon;
                                 return (
@@ -306,63 +330,8 @@ const NAACPage: React.FC = () => {
             );
         }
 
-        // Parent Criterion View (Intermediate) or Sub-Criterion View (Leaf)
-        const selectedParent = criteria.find(c => c.id === activeCriterion);
-
-        // --- VIEW 2: PARENT CRITERION (Sub-criteria Grid) ---
-        if (selectedParent) {
-            return (
-                <div className="h-full flex flex-col animate-fade-in relative">
-                    {/* Header - Sticky & Styled */}
-                    <div className="sticky top-0 z-20 bg-[#cfecf7] h-[120px] flex flex-col justify-center px-4 pt-1 pb-4 border-b border-white shadow-sm items-start">
-                        <button
-                            onClick={() => handleMenuClick('dashboard')}
-                            className="flex items-center gap-1 text-[10px] sm:text-sm font-medium text-blue-600 hover:text-rose-600 mb-1 transition-colors uppercase tracking-wider underline"
-                        >
-                            <ChevronDown className="rotate-90" size={14} /> Back to Dashboard
-                        </button>
-
-                        <div className="flex items-center gap-2 sm:gap-3 justify-center w-full">
-                            <div className="p-1 sm:p-1.5 bg-blue-100 text-blue-700 rounded-lg">
-                                {React.createElement(selectedParent.icon, { size: 20 })}
-                            </div>
-                            <h1 className="text-xl sm:text-4xl font-serif font-bold text-earth-900 leading-tight text-center">
-                                {selectedParent.title}
-                            </h1>
-                        </div>
-                    </div>
-
-                    {/* Scrollable Content */}
-                    <div className="p-4 flex-1 overflow-y-auto">
-                        <p className="text-slate-600 mb-4 text-xs sm:text-sm">
-                            Overview of {selectedParent.title}. Select a sub-criterion below to view specific documents and data.
-                        </p>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            {selectedParent.subCriteria.map((sub, idx) => (
-                                <div
-                                    key={sub.id}
-                                    onClick={() => handleMenuClick(sub.id)}
-                                    className="group relative bg-white rounded-2xl p-4 shadow-sm border border-slate-100 hover:shadow-md hover:border-green-200 transition-all duration-300 cursor-pointer overflow-hidden flex items-start gap-4"
-                                >
-                                    {/* Green Icon - Parent Icon */}
-                                    <div className="w-10 h-10 rounded-lg bg-green-600 text-white flex-shrink-0 flex items-center justify-center group-hover:bg-emerald-500 transition-colors duration-300 shadow-md">
-                                        {React.createElement(selectedParent.icon, { size: 20 })}
-                                    </div>
-                                    <div>
-                                        <h3 className="font-bold text-earth-900 mb-0.5 text-xs sm:text-sm group-hover:text-emerald-700 transition-colors leading-tight">
-                                            {sub.title.split(' ').slice(1).join(' ')}
-                                        </h3>
-                                        <p className="text-[10px] text-slate-500 font-medium">Sub-criterion {sub.id}</p>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-            )
-        }
-
         // --- VIEW 3: SUB-CRITERION (Content) ---
+        // Check this BEFORE parent criterion to ensure sub-criteria display correctly
         const parentOfSub = criteria.find(c => c.subCriteria.some(s => s.id === activeCriterion));
         const selectedSub = parentOfSub?.subCriteria.find(s => s.id === activeCriterion);
 
@@ -370,15 +339,18 @@ const NAACPage: React.FC = () => {
             return (
                 <div className="h-full flex flex-col animate-fade-in relative">
                     {/* Header - Sticky & Styled */}
-                    <div className="sticky top-0 z-20 bg-[#cfecf7] h-[120px] flex flex-col justify-center px-4 pt-1 pb-4 border-b border-white shadow-sm items-start">
+                    <div className="sticky top-0 z-20 bg-[#cfecf7] h-[120px] flex flex-col justify-center px-4 pt-1 pb-4 border-b border-white shadow-sm items-start relative">
+                        {/* Unified Back button - top-right for all viewports */}
                         <button
                             onClick={() => handleMenuClick(parentOfSub.id)}
-                            className="flex items-center gap-1 text-[10px] sm:text-sm font-medium text-blue-600 hover:text-rose-600 mb-1 transition-colors uppercase tracking-wider underline"
+                            className="absolute top-3 right-4 flex items-center gap-1 text-sm font-bold text-black hover:text-blue-600 transition-colors"
                         >
-                            <ChevronDown className="rotate-90" size={14} /> Back to {parentOfSub.title.split(':')[0]}
+                            <ArrowLeft size={16} className="hidden md:block" />
+                            <ChevronLeft size={16} className="md:hidden" />
+                            BACK
                         </button>
 
-                        <h1 className="text-xl sm:text-4xl font-serif font-bold text-earth-900 leading-tight text-center w-full">
+                        <h1 className="text-xl sm:text-4xl font-serif font-bold text-earth-900 leading-tight text-center w-full pt-8 md:pt-0">
                             {selectedSub.title}
                         </h1>
                     </div>
@@ -433,6 +405,65 @@ const NAACPage: React.FC = () => {
             );
         }
 
+        // Parent Criterion View (Intermediate) or Sub-Criterion View (Leaf)
+        const selectedParent = criteria.find(c => c.id === activeCriterion);
+
+        // --- VIEW 2: PARENT CRITERION (Sub-criteria Grid) ---
+        if (selectedParent) {
+            return (
+                <div className="h-full flex flex-col animate-fade-in relative">
+                    {/* Header - Sticky & Styled */}
+                    <div className="sticky top-0 z-20 bg-[#cfecf7] h-[120px] flex flex-col justify-center px-4 pt-1 pb-4 border-b border-white shadow-sm items-start relative">
+                        {/* Unified Back button - top-right for all viewports */}
+                        <button
+                            onClick={() => handleMenuClick('dashboard')}
+                            className="absolute top-3 right-4 flex items-center gap-1 text-sm font-bold text-black hover:text-blue-600 transition-colors"
+                        >
+                            <ArrowLeft size={16} className="hidden md:block" />
+                            <ChevronLeft size={16} className="md:hidden" />
+                            BACK
+                        </button>
+
+                        <div className="flex items-center gap-2 sm:gap-3 justify-center w-full">
+                            <div className="p-1 sm:p-1.5 bg-blue-100 text-blue-700 rounded-lg">
+                                {React.createElement(selectedParent.icon, { size: 20 })}
+                            </div>
+                            <h1 className="text-xl sm:text-4xl font-serif font-bold text-earth-900 leading-tight text-center pt-8 md:pt-0">
+                                {selectedParent.title}
+                            </h1>
+                        </div>
+                    </div>
+
+                    {/* Scrollable Content */}
+                    <div className="p-4 flex-1 overflow-y-auto">
+                        <p className="text-slate-600 mb-4 text-xs sm:text-sm">
+                            Overview of {selectedParent.title}. Select a sub-criterion below to view specific documents and data.
+                        </p>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            {selectedParent.subCriteria.map((sub, idx) => (
+                                <div
+                                    key={sub.id}
+                                    onClick={() => handleMenuClick(sub.id)}
+                                    className="group relative bg-white rounded-2xl p-4 shadow-sm border border-slate-100 hover:shadow-md hover:border-green-200 transition-all duration-300 cursor-pointer overflow-hidden flex items-start gap-4"
+                                >
+                                    {/* Green Icon - Parent Icon */}
+                                    <div className="w-10 h-10 rounded-lg bg-green-600 text-white flex-shrink-0 flex items-center justify-center group-hover:bg-emerald-500 transition-colors duration-300 shadow-md">
+                                        {React.createElement(selectedParent.icon, { size: 20 })}
+                                    </div>
+                                    <div>
+                                        <h3 className="font-bold text-earth-900 mb-0.5 text-xs sm:text-sm group-hover:text-emerald-700 transition-colors leading-tight">
+                                            {sub.title.split(' ').slice(1).join(' ')}
+                                        </h3>
+                                        <p className="text-[10px] text-slate-500 font-medium">Sub-criterion {sub.id}</p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            )
+        }
+
         return null;
     };
 
@@ -445,7 +476,7 @@ const NAACPage: React.FC = () => {
 
             {/* Main Container - 95% Width */}
             <div className="w-[95%] mx-auto relative z-10">
-                <div className="bg-white rounded-[1rem] shadow-xl overflow-hidden border border-gray-100 h-[85vh] lg:h-auto lg:aspect-[3.0] lg:min-h-[480px] flex flex-col lg:flex-row">
+                <div className="bg-white rounded-[1rem] shadow-xl overflow-hidden border border-gray-100 h-[90vh] lg:h-auto lg:aspect-[3.0] lg:min-h-[480px] flex flex-col lg:flex-row">
 
                     <aside
                         className={`
