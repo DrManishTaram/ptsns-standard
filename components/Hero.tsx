@@ -147,7 +147,7 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <section className="relative w-full pt-1 pb-2 md:pt-2 md:pb-4 overflow-hidden bg-[url('/sliderbg.png')] bg-fixed bg-cover bg-center">
+    <section className="relative w-full pt-1 pb-2 md:pt-2 md:pb-4 overflow-hidden bg-center bg-cover" style={{ backgroundImage: "url('/sliderbg.png')", backgroundAttachment: 'fixed' }}>
       {/* Dark Overlay for better contrast with Glass Effect */}
       <div className="absolute inset-0 bg-black/40 z-0"></div>
 

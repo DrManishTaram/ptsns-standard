@@ -69,7 +69,7 @@ const StatItem: React.FC<{ icon: React.ReactNode; count: number; suffix: string;
 
 const Stats: React.FC = () => {
   return (
-    <section className="py-10 md:py-12 sm:py-16 md:py-24 relative overflow-hidden bg-fixed bg-center bg-cover" style={{ backgroundImage: "url('/10.jpg')" }}>
+    <section className="py-10 md:py-12 sm:py-16 md:py-24 relative overflow-hidden bg-center bg-cover" style={{ backgroundImage: "url('/10.jpg')", backgroundAttachment: 'fixed' }}>
       {/* Dark Overlay */}
       <div className="absolute inset-0 bg-black/30"></div>
 

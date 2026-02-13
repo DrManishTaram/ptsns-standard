@@ -237,7 +237,7 @@ const TopBar: React.FC = () => {
 
             <button
               onClick={openSearch}
-              className="flex items-center gap-1.5 group cursor-pointer opacity-80 hover:opacity-100 transition-opacity"
+              className="flex items-center gap-2 group cursor-pointer transition-all border border-[#DC143C] rounded-full px-1 py-1 pr-3 hover:bg-red-50"
             >
               <div className="p-1 bg-[#DC143C] rounded-full group-hover:bg-[#B01030] transition-colors shadow-sm">
                 <Search size={12} className="lg:size-[13px] text-white group-hover:text-white transition-colors" />
@@ -256,12 +256,12 @@ const TopBar: React.FC = () => {
       )}
 
       <div
-        className={`fixed top-0 right-0 h-full w-full md:w-96 bg-white shadow-2xl z-[201] transform transition-transform duration-300 ease-in-out ${isSearchOpen ? 'translate-x-0' : 'translate-x-full'
+        className={`fixed top-0 right-0 h-full w-[85%] sm:w-96 bg-white shadow-2xl z-[201] transform transition-transform duration-300 ease-in-out ${isSearchOpen ? 'translate-x-0' : 'translate-x-full'
           }`}
       >
         <div className="flex flex-col h-full">
           <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-blue-50">
-            <h3 className="text-lg font-bold text-blue-900">Search Website</h3>
+            <h3 className="text-lg font-bold text-blue-900">Search PT.S.N.S Website</h3>
             <button
               onClick={closeSearch}
               className="p-2 rounded-full bg-blue-600 text-white hover:bg-blue-700 transition-colors"

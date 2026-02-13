@@ -14,7 +14,7 @@ import InitiativesSection from '../components/InitiativesSection';
 
 const Home: React.FC = () => {
   return (
-    <main className="flex-grow animate-fade-in-up">
+    <main className="flex-grow">
       <Hero />
       {/* InfoCards overlaps the Hero, creating the Qeducato effect */}
       <InfoCards />
