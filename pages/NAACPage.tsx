@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { ChevronDown, ChevronRight, ChevronLeft, ArrowLeft, Menu, X, FileText, Download, Image, BookOpen, Users, Building, Award, Lightbulb, Shield, TrendingUp } from 'lucide-react';
+import { ChevronDown, ChevronRight, ChevronLeft, ArrowLeft, ArrowRight, Menu, X, FileText, Download, Image, BookOpen, Users, Building, Award, Lightbulb, Shield, TrendingUp } from 'lucide-react';
 
 interface SubCriterion {
     id: string;
@@ -305,7 +305,7 @@ const NAACPage: React.FC = () => {
                                 return (
                                     <div
                                         key={criterion.id}
-                                        className="group bg-white border border-gray-100 rounded-xl p-4 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer relative overflow-hidden"
+                                        className="group bg-white border-2 border-gray-300 rounded-xl p-4 shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 cursor-pointer relative overflow-hidden"
                                         onClick={() => handleMenuClick(criterion.id)}
                                         style={{ animationDelay: `${index * 50}ms` }}
                                     >
@@ -316,10 +316,15 @@ const NAACPage: React.FC = () => {
                                             <div className="w-10 h-10 rounded-lg bg-blue-600 text-white flex-shrink-0 flex items-center justify-center group-hover:bg-rose-500 transition-colors duration-300 shadow-md">
                                                 <Icon size={20} />
                                             </div>
-                                            <div>
+                                            <div className="flex-1">
                                                 <h3 className="font-bold text-earth-900 mb-0.5 text-xs sm:text-sm group-hover:text-rose-600 transition-colors leading-tight">{criterion.title}</h3>
                                                 <p className="text-[10px] text-slate-500 font-medium">{criterion.subCriteria.length} Sub-criteria</p>
                                             </div>
+                                        </div>
+
+                                        {/* Arrow Icon - Bottom Right */}
+                                        <div className="absolute bottom-3 right-3 text-blue-600 group-hover:text-rose-500 transition-colors duration-300">
+                                            <ArrowRight size={18} />
                                         </div>
                                     </div>
                                 );
@@ -365,9 +370,9 @@ const NAACPage: React.FC = () => {
 
                             {/* Placeholder content cards */}
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <div className="bg-slate-50 border border-slate-100 rounded-xl p-4 hover:border-blue-200 transition-colors">
+                                <div className="bg-white border-2 border-gray-300 rounded-xl p-4 shadow-lg hover:shadow-2xl hover:border-gray-400 transition-all duration-300">
                                     <div className="flex items-start justify-between mb-3">
-                                        <div className="p-2 bg-white rounded-lg shadow-sm text-blue-600">
+                                        <div className="p-2 bg-fuchsia-600 rounded-lg shadow-sm text-white">
                                             <FileText size={20} />
                                         </div>
                                         <span className="bg-green-100 text-green-700 text-[10px] font-bold px-2 py-1 rounded-full uppercase">Verified</span>
@@ -382,9 +387,9 @@ const NAACPage: React.FC = () => {
                                     </div>
                                 </div>
 
-                                <div className="bg-slate-50 border border-slate-100 rounded-xl p-4 hover:border-pink-200 transition-colors">
+                                <div className="bg-white border-2 border-gray-300 rounded-xl p-4 shadow-lg hover:shadow-2xl hover:border-gray-400 transition-all duration-300">
                                     <div className="flex items-start justify-between mb-3">
-                                        <div className="p-2 bg-white rounded-lg shadow-sm text-pink-600">
+                                        <div className="p-2 bg-fuchsia-600 rounded-lg shadow-sm text-white">
                                             <Image size={20} />
                                         </div>
                                         <span className="bg-blue-100 text-blue-700 text-[10px] font-bold px-2 py-1 rounded-full uppercase">Gallery</span>
@@ -444,17 +449,22 @@ const NAACPage: React.FC = () => {
                                 <div
                                     key={sub.id}
                                     onClick={() => handleMenuClick(sub.id)}
-                                    className="group relative bg-white rounded-2xl p-4 shadow-sm border border-slate-100 hover:shadow-md hover:border-green-200 transition-all duration-300 cursor-pointer overflow-hidden flex items-start gap-4"
+                                    className="group relative bg-white rounded-2xl p-4 shadow-lg border-2 border-gray-300 hover:shadow-2xl hover:border-green-200 hover:-translate-y-1 transition-all duration-300 cursor-pointer overflow-hidden flex items-start gap-4"
                                 >
                                     {/* Green Icon - Parent Icon */}
                                     <div className="w-10 h-10 rounded-lg bg-green-600 text-white flex-shrink-0 flex items-center justify-center group-hover:bg-emerald-500 transition-colors duration-300 shadow-md">
                                         {React.createElement(selectedParent.icon, { size: 20 })}
                                     </div>
-                                    <div>
+                                    <div className="flex-1">
                                         <h3 className="font-bold text-earth-900 mb-0.5 text-xs sm:text-sm group-hover:text-emerald-700 transition-colors leading-tight">
                                             {sub.title.split(' ').slice(1).join(' ')}
                                         </h3>
                                         <p className="text-[10px] text-slate-500 font-medium">Sub-criterion {sub.id}</p>
+                                    </div>
+
+                                    {/* Arrow Icon - Bottom Right */}
+                                    <div className="absolute bottom-3 right-3 text-green-600 group-hover:text-emerald-500 transition-colors duration-300">
+                                        <ArrowRight size={18} />
                                     </div>
                                 </div>
                             ))}
