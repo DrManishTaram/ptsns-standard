@@ -39,6 +39,8 @@ const ExecutiveCouncil = lazy(() => import('./pages/ExecutiveCouncil'));
 const FinanceOfficerProfile = lazy(() => import('./pages/FinanceOfficerProfile'));
 const DeansOfFaculty = lazy(() => import('./pages/DeansOfFaculty'));
 const DSWPage = lazy(() => import('./pages/DSWPage'));
+const PremisesInCharge = lazy(() => import('./pages/PremisesInCharge'));
+const OmbudspersonPage = lazy(() => import('./pages/OmbudspersonPage'));
 
 // Component to scroll to top on every route change
 const ScrollToTop: React.FC = () => {
@@ -113,6 +115,8 @@ const App: React.FC = () => {
                 <Route path="/finance-officer" element={<FinanceOfficerProfile />} />
                 <Route path="/exam-controller" element={<ExamControllerProfile />} />
                 <Route path="/dsw" element={<DSWPage />} />
+                <Route path="/premises-in-charge" element={<PremisesInCharge />} />
+                <Route path="/ombudsperson" element={<OmbudspersonPage />} />
                 <Route path="/act-statutes" element={<GenericPage title="Act, Statutes & Ordinances" category="Official" />} />
 
                 {/* Academics */}

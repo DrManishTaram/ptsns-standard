@@ -36,13 +36,10 @@ const DSWPage: React.FC = () => {
                     {/* Left Column: Dean Profile */}
                     <div className="lg:col-span-1 space-y-6">
                         <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden transform hover:-translate-y-1 transition-transform duration-300">
-                             <div className="bg-gradient-to-r from-amber-500 to-amber-600 px-6 py-4 flex items-center gap-3">
-                                <Award className="text-white" size={24} />
-                                <h3 className="text-white font-bold text-lg">Meet the Dean</h3>
-                             </div>
+                             <div className="h-24 bg-gradient-to-r from-[#071133] to-[#1a2b5e]"></div>
                              
-                             <div className="p-8 text-center bg-gradient-to-b from-amber-50 to-white">
-                                <div className="w-40 h-40 mx-auto rounded-full p-1 bg-gradient-to-tr from-amber-500 to-blue-600 mb-4 shadow-lg">
+                             <div className="px-8 pb-8 text-center bg-white -mt-12 relative z-10">
+                                <div className="w-40 h-40 mx-auto rounded-full p-1 bg-white mb-4 shadow-lg">
                                     <img 
                                         src="/Adminstration/pramod-pandey.jpg" 
                                         alt="Prof. Pramod Kumar Pandey" 
@@ -50,7 +47,7 @@ const DSWPage: React.FC = () => {
                                     />
                                 </div>
                                 <h2 className="text-2xl font-serif font-bold text-gray-900 mb-1">Prof. Pramod Kumar Pandey</h2>
-                                <p className="text-amber-600 font-bold uppercase text-xs tracking-wider mb-6">Dean, Student Welfare</p>
+                                <p className="text-blue-600 font-bold uppercase text-xs tracking-wider mb-6">Dean, Student Welfare</p>
                                 
                                 <div className="space-y-4 text-left bg-white p-5 rounded-xl border border-gray-100 shadow-sm">
                                     <a href="tel:+919424774332" className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50 transition-colors group">
