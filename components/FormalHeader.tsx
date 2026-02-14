@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Search, Menu, Phone, Mail, GraduationCap } from 'lucide-react';
 import { useSearch } from '../context/SearchContext';
 import { useMobileMenu } from '../context/MobileMenuContext';
@@ -30,7 +31,7 @@ const FormalHeader: React.FC = () => {
       {/* Mobile Sticky Header - Only visible on mobile */}
       <div className="lg:hidden sticky top-0 z-[100] w-full bg-white shadow-md flex flex-col h-28">
         {/* Top Section - 70% Height - Crisp White */}
-        <div className="h-[70%] w-full bg-white flex items-center justify-center px-1 gap-1 border-b-[3px] border-[#FFA500]">
+        <Link to="/" className="h-[70%] w-full bg-white flex items-center justify-center px-1 gap-1 border-b-[3px] border-[#FFA500]">
           {/* Logo - Round Shape */}
           <div className="flex-shrink-0 bg-white rounded-full p-1 h-11 w-11 flex items-center justify-center overflow-hidden">
             <img
@@ -64,7 +65,7 @@ const FormalHeader: React.FC = () => {
               पंडित शंभूनाथ शुक्ला विश्वविद्यालय, शहडोल (म.प्र.)
             </h2>
           </div>
-        </div>
+        </Link>
 
         {/* Bottom Section - 30% Height - Light Blue */}
         <div className="h-[30%] w-full bg-[#071133] flex items-center justify-between px-4">
@@ -118,7 +119,7 @@ const FormalHeader: React.FC = () => {
           <div className="flex flex-col md:flex-row items-center justify-center gap-2">
 
             {/* Center: Logo + Text Content */}
-            <div className={`flex items-center justify-center transition-all duration-300 ${isScrolled ? 'gap-2' : 'gap-3 md:gap-4'
+            <Link to="/" className={`flex items-center justify-center transition-all duration-300 ${isScrolled ? 'gap-2' : 'gap-3 md:gap-4'
               }`}>
 
 
@@ -170,7 +171,7 @@ const FormalHeader: React.FC = () => {
               </div>
 
 
-            </div>
+            </Link>
 
           </div>
 
