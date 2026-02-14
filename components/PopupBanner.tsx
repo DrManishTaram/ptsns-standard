@@ -41,11 +41,8 @@ const PopupBanner: React.FC = () => {
         const hasSeen = sessionStorage.getItem('hasSeenPopup');
 
         if (location.pathname === '/' && !hasSeen) {
-            const timer = setTimeout(() => {
-                setVisibleNotices(notices); // Load all notices
-                setIsMounted(true);
-            }, 500);
-            return () => clearTimeout(timer);
+            setVisibleNotices(notices);
+            setIsMounted(true);
         } else {
             // Hide if navigating away, or if already seen
             setVisibleNotices([]);

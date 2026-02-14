@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const slides = [
@@ -33,7 +33,8 @@ const Hero: React.FC = () => {
   const [current, setCurrent] = useState(0);
   const [imageOrientations, setImageOrientations] = useState<Record<string, 'landscape' | 'portrait'>>({});
   const [isMobile, setIsMobile] = useState(false);
-  const [isResetting, setIsResetting] = useState(false);
+  const [isTransitioning, setIsTransitioning] = useState(true);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   // Ensure max 10 images (5 paired slides)
   const activeSlides = slides.slice(0, 10);
@@ -60,35 +61,33 @@ const Hero: React.FC = () => {
         let left = i * 2;
         let right = left + 1;
 
-        // Handle odd number of slides: overlap the last slide logic
         if (right >= activeSlides.length && activeSlides.length > 1) {
           left = activeSlides.length - 2;
           right = activeSlides.length - 1;
         } else if (activeSlides.length === 1) {
-          right = 0; // Duplicate for single image
+          right = 0;
         }
 
         const page = [activeSlides[left]];
-        // Add right slide if it's different or explicit duplicate needed
         page.push(activeSlides[right]);
-
         desktopPages.push(page);
       }
       return desktopPages;
     }
   }, [activeSlides, isMobile]);
 
-  // Append clone of first page for infinite loop
+  // Append clone of first page for seamless infinite loop
   const extendedPages = React.useMemo(() => {
     if (pages.length === 0) return [];
     return [...pages, pages[0]];
   }, [pages]);
 
+  const totalReal = pages.length;
+
   // Preload critical images
   useEffect(() => {
     const bgImg = new Image();
     bgImg.src = '/sliderbg.png';
-    // Preload first page images
     if (pages.length > 0 && pages[0]) {
       pages[0].forEach(slide => {
         const img = new Image();
@@ -97,45 +96,56 @@ const Hero: React.FC = () => {
     }
   }, [pages]);
 
-  const nextSlide = React.useCallback(() => {
-    if (isResetting || pages.length === 0) return;
-    setCurrent(prev => prev + 1);
-  }, [isResetting, pages.length]);
-
-  const prevSlide = React.useCallback(() => {
-    if (isResetting || pages.length === 0) return;
-    setCurrent(prev => (prev - 1 + pages.length) % pages.length); // Standard prev for now
-  }, [isResetting, pages.length]);
-
-  // Handle Loop Reset
-  useEffect(() => {
-    if (current === pages.length) {
-      const timeout = setTimeout(() => {
-        setIsResetting(true);
-        setCurrent(0);
-      }, 700); // Match transition duration
-      return () => clearTimeout(timeout);
-    }
-  }, [current, pages.length]);
-
-  // Clear Resetting State
-  useEffect(() => {
-    if (isResetting) {
-      // Small delay to ensure render cycle with transition-none has hit
-      const timeout = setTimeout(() => {
-        setIsResetting(false);
-      }, 50);
-      return () => clearTimeout(timeout);
-    }
-  }, [isResetting]);
-
-  // Auto-slide effect
-  useEffect(() => {
-    const timer = setInterval(() => {
-      nextSlide();
+  // Reset auto-slide timer
+  const resetTimer = useCallback(() => {
+    if (timerRef.current) clearInterval(timerRef.current);
+    timerRef.current = setInterval(() => {
+      setCurrent(prev => prev + 1);
     }, 7000);
-    return () => clearInterval(timer);
-  }, [nextSlide]);
+  }, []);
+
+  // Start auto-slide
+  useEffect(() => {
+    resetTimer();
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+    };
+  }, [resetTimer]);
+
+  // Handle seamless loop: when we reach the clone, snap back to real first slide
+  useEffect(() => {
+    if (current === totalReal) {
+      const timeout = setTimeout(() => {
+        setIsTransitioning(false);
+        setCurrent(0);
+      }, 700); // Wait for the slide transition to finish
+      return () => clearTimeout(timeout);
+    }
+  }, [current, totalReal]);
+
+  // Re-enable transitions after snapping back to 0
+  useEffect(() => {
+    if (!isTransitioning && current === 0) {
+      // Use requestAnimationFrame to ensure the browser has painted the snap
+      const raf = requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          setIsTransitioning(true);
+        });
+      });
+      return () => cancelAnimationFrame(raf);
+    }
+  }, [isTransitioning, current]);
+
+  const nextSlide = useCallback(() => {
+    if (current >= totalReal) return; // Don't advance past the clone
+    setCurrent(prev => prev + 1);
+    resetTimer();
+  }, [current, totalReal, resetTimer]);
+
+  const prevSlide = useCallback(() => {
+    setCurrent(prev => (prev - 1 + totalReal) % totalReal);
+    resetTimer();
+  }, [totalReal, resetTimer]);
 
   const handleImageLoad = (e: React.SyntheticEvent<HTMLImageElement, Event>, imgSrc: string) => {
     const img = e.currentTarget;
@@ -151,36 +161,31 @@ const Hero: React.FC = () => {
       {/* Dark Overlay for better contrast with Glass Effect */}
       <div className="absolute inset-0 bg-black/40 z-0"></div>
 
-      {/* Slider Container - Transparent so images slide over background */}
+      {/* Slider Container */}
       <div className="relative w-full px-4 md:px-6 z-10">
         <div className="relative overflow-hidden rounded-3xl">
           {/* Slider Track */}
           <div
-            className={`flex transition-transform duration-700 ease-in-out ${isResetting ? 'transition-none' : ''}`}
+            className={`flex ${isTransitioning ? 'transition-transform duration-700 ease-in-out' : ''}`}
             style={{ transform: `translateX(-${current * 100}%)` }}
           >
             {extendedPages.map((pageSlides, index) => {
               const leftSlide = pageSlides[0];
-              const rightSlide = pageSlides[1]; // May be undefined in mobile if loop above changed (but my logic ensures arrays of 1)
-              // Wait, mobile map is `[s]`. So pageSlides[1] is undefined. Correct.
+              const rightSlide = pageSlides[1];
 
               const isLeftPortrait = imageOrientations[leftSlide.image] === 'portrait';
               const isRightPortrait = rightSlide ? imageOrientations[rightSlide.image] === 'portrait' : false;
 
               return (
                 <div key={index} className="flex-shrink-0 w-full">
-                  {/* Split Layout - Single column on mobile, two columns on desktop */}
+                  {/* Split Layout */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-0 min-h-[200px] md:min-h-[400px]">
 
-                    {/* LEFT SIDE - Framed Image */}
+                    {/* LEFT SIDE */}
                     <div className="relative bg-transparent p-1.5 md:p-2 flex items-center justify-center">
-                      {/* Detailed Navy Blue Border Frame */}
                       <div className="relative w-full aspect-[16/10] rounded-2xl p-[2px] bg-[#001f3f] shadow-2xl">
-                        {/* Inner White Border - Thinner for elegance */}
                         <div className="w-full h-full bg-[#E6D8B5] rounded-2xl p-1.5">
-                          {/* Image Container */}
                           <div className="relative w-full h-full rounded-xl overflow-hidden bg-gray-900 group">
-                            {/* Blurred Background - Only for Portrait */}
                             {(isLeftPortrait || !imageOrientations[leftSlide.image]) && (
                               <div className="absolute inset-0 w-full h-full overflow-hidden">
                                 <img
@@ -192,7 +197,6 @@ const Hero: React.FC = () => {
                               </div>
                             )}
 
-                            {/* Main Image */}
                             <img
                               src={leftSlide.image}
                               alt={leftSlide.title}
@@ -202,7 +206,6 @@ const Hero: React.FC = () => {
                               fetchPriority="high"
                               className={`relative z-10 w-full h-full transition-transform duration-700 group-hover:scale-105 ${isLeftPortrait ? 'object-contain' : 'object-cover'}`}
                             />
-                            {/* Overlay Description */}
                             <div className="absolute bottom-0 left-0 right-0 bg-black/60 p-4 backdrop-blur-sm z-20 rounded-b-xl">
                               <p className="text-white text-sm md:text-base font-medium text-center truncate">
                                 {leftSlide.subtitle.length > 75 ? `${leftSlide.subtitle.substring(0, 75)}...` : leftSlide.subtitle}
@@ -213,15 +216,12 @@ const Hero: React.FC = () => {
                       </div>
                     </div>
 
-                    {/* RIGHT SIDE - Framed Image - Hidden on mobile */}
+                    {/* RIGHT SIDE - Hidden on mobile */}
                     <div className="hidden md:block relative bg-transparent p-1.5 md:p-2 md:flex items-center justify-center">
                       {rightSlide && (
                         <div className="relative w-full aspect-[16/10] rounded-2xl p-[2px] bg-[#001f3f] shadow-2xl">
-                          {/* Inner White Border - Thinner for elegance */}
                           <div className="w-full h-full bg-[#E6D8B5] rounded-2xl p-1.5">
-                            {/* Image Container */}
                             <div className="w-full h-full rounded-xl overflow-hidden bg-gray-900 relative group">
-                              {/* Blurred Background - Only for Portrait */}
                               {(isRightPortrait || !imageOrientations[rightSlide.image]) && (
                                 <div className="absolute inset-0 w-full h-full overflow-hidden">
                                   <img
@@ -233,7 +233,6 @@ const Hero: React.FC = () => {
                                 </div>
                               )}
 
-                              {/* Main Image */}
                               <img
                                 src={rightSlide.image}
                                 alt={rightSlide.title}
@@ -243,7 +242,6 @@ const Hero: React.FC = () => {
                                 fetchPriority="high"
                                 className={`relative z-10 w-full h-full transition-transform duration-700 group-hover:scale-105 ${isRightPortrait ? 'object-contain' : 'object-cover'}`}
                               />
-                              {/* Overlay Description */}
                               <div className="absolute bottom-0 left-0 right-0 bg-black/60 p-4 backdrop-blur-sm z-20 rounded-b-xl">
                                 <p className="text-white text-sm md:text-base font-medium text-center truncate">
                                   {rightSlide.subtitle.length > 75 ? `${rightSlide.subtitle.substring(0, 75)}...` : rightSlide.subtitle}
@@ -277,6 +275,22 @@ const Hero: React.FC = () => {
         >
           <ChevronRight size={24} className="group-hover:translate-x-0.5 transition-transform" />
         </button>
+
+        {/* Page Dots */}
+        <div className="flex justify-center gap-2 mt-3">
+          {pages.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => { setCurrent(idx); resetTimer(); }}
+              className={`h-2 rounded-full transition-all duration-300 ${
+                (current % totalReal === idx || (current === totalReal && idx === 0))
+                  ? 'w-8 bg-white'
+                  : 'w-2 bg-white/40 hover:bg-white/60'
+              }`}
+              aria-label={`Go to slide ${idx + 1}`}
+            />
+          ))}
+        </div>
       </div>
     </section>
   );

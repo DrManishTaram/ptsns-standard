@@ -22,7 +22,7 @@ const VCMessage: React.FC = () => {
                 <div className="flex flex-col lg:flex-row gap-12">
 
                     {/* Sidebar / Profile Card */}
-                    <div className="w-full lg:w-1/3 order-2 lg:order-1">
+                    <div className="w-full lg:w-1/3 order-1">
                         <div className="bg-white rounded-2xl shadow-xl overflow-hidden sticky top-24 border border-gray-100">
                             <div className="h-32 bg-gradient-to-r from-turmeric-600 to-turmeric-500 relative">
                                 <div className="absolute -bottom-16 left-1/2 -translate-x-1/2 p-1.5 bg-white rounded-full">
@@ -59,7 +59,7 @@ const VCMessage: React.FC = () => {
                     </div>
 
                     {/* Main Content: Message */}
-                    <div className="w-full lg:w-2/3 order-1 lg:order-2">
+                    <div className="w-full lg:w-2/3 order-2">
                         <div className="bg-white p-8 md:p-12 rounded-2xl shadow-sm border border-gray-100 relative">
                             <Quote className="absolute top-8 left-8 text-turmeric-100 w-20 h-20 -z-0" />
 

@@ -19,7 +19,7 @@ const PanditShambhuNathShukla: React.FC = () => {
                         <div className="w-64 h-80 bg-gray-200 rounded-xl overflow-hidden shadow-lg border-4 border-white mb-4 relative group">
                             {/* Placeholder for actual image */}
                             <img 
-                                src="/shukla-ji.jpg" 
+                                src="/pt.sambhunath.jpg" 
                                 alt="Pandit Shambhu Nath Shukla" 
                                 className="w-full h-full object-cover"
                                 onError={(e) => {

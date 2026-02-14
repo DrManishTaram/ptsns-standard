@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { ChevronDown, ChevronRight, X, Plus } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useMobileMenu } from '../context/MobileMenuContext';
@@ -22,6 +22,14 @@ interface NavItem {
 const Navbar: React.FC = () => {
   const { isMobileMenuOpen, closeMobileMenu } = useMobileMenu();
   const [mobileExpandedMenu, setMobileExpandedMenu] = useState<string | null>(null);
+  const [hasBeenOpened, setHasBeenOpened] = useState(false);
+
+  // Track if the menu has ever been opened to prevent initial render flash
+  useEffect(() => {
+    if (isMobileMenuOpen && !hasBeenOpened) {
+      setHasBeenOpened(true);
+    }
+  }, [isMobileMenuOpen, hasBeenOpened]);
   const navLinks: NavItem[] = [
     { name: 'Home', href: '/' },
     {
@@ -352,7 +360,7 @@ const Navbar: React.FC = () => {
         </nav>
       </div>
 
-      {/* Mobile Sidebar - Only visible on mobile */}
+      {/* Mobile Sidebar - Only rendered after first open to prevent flash */}
       <>
         {/* Backdrop Overlay */}
         {isMobileMenuOpen && (
@@ -362,10 +370,10 @@ const Navbar: React.FC = () => {
           />
         )}
 
-        {/* Sidebar */}
+        {/* Sidebar - Only mount in DOM after first open */}
+        {hasBeenOpened && (
         <div
-          className={`lg:hidden fixed top-0 right-0 h-full w-[80%] max-w-[320px] bg-white shadow-2xl z-[300] transform transition-transform duration-300 ease-in-out overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
-            }`}
+          className={`lg:hidden fixed top-0 right-0 h-full w-[80%] max-w-[320px] bg-white shadow-2xl z-[300] transform transition-transform duration-300 ease-in-out overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}
         >
           {/* Sidebar Header */}
           <div className="sticky top-0 bg-gray-100 text-black p-4 flex items-center justify-between shadow-md z-10">
@@ -458,6 +466,7 @@ const Navbar: React.FC = () => {
             </ul>
           </nav>
         </div>
+        )}
       </>
     </>
   );
