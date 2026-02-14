@@ -28,6 +28,7 @@ const EventDetailPage = lazy(() => import('./pages/EventDetailPage'));
 const NIRFPage = lazy(() => import('./pages/NIRFPage'));
 const NAACPage = lazy(() => import('./pages/NAACPage'));
 const SchoolsAndDepartments = lazy(() => import('./pages/SchoolsAndDepartments'));
+const ComputerScienceDepartment = lazy(() => import('./pages/ComputerScienceDepartment'));
 const DepartmentPage = lazy(() => import('./pages/DepartmentPage'));
 
 // Component to scroll to top on every route change
@@ -103,6 +104,7 @@ const App: React.FC = () => {
 
                 {/* Academics */}
                 <Route path="/schools-departments" element={<SchoolsAndDepartments />} />
+                <Route path="/department/computer-science" element={<ComputerScienceDepartment />} />
                 <Route path="/department/:id" element={<DepartmentPage />} />
                 <Route path="/programs" element={<GenericPage title="Academic Programs" category="Academics" />} />
                 <Route path="/syllabus" element={<GenericPage title="Syllabus (NEP)" category="Academics" />} />
