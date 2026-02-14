@@ -12,6 +12,7 @@ import { SearchProvider } from './context/SearchContext';
 import { MobileMenuProvider } from './context/MobileMenuContext';
 import Home from './pages/Home';
 const UniversityOverview = lazy(() => import('./pages/UniversityOverview'));
+const PanditShambhuNathShukla = lazy(() => import('./pages/PanditShambhuNathShukla'));
 
 // Lazy load other page components for better performance
 const About = lazy(() => import('./pages/About'));
@@ -78,6 +79,7 @@ const App: React.FC = () => {
 
                 {/* The University */}
                 <Route path="/overview" element={<UniversityOverview />} />
+                <Route path="/shambhunath-shukla" element={<PanditShambhuNathShukla />} />
                 <Route path="/history" element={<GenericPage title="History & Heritage" category="The University" />} />
                 <Route path="/vision-mission" element={<GenericPage title="Vision & Mission" category="The University" />} />
                 <Route path="/kulgeet" element={<GenericPage title="University Kulgeet" category="The University" />} />
