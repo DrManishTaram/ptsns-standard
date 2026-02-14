@@ -33,6 +33,9 @@ const ComputerScienceDepartment = lazy(() => import('./pages/ComputerScienceDepa
 const DepartmentPage = lazy(() => import('./pages/DepartmentPage'));
 const ChancellorProfile = lazy(() => import('./pages/ChancellorProfile'));
 const VCProfile = lazy(() => import('./pages/VCProfile'));
+const RegistrarProfile = lazy(() => import('./pages/RegistrarProfile'));
+const ExamControllerProfile = lazy(() => import('./pages/ExamControllerProfile'));
+const ExecutiveCouncil = lazy(() => import('./pages/ExecutiveCouncil'));
 
 // Component to scroll to top on every route change
 const ScrollToTop: React.FC = () => {
@@ -102,10 +105,10 @@ const App: React.FC = () => {
                 <Route path="/vc-message" element={<VCMessage />} />
                 <Route path="/chancellor" element={<ChancellorProfile />} />
                 <Route path="/vc" element={<VCProfile />} />
-                <Route path="/registrar" element={<GenericPage title="Office of The Registrar" category="Administration" />} />
-                <Route path="/executive-council" element={<GenericPage title="Executive Council" category="Administration" />} />
+                <Route path="/registrar" element={<RegistrarProfile />} />
+                <Route path="/executive-council" element={<ExecutiveCouncil />} />
                 <Route path="/finance-officer" element={<GenericPage title="Finance Officer" category="Administration" />} />
-                <Route path="/exam-controller" element={<GenericPage title="Examination Controller" category="Administration" />} />
+                <Route path="/exam-controller" element={<ExamControllerProfile />} />
                 <Route path="/act-statutes" element={<GenericPage title="Act, Statutes & Ordinances" category="Official" />} />
 
                 {/* Academics */}
