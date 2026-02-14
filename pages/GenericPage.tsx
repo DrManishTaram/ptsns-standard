@@ -42,7 +42,7 @@ const GenericPage: React.FC<GenericPageProps> = ({ title, category = "Pages", ch
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
 
           {/* Sidebar / Quick Links */}
-          <div className="lg:col-span-1 space-y-8">
+          <div className="lg:col-span-1 space-y-8 order-2 lg:order-1">
             <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 sticky top-24">
               <h3 className="font-serif font-bold text-xl text-earth-900 mb-4 border-b pb-2">In This Section</h3>
               <ul className="space-y-2">
@@ -72,7 +72,7 @@ const GenericPage: React.FC<GenericPageProps> = ({ title, category = "Pages", ch
           </div>
 
           {/* Content Body */}
-          <div className="lg:col-span-3">
+          <div className="lg:col-span-3 order-1 lg:order-2">
             <div className="bg-white p-8 md:p-12 rounded-2xl shadow-sm border border-gray-100 min-h-[400px]">
               {children ? children : (
                 <div className="space-y-6 text-gray-600 leading-relaxed">
