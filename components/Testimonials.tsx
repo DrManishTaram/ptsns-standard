@@ -48,7 +48,7 @@ const Testimonials: React.FC = () => {
   // Let's just put the interval effect.
 
   return (
-    <section className="py-12 md:py-24 bg-gradient-to-b from-turmeric-50 to-white">
+    <section id="testimonials" className="py-12 md:py-24 bg-gradient-to-b from-turmeric-50 to-white">
       <div className="w-full max-w-screen-xl mx-auto px-4">
         <div className="text-center mb-12">
           <span className="inline-block py-1 px-4 rounded-full bg-turmeric-50 border border-turmeric-100 text-turmeric-600 font-bold tracking-widest uppercase text-xs mb-4 shadow-sm">

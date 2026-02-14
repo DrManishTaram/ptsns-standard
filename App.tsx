@@ -29,15 +29,27 @@ const EventDetailPage = lazy(() => import('./pages/EventDetailPage'));
 const NIRFPage = lazy(() => import('./pages/NIRFPage'));
 const NAACPage = lazy(() => import('./pages/NAACPage'));
 const SchoolsAndDepartments = lazy(() => import('./pages/SchoolsAndDepartments'));
+const ComputerScienceDepartment = lazy(() => import('./pages/ComputerScienceDepartment'));
 const DepartmentPage = lazy(() => import('./pages/DepartmentPage'));
 
 // Component to scroll to top on every route change
 const ScrollToTop: React.FC = () => {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
+    if (hash) {
+      // Small timeout to ensure content is rendered
+      setTimeout(() => {
+        const id = hash.replace('#', '');
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [pathname, hash]);
 
   return null;
 };
@@ -94,6 +106,7 @@ const App: React.FC = () => {
 
                 {/* Academics */}
                 <Route path="/schools-departments" element={<SchoolsAndDepartments />} />
+                <Route path="/department/computer-science" element={<ComputerScienceDepartment />} />
                 <Route path="/department/:id" element={<DepartmentPage />} />
                 <Route path="/programs" element={<GenericPage title="Academic Programs" category="Academics" />} />
                 <Route path="/syllabus" element={<GenericPage title="Syllabus (NEP)" category="Academics" />} />

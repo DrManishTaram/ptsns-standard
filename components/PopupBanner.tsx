@@ -28,30 +28,38 @@ const notices: Notice[] = [
     }
 ];
 
+const MAX_HEADING_WORDS = 10;
+const MAX_DESCRIPTION_WORDS = 50;
+
 const PopupBanner: React.FC = () => {
     const [visibleNotices, setVisibleNotices] = useState<Notice[]>([]);
     const [isMounted, setIsMounted] = useState(false);
     const location = useLocation();
 
     useEffect(() => {
-        // Only show if on homepage
-        if (location.pathname === '/') {
+        // Only show if on homepage AND hasn't seen popup in this session
+        const hasSeen = sessionStorage.getItem('hasSeenPopup');
+
+        if (location.pathname === '/' && !hasSeen) {
             const timer = setTimeout(() => {
                 setVisibleNotices(notices); // Load all notices
                 setIsMounted(true);
             }, 500);
             return () => clearTimeout(timer);
         } else {
+            // Hide if navigating away, or if already seen
             setVisibleNotices([]);
             setIsMounted(false);
         }
     }, [location.pathname]);
 
     const handleClose = () => {
-        // Remove the first notice (FIFO) or last notice (LIFO)?
-        // User asked: "behind banner will only be visible when front one is closed"
-        // This implies stacking. If we render the *last* item as top, we remove the last item.
-        // Let's treat the array as a stack: render the last item.
+        // If closing the last specific notice, mark session as seen
+        if (visibleNotices.length <= 1) {
+            sessionStorage.setItem('hasSeenPopup', 'true');
+        }
+
+        // Remove the top notice
         setVisibleNotices(prev => prev.slice(0, -1));
     };
 
@@ -59,6 +67,15 @@ const PopupBanner: React.FC = () => {
 
     // Get the current notice to display (top of the stack)
     const currentNotice = visibleNotices[visibleNotices.length - 1];
+
+    // Helper to truncate text by words
+    const truncateByWords = (text: string, limit: number) => {
+        const words = text.split(' ');
+        if (words.length > limit) {
+            return words.slice(0, limit).join(' ') + '...';
+        }
+        return text;
+    };
 
     return createPortal(
         <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 animate-fade-in">
@@ -70,12 +87,7 @@ const PopupBanner: React.FC = () => {
                 className="bg-white rounded-lg shadow-2xl w-full max-w-md overflow-hidden relative animate-zoom-in"
             >
                 {/* Close Button */}
-                <button
-                    onClick={handleClose}
-                    className="absolute top-3 right-3 text-white hover:text-gray-200 transition-colors z-10"
-                >
-                    <X size={24} />
-                </button>
+
 
                 {/* Header - 20% height representation */}
                 <div className="bg-gradient-to-r from-blue-900 to-blue-700 h-32 flex items-center justify-center relative">
@@ -85,23 +97,30 @@ const PopupBanner: React.FC = () => {
                 {/* Content Section */}
                 <div className="p-8 flex flex-col items-center text-center space-y-4">
                     {/* Logo */}
-                    <div className="w-20 h-20 mb-2">
+                    <div className="w-20 h-20 mb-2 bg-white rounded-full p-1 shadow-md flex items-center justify-center">
                         <img
                             src={currentNotice.image}
                             alt="University Logo"
-                            className="w-full h-full object-contain drop-shadow-md"
+                            className="w-full h-full object-contain rounded-full"
                         />
                     </div>
 
                     {/* Heading */}
-                    <h3 className="text-xl font-bold text-gray-900 leading-tight">
-                        {currentNotice.heading}
-                    </h3>
+                    <div className="w-full px-2">
+                        <h3
+                            className="text-xl font-bold text-gray-900 leading-tight truncate"
+                            title={currentNotice.heading} // Tooltip for full text
+                        >
+                            {truncateByWords(currentNotice.heading, MAX_HEADING_WORDS)}
+                        </h3>
+                    </div>
 
                     {/* Description - 4 lines of text, font size 12 */}
-                    <p className="text-[12px] text-gray-600 leading-relaxed text-justify px-4">
-                        {currentNotice.description}
-                    </p>
+                    <div className="w-full">
+                        <p className="text-sm font-medium text-gray-800 leading-relaxed text-justify px-4">
+                            {truncateByWords(currentNotice.description, MAX_DESCRIPTION_WORDS)}
+                        </p>
+                    </div>
 
                     {/* Optional Action Button */}
                     <button
