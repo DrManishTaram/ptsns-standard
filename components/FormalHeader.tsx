@@ -29,7 +29,7 @@ const FormalHeader: React.FC = () => {
   return (
     <>
       {/* Mobile Sticky Header - Only visible on mobile */}
-      <div className="lg:hidden sticky top-0 z-[100] w-full bg-white shadow-md flex flex-col h-28">
+      <div className="lg:hidden sticky top-0 z-[100] w-full bg-white shadow-md flex flex-col h-[100px]">
         {/* Top Section - 70% Height - Crisp White */}
         <Link to="/" className="h-[70%] w-full bg-white flex items-center justify-center px-1 gap-1 border-b-[3px] border-[#FFA500]">
           {/* Logo - Round Shape */}
@@ -111,21 +111,36 @@ const FormalHeader: React.FC = () => {
 
       {/* Desktop Header - Hidden on mobile */}
       <div
-        className={`hidden lg:block w-full bg-white relative z-[60] shadow-[0_10px_30px_-5px_rgba(0,0,0,0.15)] transition-all duration-300 overflow-hidden ${isScrolled ? 'py-1' : ''
+        className={`hidden lg:block w-full bg-white relative z-[60] shadow-[0_10px_30px_-5px_rgba(0,0,0,0.15)] transition-all duration-300 overflow-hidden ${isScrolled ? 'py-0' : ''
           }`}
       >
-        <div className={`w-full max-w-screen-xl mx-auto px-4 relative transition-all duration-300 ${isScrolled ? 'py-1' : 'py-2 lg:py-3'
+        {/* Panditji Image - Absolute Left of Viewport */}
+        <div className="absolute left-[38px] top-1/2 -translate-y-1/2 z-20 flex items-end">
+          <img
+            src="/panditji.png"
+            alt="Pandit Shambhunath Shukla"
+            className={`w-auto object-contain transition-all duration-300 ${isScrolled ? 'h-[33px] lg:h-[40px]' : 'h-[75px] lg:h-[108px]'
+              }`}
+          />
+          <div className={`flex flex-col justify-end text-left font-bold text-black transition-all duration-300 leading-tight whitespace-nowrap mb-1 ${isScrolled
+            ? 'w-0 opacity-0 overflow-hidden ml-0'
+            : 'w-auto opacity-100 ml-3'
+            }`}>
+            <div className="text-[10px] sm:text-[11px] lg:text-[12px]">पंडित शंभूनाथ शुक्ल</div>
+            <div className="text-[10px] sm:text-[11px] lg:text-[12px]">18 दिसंबर 1903 - 1978</div>
+          </div>
+        </div>
+
+        <div className={`w-full max-w-screen-xl mx-auto px-4 relative transition-all duration-300 flex items-center justify-center ${isScrolled ? 'py-0 min-h-[50px] lg:min-h-[60px]' : 'py-0 min-h-[80px] lg:min-h-[110px]'
           }`}>
-          <div className="flex flex-col md:flex-row items-center justify-center gap-2">
+
+          {/* Panditji Image and Info - Absolute Left */}
+
+          <div className="flex flex-col md:flex-row items-center justify-center gap-2 w-full">
 
             {/* Center: Logo + Text Content */}
             <Link to="/" className={`flex items-center justify-center transition-all duration-300 ${isScrolled ? 'gap-2' : 'gap-3 md:gap-4'
               }`}>
-
-
-
-
-
               {/* Logo */}
               <div className="flex-shrink-0">
                 <img

@@ -282,11 +282,10 @@ const Hero: React.FC = () => {
             <button
               key={idx}
               onClick={() => { setCurrent(idx); resetTimer(); }}
-              className={`h-2 rounded-full transition-all duration-300 ${
-                (current % totalReal === idx || (current === totalReal && idx === 0))
+              className={`h-2 rounded-full transition-all duration-300 ${(current % totalReal === idx || (current === totalReal && idx === 0))
                   ? 'w-8 bg-white'
                   : 'w-2 bg-white/40 hover:bg-white/60'
-              }`}
+                }`}
               aria-label={`Go to slide ${idx + 1}`}
             />
           ))}
