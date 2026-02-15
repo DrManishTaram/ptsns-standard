@@ -120,11 +120,11 @@ const FormalHeader: React.FC = () => {
             <img
               src="/panditji.png"
               alt="Pandit Shambhunath Shukla"
-              className="w-auto object-contain transition-all duration-300 h-[71px] lg:h-[103px]"
+              className="w-auto object-contain transition-all duration-300 h-[71px] lg:h-[103px] drop-shadow-[0_0_8px_rgba(56,189,248,0.8)]"
             />
             <div className="flex flex-col justify-end text-left font-bold text-black transition-all duration-300 leading-tight whitespace-nowrap mb-1 w-auto opacity-100 ml-3">
-              <div className="text-[10px] sm:text-[11px] lg:text-[12px]">पंडित शंभूनाथ शुक्ल</div>
-              <div className="text-[10px] sm:text-[11px] lg:text-[12px]">18 दिसंबर 1903 - 1978</div>
+              <div className="text-[9px] sm:text-[10px] lg:text-[11px]">पंडित शंभूनाथ शुक्ल</div>
+              <div className="text-[9px] sm:text-[10px] lg:text-[11px]">18 दिसंबर 1903 - 1978</div>
             </div>
           </div>
         )}
