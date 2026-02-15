@@ -115,21 +115,19 @@ const FormalHeader: React.FC = () => {
           }`}
       >
         {/* Panditji Image - Absolute Left of Viewport */}
-        <div className="absolute left-[19px] top-1/2 -translate-y-1/2 z-20 flex items-end">
-          <img
-            src="/panditji.png"
-            alt="Pandit Shambhunath Shukla"
-            className={`w-auto object-contain transition-all duration-300 ${isScrolled ? 'h-[33px] lg:h-[40px]' : 'h-[75px] lg:h-[108px]'
-              }`}
-          />
-          <div className={`flex flex-col justify-end text-left font-bold text-black transition-all duration-300 leading-tight whitespace-nowrap mb-1 ${isScrolled
-            ? 'w-0 opacity-0 overflow-hidden ml-0'
-            : 'w-auto opacity-100 ml-3'
-            }`}>
-            <div className="text-[10px] sm:text-[11px] lg:text-[12px]">पंडित शंभूनाथ शुक्ल</div>
-            <div className="text-[10px] sm:text-[11px] lg:text-[12px]">18 दिसंबर 1903 - 1978</div>
+        {!isScrolled && (
+          <div className="absolute left-[19px] top-1/2 -translate-y-1/2 z-20 flex items-end">
+            <img
+              src="/panditji.png"
+              alt="Pandit Shambhunath Shukla"
+              className="w-auto object-contain transition-all duration-300 h-[71px] lg:h-[103px]"
+            />
+            <div className="flex flex-col justify-end text-left font-bold text-black transition-all duration-300 leading-tight whitespace-nowrap mb-1 w-auto opacity-100 ml-3">
+              <div className="text-[10px] sm:text-[11px] lg:text-[12px]">पंडित शंभूनाथ शुक्ल</div>
+              <div className="text-[10px] sm:text-[11px] lg:text-[12px]">18 दिसंबर 1903 - 1978</div>
+            </div>
           </div>
-        </div>
+        )}
 
         <div className={`w-full max-w-screen-xl mx-auto px-4 relative transition-all duration-300 flex items-center justify-center ${isScrolled ? 'py-0 min-h-[50px] lg:min-h-[60px]' : 'py-0 min-h-[80px] lg:min-h-[110px]'
           }`}>

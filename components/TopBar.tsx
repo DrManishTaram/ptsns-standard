@@ -362,23 +362,22 @@ const TopBar: React.FC = () => {
             </div>
             <div className="h-4 w-px bg-gray-300 mx-0.5"></div>
             <div className="flex items-center gap-0">
-              <img src="/topbar/gihaldi.png" alt="G.I Tag Haldi" className="h-[75px] w-auto object-contain -mx-3" loading="eager" fetchPriority="high" />
+              <img src="/topbar/gihaldi.png" alt="G.I Tag Haldi" className="h-[71px] w-auto object-contain -mx-3" loading="eager" fetchPriority="high" />
               <span className="text-blue-600 font-bold uppercase tracking-wide text-[10px] sm:text-[11px]">G.I Tag for Haldi</span>
             </div>
             <div className="h-4 w-px bg-gray-300 mx-0.5"></div>
             <div className="flex items-center gap-1">
               <img src="/topbar/tribal.png" alt="Tribal Heritage" className="h-[70px] w-auto object-contain" loading="eager" fetchPriority="high" />
               <span className="text-blue-600 font-bold uppercase tracking-wide text-[10px] sm:text-[11px]">Tribal Heritage</span>
-              <img src="/tiger.png" alt="Tiger" className="h-[75px] w-auto object-contain" loading="eager" fetchPriority="high" />
             </div>
           </div>
 
           <div className="relative z-10 hidden md:flex items-center gap-3 lg:gap-5 pl-4">
             <button
               onClick={toggleScreenReader}
-              className={`flex items-center gap-1.5 px-2 py-1 rounded-full border transition-all duration-300 ${isScreenReaderOn
-                ? 'bg-green-500 border-green-500 text-white shadow-lg shadow-green-500/30'
-                : 'border-blue-500 text-blue-600 hover:bg-blue-50'
+              className={`flex items-center gap-1.5 px-2 py-1 transition-all duration-300 underline underline-offset-2 ${isScreenReaderOn
+                ? 'text-green-600 decoration-green-600 font-bold'
+                : 'text-blue-600 decoration-blue-600 hover:text-blue-800'
                 }`}
               title={isScreenReaderOn ? "Turn Off Screen Reader" : "Turn On Screen Reader"}
               aria-label={isScreenReaderOn ? "Screen Reader is On. Click to turn off." : "Screen Reader is Off. Click to turn on."}
@@ -392,7 +391,7 @@ const TopBar: React.FC = () => {
             <div className="flex items-center gap-1 lg:gap-1.5 mr-1.5 lg:mr-2 border-r border-gray-200 pr-3 lg:pr-4 h-7">
               <button
                 onClick={() => document.documentElement.style.fontSize = '90%'}
-                className="w-5 lg:w-6 h-5 lg:h-6 flex items-center justify-center rounded-full border border-blue-500 text-blue-600 text-[8px] lg:text-[9px] font-bold hover:bg-blue-50 transition-colors uppercase"
+                className="flex items-center justify-center text-blue-600 text-[10px] lg:text-[11px] font-bold hover:text-blue-800 transition-colors uppercase underline underline-offset-2"
                 title="Decrease Font Size"
                 aria-label="Decrease font size"
               >
@@ -400,7 +399,7 @@ const TopBar: React.FC = () => {
               </button>
               <button
                 onClick={() => document.documentElement.style.fontSize = '100%'}
-                className="w-5 lg:w-6 h-5 lg:h-6 flex items-center justify-center rounded-full border border-blue-500 text-blue-600 text-[8px] lg:text-[10px] font-bold hover:bg-blue-50 transition-colors uppercase"
+                className="flex items-center justify-center text-blue-600 text-[10px] lg:text-[11px] font-bold hover:text-blue-800 transition-colors uppercase underline underline-offset-2"
                 title="Default Font Size"
                 aria-label="Reset font size to default"
               >
@@ -408,7 +407,7 @@ const TopBar: React.FC = () => {
               </button>
               <button
                 onClick={() => document.documentElement.style.fontSize = '110%'}
-                className="w-5 lg:w-6 h-5 lg:h-6 flex items-center justify-center rounded-full border border-blue-500 text-blue-600 text-[10px] lg:text-[11px] font-bold hover:bg-blue-50 transition-colors uppercase"
+                className="flex items-center justify-center text-blue-600 text-[10px] lg:text-[11px] font-bold hover:text-blue-800 transition-colors uppercase underline underline-offset-2"
                 title="Increase Font Size"
                 aria-label="Increase font size"
               >
@@ -420,12 +419,10 @@ const TopBar: React.FC = () => {
 
             <button
               onClick={openSearch}
-              className="flex items-center gap-2 group cursor-pointer transition-all border border-[#DC143C] rounded-full px-1 py-1 pr-3 hover:bg-red-50"
+              className="flex items-center gap-2 group cursor-pointer transition-all bg-blue-600 text-white rounded-full px-3 py-1.5 hover:bg-blue-700 shadow-sm"
             >
-              <div className="p-1 bg-[#DC143C] rounded-full group-hover:bg-[#B01030] transition-colors shadow-sm">
-                <Search size={12} className="lg:size-[13px] text-white group-hover:text-white transition-colors" />
-              </div>
-              <span className="text-[9px] lg:text-[10px] text-[#DC143C] group-hover:text-[#B01030] transition-colors tracking-wide font-bold uppercase hidden xl:inline">Search</span>
+              <Search size={14} className="text-white" />
+              <span className="text-[10px] lg:text-[11px] font-bold uppercase tracking-wide hidden xl:inline">Search</span>
             </button>
           </div>
         </div>
