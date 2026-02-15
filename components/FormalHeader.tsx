@@ -214,14 +214,12 @@ const FormalHeader: React.FC = () => {
           {/* Search Icon - Absolute Right - Visible only when scrolled */}
           <button
             onClick={openSearch}
-            className={`absolute right-4 top-1/2 -translate-y-1/2 flex items-center gap-1.5 lg:gap-2 group cursor-pointer transition-all duration-300 ${isScrolled ? 'opacity-100 visible translate-x-0' : 'opacity-0 invisible translate-x-4'
+            className={`absolute right-4 top-1/2 -translate-y-1/2 flex items-center gap-2 group cursor-pointer transition-all duration-300 bg-blue-600 text-white rounded-full px-3 py-1.5 hover:bg-blue-700 shadow-sm ${isScrolled ? 'opacity-100 visible translate-x-0' : 'opacity-0 invisible translate-x-4'
               }`}
             aria-label="Search"
           >
-            <div className="p-1.5 bg-blue-600 rounded-full group-hover:bg-blue-700 transition-colors shadow-sm">
-              <Search size={16} className="text-white group-hover:text-white transition-colors" />
-            </div>
-            <span className="text-xs text-blue-800 group-hover:text-blue-600 transition-colors tracking-wide font-semibold hidden lg:inline">Search</span>
+            <Search size={14} className="text-white" />
+            <span className="text-[10px] lg:text-[11px] font-bold uppercase tracking-wide hidden lg:inline">Search</span>
           </button>
         </div>
       </div>
