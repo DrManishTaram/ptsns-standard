@@ -115,7 +115,7 @@ const FormalHeader: React.FC = () => {
           }`}
       >
         {/* Panditji Image - Absolute Left of Viewport */}
-        <div className="absolute left-[38px] top-1/2 -translate-y-1/2 z-20 flex items-end">
+        <div className="absolute left-[19px] top-1/2 -translate-y-1/2 z-20 flex items-end">
           <img
             src="/panditji.png"
             alt="Pandit Shambhunath Shukla"
